@@ -1,43 +1,43 @@
 ---
-# Custom style entrypoint — imports the Chirpy theme, then applies the Apple-inspired revamp.
+# Custom style entrypoint — imports the Chirpy theme, then applies the Apple dark skin.
 ---
 
 @import "main";
 
 /* =====================================================================
-   Ankit Kumar — portfolio (Apple-inspired edition)
-   Colour theory: soft neutral grey canvas, white elevated surfaces,
-   depth via layered shadows (not hard borders), one restrained accent.
-   Typography: Space Grotesk (headings) + Inter (body).
-   Static only — colours, type, depth, spacing. No layout/positioning
-   hacks, no JS. Site is locked to light mode.
+   Ankit Kumar — portfolio (Apple Dark)
+   Apple dark-mode principles: near-black base, TIERED elevated greys
+   (surfaces get lighter as they rise), light text, one restrained
+   accent, depth from elevation not hard borders, generous spacing.
+   SKIN ONLY — no #topbar-wrapper / #sidebar / #main-wrapper positioning
+   overrides, so the theme owns the responsive layout & off-canvas
+   mobile sidebar. Locked to dark (theme_mode: dark).
    ===================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-/* ---- Palette (Apple neutrals + emerald accent) ----------------------- */
-html,
-html[data-mode="light"] {
-  --ak-canvas:        #f5f5f7;   /* Apple light-grey page canvas */
-  --ak-surface:       #ffffff;   /* elevated surfaces: cards, sidebar */
-  --ak-surface-2:     #fbfbfd;   /* very subtle tinted surface */
-  --ak-ink:           #1d1d1f;   /* Apple near-black */
-  --ak-ink-soft:      #6e6e73;   /* Apple secondary grey */
-  --ak-muted:         #86868b;   /* Apple tertiary grey */
-  --ak-border:        #e5e5ea;   /* hairline (barely visible) */
-  --ak-accent:        #059669;   /* emerald */
-  --ak-accent-strong: #047857;
-  --ak-accent-soft:   #d1fae5;
-  --ak-accent-tint:   #ecfdf5;
+/* ---- Apple dark palette --------------------------------------------- */
+html[data-mode="dark"] {
+  --ak-canvas:        #000000;   /* Apple true-black base */
+  --ak-surface:       #1c1c1e;   /* elevated tier 1 (cards, sidebar) */
+  --ak-surface-2:     #2c2c2e;   /* elevated tier 2 (inputs, nested) */
+  --ak-ink:           #f5f5f7;   /* Apple light text */
+  --ak-ink-soft:      #aeaeb2;   /* Apple secondary label */
+  --ak-muted:         #8e8e93;   /* Apple tertiary label */
+  --ak-border:        #38383a;   /* Apple separator (subtle) */
+  --ak-accent:        #30d158;   /* Apple system green (dark) */
+  --ak-accent-strong: #5edb7e;   /* lighter hover */
+  --ak-accent-soft:   #12351f;   /* dark green tint fill */
+  --ak-accent-tint:   #0d2817;   /* darker wash */
 
-  /* Soft, layered Apple-style shadows */
-  --ak-shadow-sm: 0 1px 2px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06);
-  --ak-shadow-md: 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.06);
-  --ak-shadow-lg: 0 4px 16px rgba(0,0,0,0.08), 0 16px 40px rgba(0,0,0,0.08);
+  /* Apple depth: soft, diffuse shadows on black. */
+  --ak-shadow-sm: 0 1px 2px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4);
+  --ak-shadow-md: 0 4px 14px rgba(0,0,0,0.6), 0 12px 30px rgba(0,0,0,0.5);
+  --ak-shadow-lg: 0 8px 24px rgba(0,0,0,0.65), 0 20px 48px rgba(0,0,0,0.55);
 
-  /* Map into Chirpy's own variables. */
+  /* Map into Chirpy's own theme variables (colour only). */
   --main-bg:          var(--ak-canvas);
-  --mask-bg:          #e3e3e8;
+  --mask-bg:          #000000;
   --sidebar-bg:       var(--ak-surface);
   --card-bg:          var(--ak-surface);
   --card-border-color:var(--ak-border);
@@ -54,149 +54,43 @@ html[data-mode="light"] {
   --border-color:     var(--ak-border);
   --blockquote-border-color: var(--ak-accent);
   --prompt-info-icon-color: var(--ak-accent);
-  --tb-odd-bg:        var(--ak-surface-2);
-  --tag-bg:           var(--ak-surface);
-  --tag-hover:        var(--ak-accent-soft);
+  --tb-odd-bg:        var(--ak-surface);
+  --topbar-wrapper-bg: var(--ak-canvas);
+  --search-wrapper-bg: var(--ak-surface-2);
 }
 
 /* ---- Typography ------------------------------------------------------ */
 body, .content, #sidebar {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-feature-settings: 'cv02','cv03','cv04','cv11';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
 }
 h1,h2,h3,h4,h5,.post-title,#sidebar .site-title {
-  font-family: 'Space Grotesk','Inter',sans-serif;
-  letter-spacing: -0.02em;
-  color: var(--ak-ink);
+  font-family: 'Space Grotesk','Inter',sans-serif; letter-spacing: -0.02em; color: var(--ak-ink);
 }
-#sidebar .site-title { font-weight: 700; font-size: 1.6rem; }
-#sidebar .site-subtitle { font-family:'Inter',sans-serif; color:var(--ak-ink-soft); font-weight:400; }
-.content { line-height: 1.72; font-size: 1.02rem; }
-.content h1 { font-weight:700; margin-top:2.2rem; border-bottom:2px solid var(--ak-accent); padding-bottom:0.35rem; }
-.content h2 { font-weight:600; margin-top:2rem; padding-bottom:0.3rem; border-bottom:1px solid var(--ak-border); }
-.content h3 { font-weight:600; color:var(--ak-accent-strong); }
+.content { line-height: 1.72; }
+.content h1 { border-bottom: 2px solid var(--ak-accent); padding-bottom: 0.35rem; }
+.content h2 { border-bottom: 1px solid var(--ak-border); padding-bottom: 0.3rem; }
+.content h3 { color: var(--ak-accent-strong); }
 
-/* ---- Sidebar: distinct white panel floating on the grey canvas ------- */
-#sidebar {
-  background: var(--ak-surface);
-  box-shadow: var(--ak-shadow-sm);
-  border-right: 1px solid var(--ak-border);
-}
-
-/* ---- Avatar: clean white frame + soft ring + shadow ------------------ */
-#avatar {
-  border: 4px solid var(--ak-surface);
-  box-shadow: 0 0 0 1px var(--ak-border), var(--ak-shadow-md);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-#avatar:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 0 1px var(--ak-accent-soft), var(--ak-shadow-lg);
-}
-
-/* ---- Links (content only) ------------------------------------------- */
+/* ---- Content links (content only) ----------------------------------- */
 #core-wrapper .content a {
-  color: var(--ak-accent);
-  text-decoration: none;
+  color: var(--ak-accent); text-decoration: none;
   border-bottom: 1px solid var(--ak-accent-soft);
-  transition: color 0.15s ease, border-color 0.15s ease;
 }
 #core-wrapper .content a:hover { color: var(--ak-accent-strong); border-bottom-color: var(--ak-accent-strong); }
 
-/* ---- Content breathing room ----------------------------------------- */
-#main-wrapper { padding: 0.5rem 0; }
-#core-wrapper .content { padding: 0.5rem 0.5rem 2.5rem; max-width: 60rem; }
-#topbar-wrapper { padding-top: 0.35rem; }
+/* ---- Avatar frame (cosmetic only) ----------------------------------- */
+#avatar { box-shadow: 0 0 0 1px var(--ak-border), var(--ak-shadow-md); }
 
-/* ---- Project cards + home post cards: Apple surface + depth ---------- */
-.content .ak-card,
-#post-list .card,
-.card-wrapper {
-  background: var(--ak-surface);
-  border: 1px solid var(--ak-border);
-  border-radius: 14px;
-  box-shadow: var(--ak-shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* ---- Cards (collapsible project + home post) — tiered elevation ----- */
+#post-list .card, .card-wrapper {
+  background: var(--ak-surface); border: 1px solid var(--ak-border);
+  border-radius: 14px; box-shadow: var(--ak-shadow-sm);
 }
-.content .ak-card { padding: 1.25rem 1.5rem; margin: 1.25rem 0; }
-.content .ak-card:hover,
-#post-list .card:hover,
-.card-wrapper:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--ak-shadow-md);
+.content details.ak-card {
+  background: var(--ak-surface); border: 1px solid var(--ak-border);
+  border-radius: 14px; box-shadow: var(--ak-shadow-sm); margin: 1rem 0; overflow: hidden;
 }
-.content .ak-card > h3:first-child { margin-top: 0; }
-.content .ak-card > h3 { border-bottom: none; }
-.content .ak-card em:first-of-type { color: var(--ak-accent-strong); }
-
-/* ---- Blockquote / prompt callouts: soft tinted surface --------------- */
-.content blockquote { border-left-color: var(--ak-accent); }
-.content .prompt-info { background: var(--ak-accent-tint); border-radius: 10px; }
-
-/* ---- Inline code: subtle tinted chip -------------------------------- */
-.content code {
-  font-size: 0.9em; color: var(--ak-accent-strong);
-  background: var(--ak-accent-tint); border-radius: 5px; padding: 0.1em 0.35em;
-}
-.content pre code { color: inherit; background: none; padding: 0; }
-
-/* ---- Search box: right-aligned rounded pill, emerald focus ---------- */
-#topbar { display: flex; align-items: center; }
-#topbar #breadcrumb { display: flex; align-items: center; }
-#topbar #search {
-  margin-left: auto; margin-right: 0.25rem; min-width: 210px;
-  display: flex; align-items: center; height: 2.1rem;
-  border: 1px solid var(--ak-border); border-radius: 999px;
-  background: var(--ak-surface); padding: 0.15rem 0.75rem;
-  box-shadow: var(--ak-shadow-sm);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
-}
-#topbar #search:focus-within { border-color: var(--ak-accent); box-shadow: 0 0 0 3px var(--ak-accent-soft); }
-#topbar #search i { color: var(--ak-muted); }
-#topbar #search-input { background: transparent; border: none; box-shadow: none; color: var(--ak-ink); line-height: 1.4; padding-top: 0; padding-bottom: 0; }
-#topbar #search-input:focus { box-shadow: none; }
-
-/* ---- Sidebar nav: no bullet dots ------------------------------------ */
-#sidebar nav .nav, #sidebar nav ul, #sidebar ul.nav, #sidebar ul li.nav-item {
-  list-style: none !important; padding-inline-start: 0 !important; margin-inline-start: 0 !important;
-}
-#sidebar ul li.nav-item::marker, #sidebar ul li.nav-item::before { content: none !important; display: none !important; }
-#sidebar .nav-link:hover { color: var(--ak-accent-strong); }
-
-/* ---- Sidebar social icons: horizontal row, emerald hover ------------ */
-#sidebar .sidebar-bottom { flex-direction: row; flex-wrap: nowrap; justify-content: center; gap: 0.85rem; }
-#sidebar .sidebar-bottom a {
-  display: inline-flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; color: var(--ak-ink-soft);
-  transition: color 0.15s ease, transform 0.15s ease;
-}
-#sidebar .sidebar-bottom a:hover { color: var(--ak-accent); transform: translateY(-2px); }
-
-/* ---- Tags page: horizontal wrapping pill row ------------------------ */
-#tags { display: flex !important; flex-flow: row wrap; align-items: center; gap: 0.6rem 0.75rem; }
-#tags > div { display: inline-flex; align-items: center; }
-#tags .tag {
-  display: inline-flex; align-items: center; gap: 0.25rem;
-  padding: 0.3rem 0.7rem; border: 1px solid var(--ak-border);
-  border-radius: 999px; background: var(--ak-surface); color: var(--ak-ink);
-  box-shadow: var(--ak-shadow-sm);
-  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
-}
-#tags .tag:hover { background: var(--ak-accent-soft); border-color: var(--ak-accent); color: var(--ak-accent-strong); }
-
-/* ---- Reduced motion -------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-  #avatar, .content .ak-card, #post-list .card, .card-wrapper,
-  #core-wrapper .content a, #sidebar .sidebar-bottom a {
-    transition: none;
-  }
-  #avatar:hover, .content .ak-card:hover { transform: none; }
-}
-
-/* ---- Collapsible project cards (details/summary) on the Apple skin --- */
-.content details.ak-card { overflow: hidden; }
 .content details.ak-card > summary {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
   padding: 1rem 1.25rem; cursor: pointer; list-style: none;
@@ -217,3 +111,36 @@ h1,h2,h3,h4,h5,.post-title,#sidebar .site-title {
 .content details.ak-card[open] > *:not(summary) { margin-left: 1.25rem; margin-right: 1.25rem; }
 .content details.ak-card > *:last-child { margin-bottom: 1.1rem; }
 .content details.ak-card[open] > summary { border-bottom: 1px solid var(--ak-border); margin-bottom: 0.5rem; }
+
+/* ---- Callouts / code ------------------------------------------------ */
+.content blockquote { border-left-color: var(--ak-accent); }
+.content .prompt-info { background: var(--ak-accent-tint); border-radius: 10px; }
+.content code { color: var(--ak-accent-strong); background: var(--ak-accent-tint); border-radius: 5px; padding: 0.1em 0.35em; }
+.content pre code { color: inherit; background: none; padding: 0; }
+
+/* ---- Sidebar nav: no bullet dots (cosmetic only) -------------------- */
+#sidebar ul li.nav-item { list-style: none !important; }
+#sidebar ul li.nav-item::marker, #sidebar ul li.nav-item::before { content: none !important; }
+
+/* ---- Sidebar social icons: horizontal row (flex only) --------------- */
+#sidebar .sidebar-bottom { flex-direction: row; flex-wrap: nowrap; justify-content: center; gap: 0.85rem; }
+#sidebar .sidebar-bottom a:hover { color: var(--ak-accent); }
+
+/* ---- Search: right-aligned pill colour (no repositioning) ----------- */
+#topbar #search {
+  margin-left: auto;
+  border: 1px solid var(--ak-border); border-radius: 999px;
+  background: var(--ak-surface-2); padding: 0.1rem 0.7rem;
+}
+#topbar #search:focus-within { border-color: var(--ak-accent); }
+#topbar #search-input { background: transparent; border: none; box-shadow: none; color: var(--ak-ink); }
+#topbar #search-input:focus { box-shadow: none; }
+
+/* ---- Tags: horizontal pill row -------------------------------------- */
+#tags { display: flex !important; flex-flow: row wrap; align-items: center; gap: 0.6rem 0.75rem; }
+#tags > div { display: inline-flex; align-items: center; }
+#tags .tag {
+  display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.3rem 0.7rem;
+  border: 1px solid var(--ak-border); border-radius: 999px; background: var(--ak-surface); color: var(--ak-ink);
+}
+#tags .tag:hover { background: var(--ak-accent-soft); border-color: var(--ak-accent); color: var(--ak-accent-strong); }
