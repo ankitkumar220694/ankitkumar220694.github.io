@@ -5,149 +5,134 @@ order: 1
 toc: true
 ---
 
-Selected work across **MLOps platforms**, **production GenAI/LLM systems**, and
-**applied ML**. Each entry is framed as *problem → approach → my role → stack →
-impact*.
+Two sides of my work: **professional** systems built in industry (with company and
+timeline), and **personal** projects I build for myself. Each entry is framed as
+*problem → approach → my role → stack → impact*.
 
-> Numbers below reflect production systems at Maruti Suzuki India Limited (MSIL)
-> and Entytle. Where a figure is approximate it is marked with "~".
+> Professional figures reflect production systems at Maruti Suzuki India Limited
+> (MSIL) and Entytle. Approximate figures are marked "~".
 {: .prompt-info }
 
----
+# 💼 Professional Experience
 
-## 🏗️ Unified MLOps Framework  *(patent-filed)*
+## Maruti Suzuki India Limited (MSIL)
+**AI / ML Engineer · Aug 2022 – Present · Gurugram, India**
 
-**Problem.** ML teams at MSIL had slow, inconsistent paths from notebook to
-production — no shared standard for deployment, monitoring, drift detection, or
-cost visibility, so every model shipped as a one-off.
+Building production ML and generative-AI systems, and the platform that operates
+them, for India's largest automaker.
 
-**Approach.** Designed an enterprise **Unified MLOps Framework** built on DataOps +
+### 🏗️ Unified MLOps Framework  *(patent-filed)*
+
+**Problem.** ML teams had slow, inconsistent paths from notebook to production — no
+shared standard for deployment, monitoring, drift detection, or cost visibility, so
+every model shipped as a one-off.
+
+**Approach.** Designed an enterprise **Unified MLOps Framework** on DataOps +
 DevSecOps + MLOps principles: a dynamic, parallel model-operation platform with a
-single monitoring dashboard for pipeline health, model performance, data drift, and
-cloud cost. Standardized the deploy path so new models inherit CI/CD, observability,
-and governance by default.
+single dashboard for pipeline health, model performance, data drift, and cloud cost.
+New models inherit CI/CD, observability, and governance by default.
 
-**My role.** Project owner / manager leading a **team of 12**; owned architecture,
-delivery, and stakeholder alignment as a certified SAFe® 6.0 PO/PM.
+**My role.** Project owner / manager leading a **team of 12** (SAFe® 6.0 PO/PM) —
+architecture, delivery, and stakeholder alignment.
 
-**Stack.** AWS, MLflow, Docker, Jenkins/GitHub CI, Python, Terraform; drift &
-cost-monitoring dashboarding.
+**Stack.** AWS, MLflow, Docker, Jenkins/GitHub CI, Python, Terraform.
 
-**Impact.** Cut deployment time and operational cost by **~20%**. The design is the
-basis of a filed **patent** — *Method and System for Managing Machine Learning
-Models Using a Dynamic and Parallel Model Operation Platform* (App. No.
-**202411067665**).
+**Impact.** Cut deployment time and operational cost by **~20%**. Basis of a filed
+**patent** — *Method and System for Managing Machine Learning Models Using a Dynamic
+and Parallel Model Operation Platform* (App. No. **202411067665**).
 
----
+### 🎙️ Voice Analytics at 100k calls/day  *(production GenAI)*
 
-## 🎙️ Production GenAI — Voice Analytics at 100k calls/day
+**Problem.** Contact-center calls held rich signal — defects, agent performance,
+customer issues — locked in unstructured audio no one could analyze at scale.
 
-**Problem.** Contact-center calls held rich signal — product defects, agent
-performance, recurring customer issues — but were unstructured audio that no one
-could analyze at scale.
-
-**Approach.** Built a **voice-analytics pipeline** transcribing and analyzing up to
-**100,000 calls/day**. AWS Transcribe converts audio to text; Amazon Bedrock LLMs
-extract defect analysis, agent-performance signals, and customer-issue KPIs, which
-roll up into dashboards for quality and product teams. Designed for cost and
-throughput at that volume (batching, prompt/token discipline, caching where the same
-question recurs).
+**Approach.** Built a pipeline transcribing/analyzing up to **100,000 calls/day** —
+AWS Transcribe for ASR, Amazon Bedrock LLMs for defect analysis, agent-performance,
+and customer-issue KPIs — engineered for cost and throughput at that volume.
 
 **My role.** Lead ML engineer — pipeline architecture, LLM prompt/eval design, and
-the scale/cost engineering.
+scale/cost engineering.
 
-**Stack.** AWS Transcribe, Amazon Bedrock, Python, LangChain/LangGraph, S3, AWS
-batch/serverless orchestration.
+**Stack.** AWS Transcribe, Amazon Bedrock, LangChain/LangGraph, S3, Python.
 
-**Impact.** Turned a previously-opaque audio stream into daily, queryable KPIs at
-**100k calls/day** — surfacing defect and CX trends that were invisible before.
+**Impact.** Turned an opaque audio stream into daily, queryable KPIs at **100k
+calls/day**.
 
----
+### 🗃️ Text-to-SQL — Natural-language database interface
 
-## 🗃️ Text-to-SQL — Natural-language database interface
+**Problem.** Business users needed database answers but couldn't write SQL,
+bottlenecking every ad-hoc question on the analytics team.
 
-**Problem.** Business users needed answers from databases but couldn't write SQL,
-bottlenecking every ad-hoc data question on the analytics team.
+**Approach.** Schema-grounded **Text-to-SQL**: Bedrock generates a validated query,
+Athena executes over the data lake, Glue/SageMaker support cataloging/models, served
+through Streamlit.
 
-**Approach.** Built a **Text-to-SQL** system that turns a plain-English question into
-a validated SQL query and returns the answer, exposed through a Streamlit interface.
-Bedrock generates the query against a known schema; Athena executes it over the data
-lake; Glue/SageMaker handle cataloging and supporting models.
-
-**My role.** Lead engineer — schema-grounded generation, guardrails against invalid
-queries, and the end-to-end app.
+**My role.** Lead engineer — schema-grounded generation, invalid-query guardrails,
+end-to-end app.
 
 **Stack.** Amazon Bedrock, Athena, AWS Glue, SageMaker, Streamlit, Python.
 
-**Impact.** Self-service data access for non-technical users — removed the analyst
+**Impact.** Self-service data access for non-technical users; removed the analyst
 bottleneck for routine questions.
 
----
+### 🔊 Brake-Squeal Defect Detection · 📈 Customer Propensity · 🚗 Used-Car Pricing
 
-## 🔊 Brake-Squeal Defect Detection  *(applied deep learning)*
-
-**Problem.** Detecting brake-squeal defects from audio was manual and didn't scale to
-production volumes.
-
-**Approach.** Trained a **CNN** on spectrogram representations of brake audio to
-classify defects, processing **~800 audio files/day** in an automated pipeline.
-
-**My role.** ML engineer — data pipeline, model, and productionization.
-
-**Stack.** PyTorch/TensorFlow, CNNs, audio/spectrogram preprocessing, Python.
-
-**Impact.** Automated a manual QA step at **~800 files/day**.
+- **Brake-squeal CNN** — classified defects from brake audio (spectrogram CNN),
+  automating a manual QA step at **~800 files/day**.
+- **Customer clustering & service propensity** — ranked outreach targets, deployed
+  across **13 regions for 2,500+ dealers**.
+- **Used-car pricing engine** — replaced static rules with an ML model, live
+  **pan-India**.
 
 ---
 
-## 📈 Customer Clustering & Service Propensity
+## Entytle
+**Data Engineer / Analyst · 2020 – 2022**
 
-**Problem.** Dealers needed to know which customers to prioritize for service
-outreach, across a large and varied national footprint.
-
-**Approach.** Built **customer clustering + service-propensity** models and deployed
-them across **13 regions for 2,500+ dealers**, giving each dealer ranked outreach
-targets.
-
-**My role.** ML engineer — modeling and regional rollout.
-
-**Stack.** Python, scikit-learn, PySpark, AWS.
-
-**Impact.** Data-driven service prioritization deployed to **2,500+ dealers** across
-13 regions.
-
----
-
-## 🚗 Used-Car Pricing Engine
-
-**Problem.** Used-car pricing ran on static business rules that couldn't adapt to the
-market.
-
-**Approach.** Replaced the rules engine with an **ML pricing model** deployed
-pan-India.
-
-**My role.** ML engineer — modeling and deployment.
-
-**Stack.** Python, scikit-learn/gradient boosting, AWS.
-
-**Impact.** Rules → ML pricing, live **pan-India**.
-
----
-
-## 🧹 Data Engineering — Dedup & Segmentation  *(Entytle, 2020–2022)*
+### 🧹 Deduplication & Segmentation
 
 **Problem.** Dirty, duplicated customer/asset records undermined downstream
 analytics.
 
-**Approach.** Built **deduplication pipelines** (PySpark + XGBoost with NLP-based
-name/address matching) and customer **segmentation** using Zipf distributions +
-Ramer–Douglas–Peucker simplification; delivered insight through Power BI / Looker.
-
-**My role.** Data Engineer / Analyst.
+**Approach.** Built **dedup pipelines** (PySpark + XGBoost, NLP name/address
+matching) and customer **segmentation** (Zipf + Ramer–Douglas–Peucker), surfaced via
+Power BI / Looker.
 
 **Stack.** PySpark, XGBoost, NLP matching, Power BI, Looker.
 
 **Impact.** Cleaner master data and clearer segments feeding the analytics stack.
+
+# 🧑‍💻 Personal Projects
+
+Things I build for myself — where I get to own the whole stack end to end.
+
+## 🩺 Health Tracker — Medication + Wearable Analytics
+
+**Problem.** My health data is scattered — medication routines in my head, and
+biometrics (heart rate, steps, sleep) trapped inside the Samsung Health app on my
+**Galaxy Watch 7**, with no clean way to correlate the two over time.
+
+**Approach.** A GitHub-ready **Python application** that unifies both:
+
+- **Medication logging + adherence** — daily / weekly / as-needed schedules with an
+  adherence-% report and threshold flags.
+- **Wearable sync** — the Galaxy Watch 7 exposes **no cloud REST API** (data lives in
+  Samsung Health), so v0.1 ingests **Samsung Health CSV exports** behind a pluggable
+  `WatchConnector` interface, with a **BOM-tolerant, idempotent** parser (re-imports
+  don't double-count). v0.2 is scoped as an **Android Health Connect companion**
+  POSTing to a FastAPI ingest endpoint — the connector abstraction means the app
+  doesn't change, only the source.
+- **Analytics + reporting** — heart-rate / steps / sleep trends and a markdown health
+  report with threshold flags.
+
+**My role.** Sole engineer — architecture, implementation, tests, CI.
+
+**Stack.** Python, Typer (CLI), SQLAlchemy + SQLite, Pydantic, pytest, ruff, GitHub
+Actions.
+
+**Engineering notes.** Pluggable connector pattern (ABC + registry) so new data
+sources drop in without touching core logic; ~fully tested with a green CI pipeline;
+`.gitignore` keeps config/health data out of version control by design.
 
 ---
 
