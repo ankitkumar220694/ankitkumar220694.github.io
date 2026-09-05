@@ -91,22 +91,24 @@ h1,h2,h3,h4,h5,.post-title,#sidebar .site-title {
    Cards — subtle border at rest, GREEN border + glow + lift on hover
    (home post cards AND collapsible project cards)
    =================================================================== */
-#post-list .card,
-.card-wrapper,
+#post-list .card-wrapper,
+.card-wrapper.card,
 .content details.ak-card {
-  background: var(--ak-surface);
-  border: 1px solid var(--ak-border);
+  background: var(--ak-surface) !important;
+  border: 1px solid var(--ak-border) !important;
   border-radius: 14px;
   box-shadow: var(--ak-shadow-sm);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
-#post-list .card:hover,
-.card-wrapper:hover,
+/* Neutralise the theme stripping border/background off the inner card. */
+#post-list .card { border: 0; background: none; }
+#post-list .card-wrapper:hover,
+.card-wrapper.card:hover,
 .content details.ak-card:hover,
 .content details.ak-card[open] {
   transform: translateY(-3px);
-  border-color: var(--ak-border-hover);
-  box-shadow: var(--ak-glow);
+  border-color: var(--ak-border-hover) !important;
+  box-shadow: var(--ak-glow) !important;
 }
 
 /* Collapsible project cards (details/summary). */
