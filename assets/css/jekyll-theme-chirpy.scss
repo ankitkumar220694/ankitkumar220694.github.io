@@ -110,26 +110,72 @@ h1,h2,h3,h4,h5,.post-title,#sidebar .site-title {
 #core-wrapper .content { padding: 0.5rem 0.5rem 2.5rem; max-width: 60rem; }
 #topbar-wrapper { padding-top: 0.35rem; }
 
-/* ---- Project cards + home post cards: Apple surface + depth ---------- */
-.content .ak-card,
-#post-list .card,
-.card-wrapper {
+/* ---- Collapsible project cards (details/summary) -------------------- */
+/* Home post cards keep the simple surface + hover. */
+#post-list .card, .card-wrapper {
   background: var(--ak-surface);
   border: 1px solid var(--ak-border);
   border-radius: 14px;
   box-shadow: var(--ak-shadow-sm);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.content .ak-card { padding: 1.25rem 1.5rem; margin: 1.25rem 0; }
-.content .ak-card:hover,
-#post-list .card:hover,
-.card-wrapper:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--ak-shadow-md);
+#post-list .card:hover, .card-wrapper:hover { transform: translateY(-3px); box-shadow: var(--ak-shadow-md); }
+
+/* Project cards = <details class="ak-card"> — fixed-height summary, expands on click. */
+.content details.ak-card {
+  background: var(--ak-surface);
+  border: 1px solid var(--ak-border);
+  border-radius: 14px;
+  box-shadow: var(--ak-shadow-sm);
+  margin: 1rem 0;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-.content .ak-card > h3:first-child { margin-top: 0; }
-.content .ak-card > h3 { border-bottom: none; }
-.content .ak-card em:first-of-type { color: var(--ak-accent-strong); }
+.content details.ak-card:hover { box-shadow: var(--ak-shadow-md); }
+.content details.ak-card[open] { box-shadow: var(--ak-shadow-md); }
+
+/* Summary = the always-visible fixed-height header row. */
+.content details.ak-card > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  min-height: 3.5rem;
+  cursor: pointer;
+  list-style: none;                 /* hide default disclosure triangle */
+  user-select: none;
+}
+.content details.ak-card > summary::-webkit-details-marker { display: none; }
+.content details.ak-card > summary::marker { content: ""; }
+
+.ak-card-head { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.ak-card-title {
+  font-family: 'Space Grotesk','Inter',sans-serif;
+  font-weight: 600; font-size: 1.05rem; color: var(--ak-ink);
+  letter-spacing: -0.01em;
+}
+.ak-card-title em { color: var(--ak-accent-strong); font-style: normal; font-weight: 500; }
+.ak-card-sub { font-size: 0.85rem; color: var(--ak-ink-soft); }
+
+/* Chevron button on the right. */
+.ak-chevron {
+  flex: 0 0 auto;
+  width: 2rem; height: 2rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px;
+  background: var(--ak-accent-tint);
+  color: var(--ak-accent-strong);
+  transition: transform 0.25s ease, background 0.15s ease;
+}
+.content details.ak-card > summary:hover .ak-chevron { background: var(--ak-accent-soft); }
+.content details.ak-card[open] > summary .ak-chevron { transform: rotate(180deg); }
+
+/* Expanded body: padding + top divider. */
+.content details.ak-card[open] > *:not(summary) { margin-left: 1.25rem; margin-right: 1.25rem; }
+.content details.ak-card > *:not(summary):first-of-type { margin-top: 0.25rem; }
+.content details.ak-card > *:last-child { margin-bottom: 1.1rem; }
+.content details.ak-card[open] > summary { border-bottom: 1px solid var(--ak-border); margin-bottom: 0.5rem; }
 
 /* ---- Blockquote / prompt callouts: soft tinted surface --------------- */
 .content blockquote { border-left-color: var(--ak-accent); }
