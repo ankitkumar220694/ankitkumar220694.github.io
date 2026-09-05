@@ -9,7 +9,11 @@ production machine learning systems, with a focus on **MLOps** and **generative 
 at scale**. I currently work at **Maruti Suzuki India Limited (MSIL)**, and I'm
 targeting **Senior ML / MLOps / GenAI Engineer** roles.
 
+{% assign resume_exists = false %}
+{% for f in site.static_files %}{% if f.path == site.resume_url %}{% assign resume_exists = true %}{% endif %}{% endfor %}
+{% if resume_exists %}
 > **[⬇ Download my Résumé (PDF)]({{ site.resume_url | relative_url }})**{: .btn .btn-primary target="_blank" }
+{% endif %}
 
 ## What I do
 

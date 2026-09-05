@@ -7,9 +7,10 @@
   icon: "fab fa-linkedin"
   url: "https://www.linkedin.com/in/ankitkumar220694"
 
-- type: resume
-  icon: "fas fa-file-pdf"
-  url: "/assets/resume/Ankit-Kumar-Resume.pdf"
+# Re-add the resume icon below once assets/resume/Ankit-Kumar-Resume.pdf exists:
+# - type: resume
+#   icon: "fas fa-file-pdf"
+#   url: "/assets/resume/Ankit-Kumar-Resume.pdf"
 
 - type: email
   icon: "fas fa-envelope"
