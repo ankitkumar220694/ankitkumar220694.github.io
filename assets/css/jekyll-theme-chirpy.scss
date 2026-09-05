@@ -256,3 +256,31 @@ h1, h2, h3, h4, h5,
 .content .ak-card > h3:first-child { margin-top: 0; }
 .content .ak-card > h3 { border-bottom: none; }
 .content .ak-card em:first-of-type { color: var(--ak-accent-strong); }
+
+/* ---- Tags page: lay tags out in a horizontal wrapping row ----------- */
+#tags {
+  display: flex !important;
+  flex-flow: row wrap;
+  align-items: center;
+  gap: 0.6rem 0.75rem;
+}
+#tags > div {
+  display: inline-flex;
+  align-items: center;
+}
+#tags .tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--ak-border);
+  border-radius: 999px;
+  background: var(--ak-bg-elevated);
+  color: var(--ak-ink);
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+#tags .tag:hover {
+  background: var(--ak-accent-soft);
+  border-color: var(--ak-accent);
+  color: var(--ak-accent-strong);
+}
