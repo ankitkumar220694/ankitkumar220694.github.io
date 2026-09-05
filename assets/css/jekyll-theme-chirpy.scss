@@ -1,39 +1,41 @@
 ---
-# Custom style entrypoint — imports the Chirpy theme, then applies the redesign.
+# Custom style entrypoint — imports the Chirpy theme, then applies the Emerald revamp.
 ---
 
 @import "main";
 
 /* =====================================================================
-   Ankit Kumar — portfolio redesign (light, professional)
+   Ankit Kumar — portfolio (Emerald edition)
+   Inspiration: Kiro Crew "Emerald" theme.
    Typography: Space Grotesk (headings) + Inter (body).
-   Palette: warm off-white, slate ink, deep-teal accent.
+   Palette: crisp near-white, deep slate-green ink, emerald accent.
    Static only — colors + type + spacing. No layout/positioning hacks,
    no opacity hiding, no custom JS. Site is locked to light mode.
    ===================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-/* ---- Palette: override Chirpy's light-mode CSS variables ------------- */
+/* ---- Emerald palette: override Chirpy's light-mode variables ---------- */
 html,
 html[data-mode="light"] {
-  --ak-bg:            #faf9f7;   /* warm off-white page */
+  --ak-bg:            #f8faf9;   /* crisp near-white, faint green undertone */
   --ak-bg-elevated:   #ffffff;   /* cards / sidebar */
-  --ak-ink:           #22272e;   /* near-black slate text */
-  --ak-ink-soft:      #5b6570;   /* secondary text */
-  --ak-muted:         #8a939d;   /* meta / captions */
-  --ak-border:        #e8e4de;   /* hairline borders */
-  --ak-accent:        #0f766e;   /* deep teal */
-  --ak-accent-strong: #0b5c55;   /* hover */
-  --ak-accent-soft:   #e6f2f0;   /* tint fills */
+  --ak-ink:           #1a2b28;   /* deep slate-green ink */
+  --ak-ink-soft:      #4b5f59;   /* secondary text */
+  --ak-muted:         #7d918a;   /* meta / captions */
+  --ak-border:        #dde7e3;   /* hairline borders */
+  --ak-accent:        #059669;   /* emerald-600 */
+  --ak-accent-strong: #047857;   /* emerald-700 (hover) */
+  --ak-accent-soft:   #d1fae5;   /* emerald-100 (tint) */
+  --ak-accent-tint:   #ecfdf5;   /* emerald-50 (wash) */
 
   /* Map into Chirpy's own variables so the whole theme follows. */
   --main-bg:          var(--ak-bg);
-  --mask-bg:          #ece8e2;
+  --mask-bg:          #e4ede9;
   --sidebar-bg:       var(--ak-bg-elevated);
   --card-bg:          var(--ak-bg-elevated);
   --card-border-color:var(--ak-border);
-  --card-box-shadow:  0 1px 2px rgba(34, 39, 46, 0.05), 0 4px 14px rgba(34, 39, 46, 0.05);
+  --card-box-shadow:  0 1px 2px rgba(5, 150, 105, 0.05), 0 4px 14px rgba(26, 43, 40, 0.05);
   --text-color:       var(--ak-ink);
   --text-muted-color: var(--ak-ink-soft);
   --heading-color:    var(--ak-ink);
@@ -46,6 +48,9 @@ html[data-mode="light"] {
   --border-color:     var(--ak-border);
   --blockquote-border-color: var(--ak-accent);
   --prompt-info-icon-color: var(--ak-accent);
+  --tb-odd-bg:        var(--ak-accent-tint);   /* table zebra */
+  --tag-bg:           var(--ak-accent-soft);
+  --tag-hover:        #a7f3d0;
 }
 
 /* ---- Typography ------------------------------------------------------ */
@@ -66,10 +71,7 @@ h1, h2, h3, h4, h5,
   color: var(--ak-ink);
 }
 
-#sidebar .site-title {
-  font-weight: 700;
-  font-size: 1.6rem;
-}
+#sidebar .site-title { font-weight: 700; font-size: 1.6rem; }
 #sidebar .site-subtitle {
   font-family: 'Inter', sans-serif;
   color: var(--ak-ink-soft);
@@ -77,7 +79,12 @@ h1, h2, h3, h4, h5,
 }
 
 .content { line-height: 1.72; font-size: 1.02rem; }
-.content h1 { font-weight: 700; margin-top: 2.2rem; }
+.content h1 {
+  font-weight: 700;
+  margin-top: 2.2rem;
+  border-bottom: 2px solid var(--ak-accent);
+  padding-bottom: 0.35rem;
+}
 .content h2 {
   font-weight: 600;
   margin-top: 2rem;
@@ -85,12 +92,6 @@ h1, h2, h3, h4, h5,
   border-bottom: 1px solid var(--ak-border);
 }
 .content h3 { font-weight: 600; color: var(--ak-accent-strong); }
-
-/* Section dividers (# Professional / # Personal) get a teal accent rule. */
-.content h1 {
-  border-bottom: 2px solid var(--ak-accent);
-  padding-bottom: 0.35rem;
-}
 
 /* ---- Links (content only; sidebar untouched for layout safety) ------- */
 #core-wrapper .content a {
@@ -104,45 +105,52 @@ h1, h2, h3, h4, h5,
   border-bottom-color: var(--ak-accent-strong);
 }
 
-/* ---- Avatar: clean ring + gentle hover ------------------------------- */
+/* ---- Avatar: emerald ring + gentle hover ----------------------------- */
 #avatar {
   border: 3px solid var(--ak-bg-elevated);
-  box-shadow: 0 2px 10px rgba(34, 39, 46, 0.12);
+  box-shadow: 0 0 0 2px var(--ak-accent-soft), 0 2px 10px rgba(5, 150, 105, 0.18);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 #avatar:hover {
   transform: scale(1.03);
-  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.28);
+  box-shadow: 0 0 0 2px var(--ak-accent), 0 6px 20px rgba(5, 150, 105, 0.32);
 }
 
-/* ---- Post-preview cards: airy, subtle lift --------------------------- */
+/* ---- Active nav item: emerald accent --------------------------------- */
+#sidebar .nav-link:hover { color: var(--ak-accent-strong); }
+
+/* ---- Post-preview cards: emerald hover glow -------------------------- */
 #post-list .card,
 .card-wrapper {
   border: 1px solid var(--ak-border);
   border-radius: 12px;
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
 }
 #post-list .card:hover,
 .card-wrapper:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(34, 39, 46, 0.10);
+  border-color: var(--ak-accent-soft);
+  box-shadow: 0 8px 22px rgba(5, 150, 105, 0.14);
 }
 
 /* ---- Blockquote / prompt callouts ------------------------------------ */
 .content blockquote { border-left-color: var(--ak-accent); }
 
-/* ---- Code: readable mono in the light theme -------------------------- */
-.content code { font-size: 0.9em; }
-
-/* ---- Reduced motion -------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-  #avatar, #post-list .card, .card-wrapper, #core-wrapper .content a {
-    transition: none;
-  }
-  #avatar:hover { transform: none; }
+/* ---- Inline code: subtle emerald tint -------------------------------- */
+.content code {
+  font-size: 0.9em;
+  color: var(--ak-accent-strong);
+  background: var(--ak-accent-tint);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+.content pre code {
+  color: inherit;
+  background: none;
+  padding: 0;
 }
 
-/* ---- Sidebar social icons: force a single horizontal row ------------- */
+/* ---- Sidebar social icons: single horizontal row, emerald hover ------ */
 #sidebar .sidebar-bottom {
   flex-direction: row;
   flex-wrap: nowrap;
@@ -160,4 +168,13 @@ h1, h2, h3, h4, h5,
 #sidebar .sidebar-bottom a:hover {
   color: var(--ak-accent);
   transform: translateY(-2px);
+}
+
+/* ---- Reduced motion -------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  #avatar, #post-list .card, .card-wrapper,
+  #core-wrapper .content a, #sidebar .sidebar-bottom a {
+    transition: none;
+  }
+  #avatar:hover { transform: none; }
 }
