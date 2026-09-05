@@ -6,8 +6,8 @@ toc: true
 ---
 
 Selected work across **MLOps platforms**, **production GenAI/LLM systems**, and
-**applied ML**, plus what I build for myself. Each entry is framed as
-*problem → approach → my role → stack → impact*.
+**applied ML**, plus what I build for myself. Click a card to expand the full
+*problem → approach → my role → stack → impact* write-up.
 
 > Professional figures reflect production systems at Maruti Suzuki India Limited
 > (MSIL) and Entytle. Approximate figures are marked "~".
@@ -15,10 +15,14 @@ Selected work across **MLOps platforms**, **production GenAI/LLM systems**, and
 
 # Professional Projects
 
-<div class="ak-card" markdown="1">
-
-### Unified MLOps Framework — *patent-filed*
-*MSIL · AI/ML Engineer · Aug 2022 – Present*
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Unified MLOps Framework <em>· patent-filed</em></span>
+    <span class="ak-card-sub">MSIL · AI/ML Engineer · Aug 2022 – Present</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
 
 **Problem.** ML teams had slow, inconsistent paths from notebook to production — no
 shared standard for deployment, monitoring, drift detection, or cost visibility, so
@@ -38,12 +42,16 @@ architecture, delivery, and stakeholder alignment.
 **patent** — *Method and System for Managing Machine Learning Models Using a Dynamic
 and Parallel Model Operation Platform* (App. No. **202411067665**).
 
-</div>
+</details>
 
-<div class="ak-card" markdown="1">
-
-### Voice Analytics at 100k calls/day — *production GenAI*
-*MSIL*
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Voice Analytics at 100k calls/day <em>· production GenAI</em></span>
+    <span class="ak-card-sub">MSIL · AWS Transcribe + Bedrock</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
 
 **Problem.** Contact-center calls held rich signal — defects, agent performance,
 customer issues — locked in unstructured audio no one could analyze at scale.
@@ -60,12 +68,16 @@ scale/cost engineering.
 **Impact.** Turned an opaque audio stream into daily, queryable KPIs at **100k
 calls/day**.
 
-</div>
+</details>
 
-<div class="ak-card" markdown="1">
-
-### Text-to-SQL — Natural-language database interface
-*MSIL*
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Text-to-SQL — Natural-language DB interface</span>
+    <span class="ak-card-sub">MSIL · Bedrock · Athena · Streamlit</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
 
 **Problem.** Business users needed database answers but couldn't write SQL,
 bottlenecking every ad-hoc question on the analytics team.
@@ -82,12 +94,16 @@ end-to-end app.
 **Impact.** Self-service data access for non-technical users; removed the analyst
 bottleneck for routine questions.
 
-</div>
+</details>
 
-<div class="ak-card" markdown="1">
-
-### Applied ML — Defect Detection, Propensity & Pricing
-*MSIL*
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Applied ML — Defect Detection, Propensity & Pricing</span>
+    <span class="ak-card-sub">MSIL · CNN · clustering · pricing</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
 
 - **Brake-squeal CNN** — classified defects from brake audio (spectrogram CNN),
   automating a manual QA step at **~800 files/day**.
@@ -96,12 +112,16 @@ bottleneck for routine questions.
 - **Used-car pricing engine** — replaced static rules with an ML model, live
   **pan-India**.
 
-</div>
+</details>
 
-<div class="ak-card" markdown="1">
-
-### Deduplication & Segmentation
-*Entytle · Data Engineer / Analyst · 2020 – 2022*
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Deduplication & Segmentation</span>
+    <span class="ak-card-sub">Entytle · Data Engineer / Analyst · 2020 – 2022</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
 
 **Problem.** Dirty, duplicated customer/asset records undermined downstream
 analytics.
@@ -114,14 +134,18 @@ Power BI / Looker.
 
 **Impact.** Cleaner master data and clearer segments feeding the analytics stack.
 
-</div>
+</details>
 
 # Personal Projects
 
-<div class="ak-card" markdown="1">
-
-### Health Tracker — Medication + Wearable Analytics
-*Solo project*
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Health Tracker — Medication + Wearable Analytics</span>
+    <span class="ak-card-sub">Solo project · Python · Galaxy Watch 7</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
 
 **Problem.** My health data is scattered — medication routines in my head, and
 biometrics (heart rate, steps, sleep) trapped inside the Samsung Health app on my
@@ -149,7 +173,7 @@ Actions.
 sources drop in without touching core logic; fully tested with a green CI pipeline;
 `.gitignore` keeps config/health data out of version control by design.
 
-</div>
+</details>
 
 ---
 
