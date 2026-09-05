@@ -284,3 +284,23 @@ h1, h2, h3, h4, h5,
   border-color: var(--ak-accent);
   color: var(--ak-accent-strong);
 }
+
+/* ---- Topbar: vertically align breadcrumb (Home) and search --------- */
+#topbar {
+  display: flex;
+  align-items: center;
+}
+#topbar #breadcrumb {
+  display: flex;
+  align-items: center;
+}
+#topbar #search {
+  display: flex;
+  align-items: center;
+  height: 2.1rem;
+}
+#topbar #search-input {
+  line-height: 1.4;
+  padding-top: 0;
+  padding-bottom: 0;
+}
