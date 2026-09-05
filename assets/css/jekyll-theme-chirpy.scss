@@ -240,3 +240,50 @@ h1,h2,h3,h4,h5,.post-title,#sidebar .site-title {
   }
   #avatar:hover, .content .ak-card:hover { transform: none; }
 }
+
+/* ===================================================================
+   Mobile (<= 849px, Chirpy's sidebar-collapse breakpoint)
+   =================================================================== */
+@media all and (max-width: 849px) {
+  /* Keep the topbar (and thus the sidebar hamburger) pinned while scrolling. */
+  #topbar-wrapper {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: var(--ak-surface);
+    box-shadow: var(--ak-shadow-sm);
+  }
+  /* Push content below the now-fixed topbar so nothing hides under it. */
+  #main-wrapper { margin-top: 3rem; }
+
+  /* Make the hamburger a clear, tappable target. */
+  #sidebar-trigger {
+    display: inline-flex !important;
+    align-items: center; justify-content: center;
+    width: 2.5rem; height: 2.5rem;
+    color: var(--ak-ink);
+  }
+
+  /* Search must not overflow a narrow screen. */
+  #topbar #search {
+    min-width: 0;
+    max-width: 60vw;
+  }
+
+  /* Content: tighter side padding, allow full width. */
+  #core-wrapper .content { padding: 0.5rem 0.25rem 2rem; max-width: 100%; }
+
+  /* Project card summary: let title + chevron wrap gracefully. */
+  .content details.ak-card > summary { padding: 0.85rem 1rem; gap: 0.6rem; }
+  .ak-card-title { font-size: 0.98rem; }
+  .content details.ak-card[open] > *:not(summary) { margin-left: 1rem; margin-right: 1rem; }
+
+  /* Tags: comfortable tap targets. */
+  #tags .tag { padding: 0.35rem 0.75rem; }
+}
+
+/* Very small phones (<= 400px): shrink the search further. */
+@media all and (max-width: 400px) {
+  #topbar #search { max-width: 48vw; }
+  #topbar-title { display: none; }   /* avoid crowding the fixed topbar */
+}
