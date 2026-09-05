@@ -9,6 +9,8 @@ production machine learning systems, with a focus on **MLOps** and **generative 
 at scale**. I currently work at **Maruti Suzuki India Limited (MSIL)**, and I'm
 targeting **Senior ML / MLOps / GenAI Engineer** roles.
 
+> **[⬇ Download my Résumé (PDF)]({{ site.resume_url | relative_url }})**{: .btn .btn-primary target="_blank" }
+
 ## What I do
 
 - **MLOps platforms** — I designed and led (as project manager, team of 12) an
