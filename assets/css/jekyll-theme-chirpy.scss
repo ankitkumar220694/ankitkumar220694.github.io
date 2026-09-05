@@ -190,3 +190,23 @@ h1, h2, h3, h4, h5,
 }
 #sidebar .nav-item::marker,
 #sidebar li::marker { content: ""; }
+
+/* ---- Search box: push to the right of the top bar ------------------- */
+#topbar #search {
+  margin-left: auto;
+}
+
+/* ---- Sidebar nav: kill bullet dots (match theme specificity) -------- */
+#sidebar nav .nav,
+#sidebar nav ul,
+#sidebar ul.nav,
+#sidebar ul li.nav-item {
+  list-style: none !important;
+  padding-inline-start: 0 !important;
+  margin-inline-start: 0 !important;
+}
+#sidebar ul li.nav-item::marker,
+#sidebar ul li.nav-item::before {
+  content: none !important;
+  display: none !important;
+}
