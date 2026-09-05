@@ -191,10 +191,29 @@ h1, h2, h3, h4, h5,
 #sidebar .nav-item::marker,
 #sidebar li::marker { content: ""; }
 
-/* ---- Search box: push to the right of the top bar ------------------- */
+/* ---- Search box: right-aligned, bordered, emerald focus ------------- */
 #topbar #search {
   margin-left: auto;
+  margin-right: 0.25rem;
+  min-width: 210px;
+  border: 1px solid var(--ak-border);
+  border-radius: 999px;
+  background: var(--ak-bg-elevated);
+  padding: 0.15rem 0.75rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
+#topbar #search:focus-within {
+  border-color: var(--ak-accent);
+  box-shadow: 0 0 0 3px var(--ak-accent-soft);
+}
+#topbar #search i { color: var(--ak-muted); }
+#topbar #search-input {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: var(--ak-ink);
+}
+#topbar #search-input:focus { box-shadow: none; }
 
 /* ---- Sidebar nav: kill bullet dots (match theme specificity) -------- */
 #sidebar nav .nav,
@@ -210,3 +229,11 @@ h1, h2, h3, h4, h5,
   content: none !important;
   display: none !important;
 }
+
+/* ---- Content: breathing room on all sides -------------------------- */
+#main-wrapper { padding: 0.5rem 0; }             /* content breathing room */
+#core-wrapper .content {
+  padding: 0.5rem 0.5rem 2.5rem;
+  max-width: 60rem;
+}
+#topbar-wrapper { padding-top: 0.35rem; }
