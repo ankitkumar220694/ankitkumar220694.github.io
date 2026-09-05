@@ -5,117 +5,61 @@
 @import "main";
 
 /* =====================================================================
-   Ankit Kumar — dynamic UI/UX layer on Chirpy 7.6
-   Theme-aware (uses Chirpy CSS variables), fully reduced-motion safe.
+   Ankit Kumar — MINIMAL, safe polish on Chirpy 7.6.
+   Static only: no scroll-reveal, no opacity hiding, nothing that can
+   trap content invisible or touch the sidebar layout.
    ===================================================================== */
 
 :root {
   --ak-accent: #0a9396;
   --ak-accent-strong: #087f81;
-  --ak-accent-2: #ee9b00;           /* warm secondary for gradients */
 }
 html[data-mode="dark"] {
   --ak-accent: #2dd4bf;
   --ak-accent-strong: #5eead4;
-  --ak-accent-2: #fbbf24;
 }
 
-/* --- Scrolling: NO smooth-scroll on <html> (it made the page feel laggy).
-   Anchor jumps are instant again; only the sticky header gets scroll-margin
-   so in-page anchors don't hide under it. --- */
-html { scroll-behavior: auto; }
+/* Scrolling stays native/instant; only give anchors room under the header. */
 :target { scroll-margin-top: 5rem; }
 
-/* --- Links: accent + animated underline (no layout shift) --- */
-#core-wrapper a:not(.post-tag):not(.btn):not(.img-link) {
+/* Links inside main content get the brand accent (sidebar/nav untouched). */
+#core-wrapper .content a {
   color: var(--ak-accent);
-  background-image: linear-gradient(var(--ak-accent-strong), var(--ak-accent-strong));
-  background-size: 0% 2px;
-  background-repeat: no-repeat;
-  background-position: left bottom;
-  transition: background-size 0.25s ease, color 0.15s ease;
+  transition: color 0.15s ease;
 }
-#core-wrapper a:not(.post-tag):not(.btn):not(.img-link):hover {
+#core-wrapper .content a:hover {
   color: var(--ak-accent-strong);
-  background-size: 100% 2px;
 }
 
-/* --- Avatar: soft breathing glow + hover lift --- */
+/* Avatar: gentle hover lift only. */
 #avatar {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 16px rgba(10, 147, 150, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 #avatar:hover {
-  transform: scale(1.05) rotate(-1deg);
-  box-shadow: 0 8px 26px rgba(10, 147, 150, 0.45);
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(10, 147, 150, 0.35);
 }
 
-/* --- Gradient section headings (Projects page h1: 💼 / 🧑‍💻) --- */
-.content h1 {
-  background: linear-gradient(90deg, var(--ak-accent), var(--ak-accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  border-bottom: 2px solid rgba(10, 147, 150, 0.25);
-  padding-bottom: 0.3rem;
-}
-
-/* --- h2/h3 get a small accent tick that grows on hover --- */
-.content h2, .content h3 {
-  position: relative;
-  transition: padding-left 0.2s ease;
-}
-.content h2::before, .content h3::before {
-  content: "";
-  position: absolute;
-  left: -0.75rem;
-  top: 0.15em;
-  height: 0.9em;
-  width: 4px;
-  border-radius: 2px;
-  background: var(--ak-accent);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.25s ease;
-}
-.content h2:hover::before, .content h3:hover::before { transform: scaleY(1); }
-
-/* --- Post / content cards: lift + accent shadow --- */
-.post-preview, #post-list .card, .card-wrapper {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-#post-list .card:hover, .card-wrapper:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px rgba(10, 147, 150, 0.18);
-}
-
-/* --- Blockquotes: accent bar + subtle tint --- */
-.content blockquote {
-  border-left-color: var(--ak-accent);
-}
-
-/* --- Readability --- */
+/* Content readability. */
 .content { line-height: 1.7; }
 
-/* --- Nav (sidebar) items: slide accent on hover/active --- */
-#sidebar .nav-link { transition: padding-left 0.2s ease; }
-#sidebar .nav-link:hover { padding-left: 0.35rem; }
+/* Blockquote accent bar. */
+.content blockquote { border-left-color: var(--ak-accent); }
 
-/* --- Scroll-reveal: elements fade + rise into view (JS adds .ak-in) --- */
-.ak-reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
-  will-change: opacity, transform;
+/* Post-card hover lift (home feed only; scoped to card containers). */
+#post-list .card,
+.card-wrapper {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
-.ak-reveal.ak-in { opacity: 1; transform: none; }
+#post-list .card:hover,
+.card-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
 
-/* --- Respect reduced-motion: disable all motion, reveal everything --- */
 @media (prefers-reduced-motion: reduce) {
-  #avatar, #post-list .card, .card-wrapper,
-  #core-wrapper a, .content h2, .content h3, #sidebar .nav-link {
+  #avatar, #post-list .card, .card-wrapper, #core-wrapper .content a {
     transition: none;
   }
   #avatar:hover { transform: none; }
-  .ak-reveal { opacity: 1; transform: none; transition: none; }
 }
