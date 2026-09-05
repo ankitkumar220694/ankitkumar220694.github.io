@@ -178,3 +178,15 @@ h1, h2, h3, h4, h5,
   }
   #avatar:hover { transform: none; }
 }
+
+/* ---- Remove default list bullets from the sidebar nav --------------- */
+#sidebar .nav,
+#sidebar .nav-item,
+#sidebar ul,
+#sidebar li {
+  list-style: none !important;
+  padding-left: 0;
+  margin-left: 0;
+}
+#sidebar .nav-item::marker,
+#sidebar li::marker { content: ""; }
