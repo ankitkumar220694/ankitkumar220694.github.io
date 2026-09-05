@@ -15,7 +15,9 @@ Selected work across **MLOps platforms**, **production GenAI/LLM systems**, and
 
 # Professional Projects
 
-## Unified MLOps Framework — *patent-filed*
+<div class="ak-card" markdown="1">
+
+### Unified MLOps Framework — *patent-filed*
 *MSIL · AI/ML Engineer · Aug 2022 – Present*
 
 **Problem.** ML teams had slow, inconsistent paths from notebook to production — no
@@ -36,7 +38,11 @@ architecture, delivery, and stakeholder alignment.
 **patent** — *Method and System for Managing Machine Learning Models Using a Dynamic
 and Parallel Model Operation Platform* (App. No. **202411067665**).
 
-## Voice Analytics at 100k calls/day — *production GenAI*
+</div>
+
+<div class="ak-card" markdown="1">
+
+### Voice Analytics at 100k calls/day — *production GenAI*
 *MSIL*
 
 **Problem.** Contact-center calls held rich signal — defects, agent performance,
@@ -54,7 +60,11 @@ scale/cost engineering.
 **Impact.** Turned an opaque audio stream into daily, queryable KPIs at **100k
 calls/day**.
 
-## Text-to-SQL — Natural-language database interface
+</div>
+
+<div class="ak-card" markdown="1">
+
+### Text-to-SQL — Natural-language database interface
 *MSIL*
 
 **Problem.** Business users needed database answers but couldn't write SQL,
@@ -72,7 +82,11 @@ end-to-end app.
 **Impact.** Self-service data access for non-technical users; removed the analyst
 bottleneck for routine questions.
 
-## Applied ML — Defect Detection, Propensity & Pricing
+</div>
+
+<div class="ak-card" markdown="1">
+
+### Applied ML — Defect Detection, Propensity & Pricing
 *MSIL*
 
 - **Brake-squeal CNN** — classified defects from brake audio (spectrogram CNN),
@@ -82,7 +96,11 @@ bottleneck for routine questions.
 - **Used-car pricing engine** — replaced static rules with an ML model, live
   **pan-India**.
 
-## Deduplication & Segmentation
+</div>
+
+<div class="ak-card" markdown="1">
+
+### Deduplication & Segmentation
 *Entytle · Data Engineer / Analyst · 2020 – 2022*
 
 **Problem.** Dirty, duplicated customer/asset records undermined downstream
@@ -96,9 +114,13 @@ Power BI / Looker.
 
 **Impact.** Cleaner master data and clearer segments feeding the analytics stack.
 
+</div>
+
 # Personal Projects
 
-## Health Tracker — Medication + Wearable Analytics
+<div class="ak-card" markdown="1">
+
+### Health Tracker — Medication + Wearable Analytics
 *Solo project*
 
 **Problem.** My health data is scattered — medication routines in my head, and
@@ -126,6 +148,8 @@ Actions.
 **Engineering notes.** Pluggable connector pattern (ABC + registry) so new data
 sources drop in without touching core logic; fully tested with a green CI pipeline;
 `.gitignore` keeps config/health data out of version control by design.
+
+</div>
 
 ---
 
