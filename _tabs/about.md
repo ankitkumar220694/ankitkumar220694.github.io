@@ -1,7 +1,7 @@
 ---
 # the default layout is 'page'
 icon: fas fa-info-circle
-order: 4
+order: 5
 ---
 
 I'm **Ankit Kumar** — an **AI / ML Engineer** with 5 years of experience building
