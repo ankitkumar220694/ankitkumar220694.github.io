@@ -1,62 +1,140 @@
 ---
-# Custom style entrypoint — imports the Chirpy theme, then applies overrides below.
+# Custom style entrypoint — imports the Chirpy theme, then applies the redesign.
 ---
 
 @import "main";
 
 /* =====================================================================
-   Ankit Kumar — MINIMAL, safe polish on Chirpy 7.6.
-   Static only: no scroll-reveal, no opacity hiding, nothing that can
-   trap content invisible or touch the sidebar layout.
+   Ankit Kumar — portfolio redesign (light, professional)
+   Typography: Space Grotesk (headings) + Inter (body).
+   Palette: warm off-white, slate ink, deep-teal accent.
+   Static only — colors + type + spacing. No layout/positioning hacks,
+   no opacity hiding, no custom JS. Site is locked to light mode.
    ===================================================================== */
 
-:root {
-  --ak-accent: #0a9396;
-  --ak-accent-strong: #087f81;
-}
-html[data-mode="dark"] {
-  --ak-accent: #2dd4bf;
-  --ak-accent-strong: #5eead4;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* ---- Palette: override Chirpy's light-mode CSS variables ------------- */
+html,
+html[data-mode="light"] {
+  --ak-bg:            #faf9f7;   /* warm off-white page */
+  --ak-bg-elevated:   #ffffff;   /* cards / sidebar */
+  --ak-ink:           #22272e;   /* near-black slate text */
+  --ak-ink-soft:      #5b6570;   /* secondary text */
+  --ak-muted:         #8a939d;   /* meta / captions */
+  --ak-border:        #e8e4de;   /* hairline borders */
+  --ak-accent:        #0f766e;   /* deep teal */
+  --ak-accent-strong: #0b5c55;   /* hover */
+  --ak-accent-soft:   #e6f2f0;   /* tint fills */
+
+  /* Map into Chirpy's own variables so the whole theme follows. */
+  --main-bg:          var(--ak-bg);
+  --mask-bg:          #ece8e2;
+  --sidebar-bg:       var(--ak-bg-elevated);
+  --card-bg:          var(--ak-bg-elevated);
+  --card-border-color:var(--ak-border);
+  --card-box-shadow:  0 1px 2px rgba(34, 39, 46, 0.05), 0 4px 14px rgba(34, 39, 46, 0.05);
+  --text-color:       var(--ak-ink);
+  --text-muted-color: var(--ak-ink-soft);
+  --heading-color:    var(--ak-ink);
+  --link-color:       var(--ak-accent);
+  --link-underline-color: var(--ak-accent-soft);
+  --sidebar-muted-color: var(--ak-ink-soft);
+  --sidebar-active-color: var(--ak-accent);
+  --nav-cursor-color: var(--ak-accent);
+  --btn-border-color: var(--ak-border);
+  --border-color:     var(--ak-border);
+  --blockquote-border-color: var(--ak-accent);
+  --prompt-info-icon-color: var(--ak-accent);
 }
 
-/* Scrolling stays native/instant; only give anchors room under the header. */
-:target { scroll-margin-top: 5rem; }
+/* ---- Typography ------------------------------------------------------ */
+body,
+.content,
+#sidebar {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-/* Links inside main content get the brand accent (sidebar/nav untouched). */
+h1, h2, h3, h4, h5,
+.post-title,
+#sidebar .site-title {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+  letter-spacing: -0.015em;
+  color: var(--ak-ink);
+}
+
+#sidebar .site-title {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+#sidebar .site-subtitle {
+  font-family: 'Inter', sans-serif;
+  color: var(--ak-ink-soft);
+  font-weight: 400;
+}
+
+.content { line-height: 1.72; font-size: 1.02rem; }
+.content h1 { font-weight: 700; margin-top: 2.2rem; }
+.content h2 {
+  font-weight: 600;
+  margin-top: 2rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--ak-border);
+}
+.content h3 { font-weight: 600; color: var(--ak-accent-strong); }
+
+/* Section dividers (# Professional / # Personal) get a teal accent rule. */
+.content h1 {
+  border-bottom: 2px solid var(--ak-accent);
+  padding-bottom: 0.35rem;
+}
+
+/* ---- Links (content only; sidebar untouched for layout safety) ------- */
 #core-wrapper .content a {
   color: var(--ak-accent);
-  transition: color 0.15s ease;
+  text-decoration: none;
+  border-bottom: 1px solid var(--ak-accent-soft);
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 #core-wrapper .content a:hover {
   color: var(--ak-accent-strong);
+  border-bottom-color: var(--ak-accent-strong);
 }
 
-/* Avatar: gentle hover lift only. */
+/* ---- Avatar: clean ring + gentle hover ------------------------------- */
 #avatar {
+  border: 3px solid var(--ak-bg-elevated);
+  box-shadow: 0 2px 10px rgba(34, 39, 46, 0.12);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 #avatar:hover {
   transform: scale(1.03);
-  box-shadow: 0 6px 18px rgba(10, 147, 150, 0.35);
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.28);
 }
 
-/* Content readability. */
-.content { line-height: 1.7; }
-
-/* Blockquote accent bar. */
-.content blockquote { border-left-color: var(--ak-accent); }
-
-/* Post-card hover lift (home feed only; scoped to card containers). */
+/* ---- Post-preview cards: airy, subtle lift --------------------------- */
 #post-list .card,
 .card-wrapper {
+  border: 1px solid var(--ak-border);
+  border-radius: 12px;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 #post-list .card:hover,
 .card-wrapper:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 22px rgba(34, 39, 46, 0.10);
 }
 
+/* ---- Blockquote / prompt callouts ------------------------------------ */
+.content blockquote { border-left-color: var(--ak-accent); }
+
+/* ---- Code: readable mono in the light theme -------------------------- */
+.content code { font-size: 0.9em; }
+
+/* ---- Reduced motion -------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   #avatar, #post-list .card, .card-wrapper, #core-wrapper .content a {
     transition: none;
