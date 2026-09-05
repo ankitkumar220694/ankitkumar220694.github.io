@@ -1,7 +1,6 @@
 ---
 title: "Serving GenAI at 100k Calls a Day: What Scales, What Breaks, and What It Costs"
 date: 2026-09-03 09:00:00 +0530
-categories: [GenAI, MLOps]
 tags: [genai, llm, bedrock, aws, cost-optimization, observability]
 toc: true
 ---

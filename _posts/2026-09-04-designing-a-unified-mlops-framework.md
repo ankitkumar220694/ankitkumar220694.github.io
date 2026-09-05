@@ -1,7 +1,6 @@
 ---
 title: "Designing a Unified MLOps Framework: Cutting Deployment Time ~20% Across an Enterprise"
 date: 2026-09-04 09:00:00 +0530
-categories: [MLOps]
 tags: [mlops, dataops, devsecops, monitoring, drift, platform-engineering]
 toc: true
 ---
