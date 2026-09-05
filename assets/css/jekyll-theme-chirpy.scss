@@ -1,40 +1,43 @@
 ---
-# Custom style entrypoint — imports the Chirpy theme, then applies the dark-emerald revamp.
+# Custom style entrypoint — imports the Chirpy theme, then applies the Apple-inspired revamp.
 ---
 
 @import "main";
 
 /* =====================================================================
-   Ankit Kumar — portfolio (Dark Emerald edition)
-   Dark canvas, emerald accent, light text; solid pinned topbar.
+   Ankit Kumar — portfolio (Apple-inspired edition)
+   Colour theory: soft neutral grey canvas, white elevated surfaces,
+   depth via layered shadows (not hard borders), one restrained accent.
    Typography: Space Grotesk (headings) + Inter (body).
-   Static only. Site is locked to dark mode (theme_mode: dark).
+   Static only — colours, type, depth, spacing. No layout/positioning
+   hacks, no JS. Site is locked to light mode.
    ===================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 
-/* ---- Dark-emerald palette: override Chirpy's dark-mode variables ----- */
-html[data-mode="dark"],
-html {
-  --ak-canvas:        #0b1210;   /* deep near-black green-black */
-  --ak-surface:       #121b18;   /* elevated cards / sidebar */
-  --ak-surface-2:     #16211d;
-  --ak-ink:           #e8f0ed;   /* light text */
-  --ak-ink-soft:      #9db3ab;   /* secondary */
-  --ak-muted:         #6f857d;
-  --ak-border:        #24332d;   /* subtle dark border */
-  --ak-accent:        #34d399;   /* emerald-400 (brighter for dark) */
-  --ak-accent-strong: #6ee7b7;   /* emerald-300 hover */
-  --ak-accent-soft:   #10312a;   /* dark emerald tint fill */
-  --ak-accent-tint:   #0e2721;   /* darker wash */
+/* ---- Palette (Apple neutrals + emerald accent) ----------------------- */
+html,
+html[data-mode="light"] {
+  --ak-canvas:        #f5f5f7;   /* Apple light-grey page canvas */
+  --ak-surface:       #ffffff;   /* elevated surfaces: cards, sidebar */
+  --ak-surface-2:     #fbfbfd;   /* very subtle tinted surface */
+  --ak-ink:           #1d1d1f;   /* Apple near-black */
+  --ak-ink-soft:      #6e6e73;   /* Apple secondary grey */
+  --ak-muted:         #86868b;   /* Apple tertiary grey */
+  --ak-border:        #e5e5ea;   /* hairline (barely visible) */
+  --ak-accent:        #059669;   /* emerald */
+  --ak-accent-strong: #047857;
+  --ak-accent-soft:   #d1fae5;
+  --ak-accent-tint:   #ecfdf5;
 
-  --ak-shadow-sm: 0 1px 2px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.35);
-  --ak-shadow-md: 0 4px 14px rgba(0,0,0,0.45), 0 12px 30px rgba(0,0,0,0.4);
-  --ak-shadow-lg: 0 8px 24px rgba(0,0,0,0.5), 0 20px 48px rgba(0,0,0,0.45);
+  /* Soft, layered Apple-style shadows */
+  --ak-shadow-sm: 0 1px 2px rgba(0,0,0,0.04), 0 1px 3px rgba(0,0,0,0.06);
+  --ak-shadow-md: 0 2px 8px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.06);
+  --ak-shadow-lg: 0 4px 16px rgba(0,0,0,0.08), 0 16px 40px rgba(0,0,0,0.08);
 
   /* Map into Chirpy's own variables. */
   --main-bg:          var(--ak-canvas);
-  --mask-bg:          #060b09;
+  --mask-bg:          #e3e3e8;
   --sidebar-bg:       var(--ak-surface);
   --card-bg:          var(--ak-surface);
   --card-border-color:var(--ak-border);
@@ -54,124 +57,106 @@ html {
   --tb-odd-bg:        var(--ak-surface-2);
   --tag-bg:           var(--ak-surface);
   --tag-hover:        var(--ak-accent-soft);
-  --topbar-wrapper-bg: var(--ak-surface);
-  --search-wrapper-bg: var(--ak-surface-2);
-  --search-tag-bg:    var(--ak-surface-2);
 }
 
 /* ---- Typography ------------------------------------------------------ */
 body, .content, #sidebar {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv02','cv03','cv04','cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 h1,h2,h3,h4,h5,.post-title,#sidebar .site-title {
-  font-family: 'Space Grotesk','Inter',sans-serif; letter-spacing:-0.02em; color:var(--ak-ink);
+  font-family: 'Space Grotesk','Inter',sans-serif;
+  letter-spacing: -0.02em;
+  color: var(--ak-ink);
 }
-#sidebar .site-title { font-weight:700; font-size:1.6rem; }
+#sidebar .site-title { font-weight: 700; font-size: 1.6rem; }
 #sidebar .site-subtitle { font-family:'Inter',sans-serif; color:var(--ak-ink-soft); font-weight:400; }
-.content { line-height:1.72; font-size:1.02rem; }
+.content { line-height: 1.72; font-size: 1.02rem; }
 .content h1 { font-weight:700; margin-top:2.2rem; border-bottom:2px solid var(--ak-accent); padding-bottom:0.35rem; }
 .content h2 { font-weight:600; margin-top:2rem; padding-bottom:0.3rem; border-bottom:1px solid var(--ak-border); }
 .content h3 { font-weight:600; color:var(--ak-accent-strong); }
 
-/* ---- Sidebar as a dark panel ---------------------------------------- */
-#sidebar { background: var(--ak-surface); box-shadow: var(--ak-shadow-sm); border-right: 1px solid var(--ak-border); }
+/* ---- Sidebar: distinct white panel floating on the grey canvas ------- */
+#sidebar {
+  background: var(--ak-surface);
+  box-shadow: var(--ak-shadow-sm);
+  border-right: 1px solid var(--ak-border);
+}
 
-/* ---- Framed avatar -------------------------------------------------- */
+/* ---- Avatar: clean white frame + soft ring + shadow ------------------ */
 #avatar {
   border: 4px solid var(--ak-surface);
-  box-shadow: 0 0 0 1px var(--ak-accent-soft), var(--ak-shadow-md);
+  box-shadow: 0 0 0 1px var(--ak-border), var(--ak-shadow-md);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-#avatar:hover { transform: scale(1.03); box-shadow: 0 0 0 1px var(--ak-accent), var(--ak-shadow-lg); }
+#avatar:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 0 1px var(--ak-accent-soft), var(--ak-shadow-lg);
+}
 
-/* ---- Content links -------------------------------------------------- */
+/* ---- Links (content only) ------------------------------------------- */
 #core-wrapper .content a {
-  color: var(--ak-accent); text-decoration: none;
+  color: var(--ak-accent);
+  text-decoration: none;
   border-bottom: 1px solid var(--ak-accent-soft);
   transition: color 0.15s ease, border-color 0.15s ease;
 }
 #core-wrapper .content a:hover { color: var(--ak-accent-strong); border-bottom-color: var(--ak-accent-strong); }
 
-/* ===================================================================
-   TOPBAR — solid, full-width, pinned to the very top on ALL sizes.
-   =================================================================== */
-#topbar-wrapper {
-  position: fixed !important;
-  top: 0; left: 0; right: 0;
-  width: 100%;
-  height: 3rem;
-  z-index: 1100 !important;            /* above the fixed sidebar */
-  background: var(--ak-canvas);
-  border-bottom: 1px solid var(--ak-border);
+/* ---- Content breathing room ----------------------------------------- */
+#main-wrapper { padding: 0.5rem 0; }
+#core-wrapper .content { padding: 0.5rem 0.5rem 2.5rem; max-width: 60rem; }
+#topbar-wrapper { padding-top: 0.35rem; }
+
+/* ---- Project cards + home post cards: Apple surface + depth ---------- */
+.content .ak-card,
+#post-list .card,
+.card-wrapper {
+  background: var(--ak-surface);
+  border: 1px solid var(--ak-border);
+  border-radius: 14px;
   box-shadow: var(--ak-shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-#topbar { display: flex; align-items: center; height: 100%; }
-#topbar #breadcrumb { display: flex; align-items: center; color: var(--ak-ink); }
+.content .ak-card { padding: 1.25rem 1.5rem; margin: 1.25rem 0; }
+.content .ak-card:hover,
+#post-list .card:hover,
+.card-wrapper:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--ak-shadow-md);
+}
+.content .ak-card > h3:first-child { margin-top: 0; }
+.content .ak-card > h3 { border-bottom: none; }
+.content .ak-card em:first-of-type { color: var(--ak-accent-strong); }
 
-/* Push the whole layout below the fixed topbar. */
-#main-wrapper { padding-top: 3rem; }
-/* Sidebar starts below the topbar so it never overlaps it. */
-#sidebar { top: 3rem !important; height: calc(100% - 3rem) !important; }
+/* ---- Blockquote / prompt callouts: soft tinted surface --------------- */
+.content blockquote { border-left-color: var(--ak-accent); }
+.content .prompt-info { background: var(--ak-accent-tint); border-radius: 10px; }
 
-/* ---- Search: right-aligned dark pill, emerald focus ----------------- */
+/* ---- Inline code: subtle tinted chip -------------------------------- */
+.content code {
+  font-size: 0.9em; color: var(--ak-accent-strong);
+  background: var(--ak-accent-tint); border-radius: 5px; padding: 0.1em 0.35em;
+}
+.content pre code { color: inherit; background: none; padding: 0; }
+
+/* ---- Search box: right-aligned rounded pill, emerald focus ---------- */
+#topbar { display: flex; align-items: center; }
+#topbar #breadcrumb { display: flex; align-items: center; }
 #topbar #search {
-  margin-left: auto; margin-right: 0.5rem; min-width: 180px;
+  margin-left: auto; margin-right: 0.25rem; min-width: 210px;
   display: flex; align-items: center; height: 2.1rem;
   border: 1px solid var(--ak-border); border-radius: 999px;
-  background: var(--ak-surface-2); padding: 0.15rem 0.75rem;
+  background: var(--ak-surface); padding: 0.15rem 0.75rem;
+  box-shadow: var(--ak-shadow-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 #topbar #search:focus-within { border-color: var(--ak-accent); box-shadow: 0 0 0 3px var(--ak-accent-soft); }
 #topbar #search i { color: var(--ak-muted); }
-#topbar #search-input { background: transparent; border: none; box-shadow: none; color: var(--ak-ink); line-height: 1.4; padding: 0; }
+#topbar #search-input { background: transparent; border: none; box-shadow: none; color: var(--ak-ink); line-height: 1.4; padding-top: 0; padding-bottom: 0; }
 #topbar #search-input:focus { box-shadow: none; }
-
-/* ---- Content breathing room ----------------------------------------- */
-#core-wrapper .content { padding: 0.5rem 0.5rem 2.5rem; max-width: 60rem; }
-
-/* ---- Collapsible project cards -------------------------------------- */
-#post-list .card, .card-wrapper {
-  background: var(--ak-surface); border: 1px solid var(--ak-border);
-  border-radius: 14px; box-shadow: var(--ak-shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-#post-list .card:hover, .card-wrapper:hover { transform: translateY(-3px); box-shadow: var(--ak-shadow-md); }
-
-.content details.ak-card {
-  background: var(--ak-surface); border: 1px solid var(--ak-border);
-  border-radius: 14px; box-shadow: var(--ak-shadow-sm);
-  margin: 1rem 0; overflow: hidden;
-  transition: box-shadow 0.2s ease;
-}
-.content details.ak-card:hover, .content details.ak-card[open] { box-shadow: var(--ak-shadow-md); }
-.content details.ak-card > summary {
-  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  padding: 1rem 1.25rem; min-height: 3.5rem; cursor: pointer; list-style: none; user-select: none;
-}
-.content details.ak-card > summary::-webkit-details-marker { display: none; }
-.content details.ak-card > summary::marker { content: ""; }
-.ak-card-head { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
-.ak-card-title { font-family:'Space Grotesk','Inter',sans-serif; font-weight:600; font-size:1.05rem; color:var(--ak-ink); letter-spacing:-0.01em; }
-.ak-card-title em { color: var(--ak-accent-strong); font-style: normal; font-weight: 500; }
-.ak-card-sub { font-size: 0.85rem; color: var(--ak-ink-soft); }
-.ak-chevron {
-  flex: 0 0 auto; width: 2rem; height: 2rem;
-  display: inline-flex; align-items: center; justify-content: center;
-  border-radius: 999px; background: var(--ak-accent-soft); color: var(--ak-accent-strong);
-  transition: transform 0.25s ease, background 0.15s ease;
-}
-.content details.ak-card > summary:hover .ak-chevron { background: var(--ak-accent); color: var(--ak-canvas); }
-.content details.ak-card[open] > summary .ak-chevron { transform: rotate(180deg); }
-.content details.ak-card[open] > *:not(summary) { margin-left: 1.25rem; margin-right: 1.25rem; }
-.content details.ak-card > *:not(summary):first-of-type { margin-top: 0.25rem; }
-.content details.ak-card > *:last-child { margin-bottom: 1.1rem; }
-.content details.ak-card[open] > summary { border-bottom: 1px solid var(--ak-border); margin-bottom: 0.5rem; }
-
-/* ---- Callouts / code ------------------------------------------------ */
-.content blockquote { border-left-color: var(--ak-accent); }
-.content .prompt-info { background: var(--ak-accent-tint); border-radius: 10px; }
-.content code { font-size:0.9em; color:var(--ak-accent-strong); background:var(--ak-accent-tint); border-radius:5px; padding:0.1em 0.35em; }
-.content pre code { color: inherit; background: none; padding: 0; }
 
 /* ---- Sidebar nav: no bullet dots ------------------------------------ */
 #sidebar nav .nav, #sidebar nav ul, #sidebar ul.nav, #sidebar ul li.nav-item {
@@ -180,43 +165,55 @@ h1,h2,h3,h4,h5,.post-title,#sidebar .site-title {
 #sidebar ul li.nav-item::marker, #sidebar ul li.nav-item::before { content: none !important; display: none !important; }
 #sidebar .nav-link:hover { color: var(--ak-accent-strong); }
 
-/* ---- Sidebar social icons horizontal -------------------------------- */
+/* ---- Sidebar social icons: horizontal row, emerald hover ------------ */
 #sidebar .sidebar-bottom { flex-direction: row; flex-wrap: nowrap; justify-content: center; gap: 0.85rem; }
-#sidebar .sidebar-bottom a { display: inline-flex; align-items: center; justify-content: center; font-size: 1.2rem; color: var(--ak-ink-soft); transition: color 0.15s ease, transform 0.15s ease; }
+#sidebar .sidebar-bottom a {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; color: var(--ak-ink-soft);
+  transition: color 0.15s ease, transform 0.15s ease;
+}
 #sidebar .sidebar-bottom a:hover { color: var(--ak-accent); transform: translateY(-2px); }
 
-/* ---- Tags: horizontal pill row -------------------------------------- */
+/* ---- Tags page: horizontal wrapping pill row ------------------------ */
 #tags { display: flex !important; flex-flow: row wrap; align-items: center; gap: 0.6rem 0.75rem; }
 #tags > div { display: inline-flex; align-items: center; }
 #tags .tag {
-  display: inline-flex; align-items: center; gap: 0.25rem; padding: 0.3rem 0.7rem;
-  border: 1px solid var(--ak-border); border-radius: 999px; background: var(--ak-surface); color: var(--ak-ink);
+  display: inline-flex; align-items: center; gap: 0.25rem;
+  padding: 0.3rem 0.7rem; border: 1px solid var(--ak-border);
+  border-radius: 999px; background: var(--ak-surface); color: var(--ak-ink);
+  box-shadow: var(--ak-shadow-sm);
   transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 #tags .tag:hover { background: var(--ak-accent-soft); border-color: var(--ak-accent); color: var(--ak-accent-strong); }
 
-/* ===================================================================
-   Mobile (<= 849px)
-   =================================================================== */
-@media all and (max-width: 849px) {
-  #sidebar-trigger, #search-trigger {
-    display: inline-flex !important; align-items: center; justify-content: center;
-    width: 2.4rem; height: 2.4rem; color: var(--ak-ink);
-  }
-  #topbar #search { min-width: 0; max-width: 55vw; }
-  #core-wrapper .content { padding: 0.5rem 0.25rem 2rem; max-width: 100%; }
-  .content details.ak-card > summary { padding: 0.85rem 1rem; gap: 0.6rem; }
-  .ak-card-title { font-size: 0.98rem; }
-  .content details.ak-card[open] > *:not(summary) { margin-left: 1rem; margin-right: 1rem; }
-}
-@media all and (max-width: 400px) {
-  #topbar #search { max-width: 42vw; }
-  #topbar-title { display: none; }
-}
-
 /* ---- Reduced motion -------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  #avatar, .content details.ak-card, #post-list .card, .card-wrapper,
-  #core-wrapper .content a, #sidebar .sidebar-bottom a { transition: none; }
-  #avatar:hover { transform: none; }
+  #avatar, .content .ak-card, #post-list .card, .card-wrapper,
+  #core-wrapper .content a, #sidebar .sidebar-bottom a {
+    transition: none;
+  }
+  #avatar:hover, .content .ak-card:hover { transform: none; }
 }
+
+/* ---- Collapsible project cards (details/summary) on the Apple skin --- */
+.content details.ak-card { overflow: hidden; }
+.content details.ak-card > summary {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1rem 1.25rem; cursor: pointer; list-style: none;
+}
+.content details.ak-card > summary::-webkit-details-marker { display: none; }
+.content details.ak-card > summary::marker { content: ""; }
+.ak-card-head { display: flex; flex-direction: column; gap: 0.15rem; min-width: 0; }
+.ak-card-title { font-family:'Space Grotesk','Inter',sans-serif; font-weight:600; font-size:1.05rem; color:var(--ak-ink); }
+.ak-card-title em { color: var(--ak-accent-strong); font-style: normal; font-weight: 500; }
+.ak-card-sub { font-size: 0.85rem; color: var(--ak-ink-soft); }
+.ak-chevron {
+  flex: 0 0 auto; width: 2rem; height: 2rem; display: inline-flex;
+  align-items: center; justify-content: center; border-radius: 999px;
+  background: var(--ak-accent-soft); color: var(--ak-accent-strong);
+  transition: transform 0.25s ease;
+}
+.content details.ak-card[open] > summary .ak-chevron { transform: rotate(180deg); }
+.content details.ak-card[open] > *:not(summary) { margin-left: 1.25rem; margin-right: 1.25rem; }
+.content details.ak-card > *:last-child { margin-bottom: 1.1rem; }
+.content details.ak-card[open] > summary { border-bottom: 1px solid var(--ak-border); margin-bottom: 0.5rem; }
