@@ -1,0 +1,85 @@
+---
+# Custom style entrypoint — imports the Chirpy theme, then applies overrides below.
+---
+
+@import "main";
+
+/* =====================================================================
+   Ankit Kumar — portfolio UI/UX polish
+   Tasteful, theme-aware overrides layered on top of Chirpy 7.6.
+   Uses Chirpy's CSS custom properties so light & dark modes stay correct.
+   ===================================================================== */
+
+/* --- 1. Brand accent (teal) applied consistently to links & hovers --- */
+:root {
+  --ak-accent: #0a9396;
+  --ak-accent-strong: #087f81;
+}
+html[data-mode="dark"] {
+  --ak-accent: #2dd4bf;
+  --ak-accent-strong: #5eead4;
+}
+
+#core-wrapper a:not(.post-tag):not(.btn):not(.img-link) {
+  color: var(--ak-accent);
+  transition: color 0.15s ease;
+}
+#core-wrapper a:not(.post-tag):not(.btn):not(.img-link):hover {
+  color: var(--ak-accent-strong);
+}
+
+/* --- 2. Avatar: crisper ring, subtle lift on hover --- */
+#avatar {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+#avatar:hover {
+  transform: scale(1.04);
+  box-shadow: 0 6px 20px rgba(10, 147, 150, 0.35);
+}
+
+/* --- 3. Sidebar site title a touch larger & tighter --- */
+#sidebar .site-title a {
+  letter-spacing: 0.2px;
+}
+
+/* --- 4. Post cards: gentle hover lift for scannability on the home feed --- */
+.post-preview,
+#post-list .card,
+.card-wrapper {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+#post-list .card:hover,
+.card-wrapper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+/* --- 5. Readability: slightly roomier line-height in post body --- */
+.content {
+  line-height: 1.7;
+}
+
+/* --- 6. Inline code & blockquotes: a little more contrast --- */
+.content blockquote {
+  border-left-color: var(--ak-accent);
+}
+
+/* --- 7. Smooth anchor scrolling for the TOC --- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- 8. Respect reduced-motion preferences --- */
+@media (prefers-reduced-motion: reduce) {
+  #avatar,
+  #post-list .card,
+  .card-wrapper,
+  html {
+    transition: none;
+    scroll-behavior: auto;
+  }
+  #avatar:hover {
+    transform: none;
+  }
+}
