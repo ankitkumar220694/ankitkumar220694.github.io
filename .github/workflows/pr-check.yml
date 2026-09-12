@@ -98,7 +98,7 @@ jobs:
 
           routes=(
             "home|/"
-            "work|/#selected-work"
+            "work|/#agentx-card"
             "projects|/projects/"
             "about|/about/"
             "tags|/tags/"
@@ -110,8 +110,8 @@ jobs:
             route_name="${entry%%|*}"
             route="${entry#*|}"
             if [[ "$route_name" == "work" ]]; then
-              capture "$route_name-desktop" 1440,1200 "$route"
-              capture "$route_name-mobile" 390,1800 "$route"
+              capture "$route_name-desktop" 1440,900 "$route"
+              capture "$route_name-mobile" 390,1200 "$route"
             else
               capture "$route_name-desktop" 1440,900 "$route"
               capture "$route_name-mobile" 390,844 "$route"

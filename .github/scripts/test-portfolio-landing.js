@@ -42,6 +42,7 @@ assert.match(landing, /site\.resume_url \| relative_url/, 'landing links to the 
 assert.match(landing, /mailto:ankitkumar220694@gmail\.com/, 'contact CTA has a valid email target');
 assert.doesNotMatch(landing, /href=["'](?:#|)["']/, 'landing has no empty or placeholder links');
 assert.equal(count(landing, /data-pointer-card/g), 4, 'all four project tiles keep pointer interaction hooks');
+assert.match(landing, /id="agentx-card"/, 'the lead project tile has a stable visual-evidence anchor');
 assert.match(landing, /aria-controls="site-menu"/, 'mobile menu identifies the controlled navigation');
 assert.match(landing, /aria-expanded="false"/, 'mobile menu exposes its initial state');
 const landingJs = read('assets/js/portfolio-landing.js');
