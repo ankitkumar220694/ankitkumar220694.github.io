@@ -18,6 +18,7 @@ permalink: /
 
   <nav class="site-menu" id="site-menu" aria-label="Primary navigation">
     <a href="#selected-work">Work</a>
+    <a href="{{ '/projects/' | relative_url }}">Projects</a>
     <a href="#writing">Writing</a>
     <a href="{{ '/about/' | relative_url }}">About</a>
     <a href="{{ site.resume_url | relative_url }}" target="_blank" rel="noopener noreferrer">Résumé</a>
@@ -44,11 +45,11 @@ permalink: /
       </a>
     </div>
 
-    <div class="hero-system" data-parallax aria-hidden="true">
-      <div class="orbit orbit-one"><i></i><i></i><i></i></div>
-      <div class="orbit orbit-two"><i></i><i></i></div>
-      <div class="ai-core">AI</div>
-      <svg class="signal-lines" viewBox="0 0 600 600" role="presentation">
+    <div class="hero-system" data-parallax>
+      <div class="orbit orbit-one" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="orbit orbit-two" aria-hidden="true"><i></i><i></i></div>
+      {% include kinetic-avatar.html %}
+      <svg class="signal-lines" viewBox="0 0 600 600" aria-hidden="true">
         <path d="M72 360C174 164 400 124 531 277" />
         <path d="M96 462C239 535 440 484 523 341" />
         <path d="M179 83C308 175 398 276 433 516" />
