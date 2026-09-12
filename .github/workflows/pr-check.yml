@@ -1,0 +1,66 @@
+name: Validate site
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "validate-site-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.4
+          bundler-cache: true
+
+      - name: Build site
+        run: bundle exec jekyll build --destination _site
+        env:
+          JEKYLL_ENV: production
+
+      - name: Test generated links
+        run: |
+          bundle exec htmlproofer _site \
+            --disable-external \
+            --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+
+      - name: Capture rendered homepage
+        run: |
+          mkdir -p visual-evidence
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory _site > /tmp/portfolio-preview.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          for attempt in {1..20}; do
+            curl --fail --silent http://127.0.0.1:4173/ > /dev/null && break
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:4173/ > /dev/null
+          chrome="$(command -v google-chrome || command -v google-chrome-stable || true)"
+          test -n "$chrome"
+          "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
+            --virtual-time-budget=3000 --window-size=1440,900 \
+            --screenshot=visual-evidence/home-desktop.png http://127.0.0.1:4173/
+          "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
+            --virtual-time-budget=3000 --window-size=390,844 \
+            --screenshot=visual-evidence/home-mobile.png http://127.0.0.1:4173/
+
+      - name: Upload visual evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-visual-evidence
+          path: visual-evidence/*.png
+          if-no-files-found: error
+          retention-days: 7

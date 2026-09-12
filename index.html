@@ -1,4 +1,174 @@
 ---
-layout: home
-# Index page
+layout: landing
+title: "Ankit Kumar — Full-Stack AI & ML Engineer"
+description: "Full-Stack AI & ML Engineer with 6+ years of experience building production GenAI, MLOps, FinOps, and applied ML systems."
+permalink: /
 ---
+
+<header class="site-header" data-header>
+  <a class="brand" href="{{ '/' | relative_url }}" aria-label="Ankit Kumar — home">
+    <span class="brand-mark" aria-hidden="true">AK</span>
+    <span>Ankit Kumar</span>
+  </a>
+
+  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+    <span>Menu</span>
+    <i aria-hidden="true"></i>
+  </button>
+
+  <nav class="site-menu" id="site-menu" aria-label="Primary navigation">
+    <a href="#selected-work">Work</a>
+    <a href="#writing">Writing</a>
+    <a href="{{ '/about/' | relative_url }}">About</a>
+    <a href="{{ site.resume_url | relative_url }}" target="_blank" rel="noopener noreferrer">Résumé</a>
+  </nav>
+
+  <a class="contact-pill" href="mailto:ankitkumar220694@gmail.com">
+    <span class="round-icon" aria-hidden="true">↗</span>
+    <span>Get in touch</span>
+  </a>
+</header>
+
+<main id="main-content">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-heading" data-intro>
+      <p class="eyebrow">Full-Stack AI &amp; ML Engineer <span>·</span> 6+ years</p>
+      <h1 id="hero-title">AI that ships<br>at scale.</h1>
+    </div>
+
+    <div class="hero-copy" data-intro>
+      <p>I design, build, and deploy secure, scalable AI and machine-learning applications across cloud environments—from agentic platforms to production GenAI.</p>
+      <a class="action-pill" href="#selected-work">
+        <span class="round-icon" aria-hidden="true">↓</span>
+        <span>Explore selected work</span>
+      </a>
+    </div>
+
+    <div class="hero-system" data-parallax aria-hidden="true">
+      <div class="orbit orbit-one"><i></i><i></i><i></i></div>
+      <div class="orbit orbit-two"><i></i><i></i></div>
+      <div class="ai-core">AI</div>
+      <svg class="signal-lines" viewBox="0 0 600 600" role="presentation">
+        <path d="M72 360C174 164 400 124 531 277" />
+        <path d="M96 462C239 535 440 484 523 341" />
+        <path d="M179 83C308 175 398 276 433 516" />
+      </svg>
+    </div>
+  </section>
+
+  <section class="impact-marquee" aria-label="Selected impact">
+    <div class="marquee-track">
+      <span><i></i>100,000+ calls/day</span>
+      <span><i></i>5+ production projects</span>
+      <span><i></i>~22% lower cloud opex</span>
+      <span><i></i>~20% faster deployment</span>
+      <span aria-hidden="true"><i></i>100,000+ calls/day</span>
+      <span aria-hidden="true"><i></i>5+ production projects</span>
+      <span aria-hidden="true"><i></i>~22% lower cloud opex</span>
+      <span aria-hidden="true"><i></i>~20% faster deployment</span>
+    </div>
+  </section>
+
+  <section class="work-section" id="selected-work" aria-labelledby="work-title">
+    <div class="section-heading" data-reveal>
+      <h2 id="work-title">Selected<br>work</h2>
+      <p>Four production systems foregrounded. The complete project archive preserves every existing case study.</p>
+    </div>
+
+    <div class="work-grid">
+      <a class="project-card card-red" href="{{ '/projects/' | relative_url }}" data-reveal data-pointer-card>
+        <div class="project-meta"><span>01 · Agentic GenAI</span><span>MSIL</span></div>
+        <div class="project-visual visual-network" aria-hidden="true">
+          <i class="node n1"></i><i class="node n2"></i><i class="node n3"></i><i class="node n4"></i>
+          <span class="edge e1"></span><span class="edge e2"></span><span class="edge e3"></span>
+        </div>
+        <div class="project-copy"><h3>AgentX</h3><p>Multi-agent DevSecOps automation via LangGraph, FastAPI, FastMCP, and AWS.</p></div>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
+
+      <a class="project-card card-blue" href="{{ '/projects/' | relative_url }}" data-reveal data-pointer-card>
+        <div class="project-meta"><span>02 · Platform</span><span>Patent filed</span></div>
+        <div class="project-visual visual-orb" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="project-copy"><h3>MLOps<br>Framework</h3><p>Lifecycle monitoring across data quality, drift, model health, and cloud cost.</p></div>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
+
+      <a class="project-card card-violet" href="{{ '/projects/' | relative_url }}" data-reveal data-pointer-card>
+        <div class="project-meta"><span>03 · Production GenAI</span><span>100k+ calls/day</span></div>
+        <div class="project-visual visual-wave" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="project-copy"><h3>Voice<br>Analytics</h3><p>AWS Transcribe and OpenAI Whisper pipelines producing real-time business KPIs.</p></div>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
+
+      <a class="project-card card-magenta" href="{{ '/projects/' | relative_url }}" data-reveal data-pointer-card>
+        <div class="project-meta"><span>04 · Multi-cloud</span><span>~22% opex reduction</span></div>
+        <div class="project-visual visual-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="project-copy"><h3>FinOps<br>Platform</h3><p>AWS and Azure cost visibility with automated monitoring and executive insights.</p></div>
+        <span class="card-arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div class="all-work" data-reveal>
+      <a class="outline-pill" href="{{ '/projects/' | relative_url }}"><span>View all projects</span><b aria-hidden="true">↗</b></a>
+    </div>
+  </section>
+
+  <section class="profile-band" aria-labelledby="profile-title">
+    <div data-reveal>
+      <p class="eyebrow">Profile</p>
+      <h2 id="profile-title">Build.<br>Scale.<br>Lead.</h2>
+    </div>
+    <div class="profile-copy" data-reveal>
+      <p>I’m Ankit Kumar, a Full-Stack AI &amp; ML Engineer at Maruti Suzuki India Limited. My work spans agentic GenAI, MLOps, production LLM systems, FinOps, applied ML, and data engineering.</p>
+      <div class="profile-facts">
+        <span>Current · Maruti Suzuki India Limited</span>
+        <span>Earlier · Entytle</span>
+        <span>Certified · SAFe® 6.0 PO/PM</span>
+      </div>
+      <a class="dark-pill" href="{{ '/about/' | relative_url }}"><span class="round-icon" aria-hidden="true">↗</span><span>More about me</span></a>
+    </div>
+  </section>
+
+  <section class="writing-section" id="writing" aria-labelledby="writing-title">
+    <div class="writing-heading" data-reveal>
+      <p class="eyebrow">Learn · field notes from production</p>
+      <h2 id="writing-title">Writing</h2>
+    </div>
+    <div class="article-list">
+      <a href="{{ '/posts/designing-a-unified-mlops-framework/' | relative_url }}" data-reveal>
+        <span class="article-meta">Sep 04, 2026 · MLOps</span>
+        <h3>Designing a Unified MLOps Framework</h3>
+        <b aria-hidden="true">↗</b>
+      </a>
+      <a href="{{ '/posts/serving-genai-at-100k-calls-a-day/' | relative_url }}" data-reveal>
+        <span class="article-meta">Sep 03, 2026 · GenAI</span>
+        <h3>Serving GenAI at 100k Calls a Day</h3>
+        <b aria-hidden="true">↗</b>
+      </a>
+      <a href="{{ '/posts/welcome/' | relative_url }}" data-reveal>
+        <span class="article-meta">Sep 05, 2026 · Intro</span>
+        <h3>Welcome — ML at Scale, in Practice</h3>
+        <b aria-hidden="true">↗</b>
+      </a>
+    </div>
+  </section>
+
+  <section class="closing" aria-labelledby="closing-title">
+    <h2 id="closing-title" data-reveal>Let’s build.</h2>
+    <div class="closing-copy" data-reveal>
+      <p>I’m targeting Senior ML, MLOps, and GenAI Engineer roles. Let’s talk about production AI that creates measurable impact.</p>
+      <a class="action-pill" href="mailto:ankitkumar220694@gmail.com"><span class="round-icon" aria-hidden="true">↗</span><span>Get in touch</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="landing-footer">
+  <span>© {{ 'now' | date: '%Y' }} Ankit Kumar</span>
+  <nav aria-label="Social links">
+    <a href="https://github.com/ankitkumar220694" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/in/ankitkumar220694" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="{{ site.resume_url | relative_url }}" target="_blank" rel="noopener noreferrer">Résumé</a>
+  </nav>
+</footer>
