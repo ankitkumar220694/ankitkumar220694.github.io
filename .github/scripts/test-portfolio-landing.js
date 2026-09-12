@@ -58,6 +58,7 @@ assert.match(landingCss, /Scale refinement:/, 'landing uses the approved compact
 assert.match(landingCss, /:focus-visible/, 'landing controls have visible keyboard focus');
 assert.match(secondaryCss, /Portfolio skin for every Chirpy-powered route/, 'secondary routes share the portfolio skin');
 assert.match(secondaryCss, /:focus-visible/, 'secondary controls have visible keyboard focus');
+assert.doesNotMatch(secondaryCss, /#core-wrapper/, 'secondary skin targets current Chirpy 7.6 markup');
 assert.doesNotMatch(secondaryCss, /#topbar-wrapper\s*\{[^}]*position\s*:/s, 'skin never overrides Chirpy topbar positioning');
 assert.doesNotMatch(secondaryCss, /#sidebar\s*\{[^}]*\b(?:top|height|transform|position)\s*:/s, 'skin never overrides Chirpy sidebar layout');
 

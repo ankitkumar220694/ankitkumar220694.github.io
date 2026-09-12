@@ -92,7 +92,7 @@ jobs:
             local url="http://127.0.0.1:4173$route"
             curl --fail --silent "$url" > /dev/null
             "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --disable-smooth-scrolling \
-              --virtual-time-budget=4000 --window-size="$size" \
+              --force-prefers-reduced-motion --virtual-time-budget=4000 --window-size="$size" \
               --screenshot="visual-evidence/$output_name.png" "$url"
           }
 

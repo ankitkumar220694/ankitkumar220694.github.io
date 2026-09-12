@@ -246,15 +246,15 @@ h5 {
   box-shadow: none;
 }
 
-#core-wrapper .content a {
+.content a {
   color: var(--ak-yellow);
   text-decoration: none;
   border-bottom: 1px solid rgba(254, 195, 3, .38);
   transition: color .15s ease, border-color .15s ease;
 }
 
-#core-wrapper .content a:hover,
-#core-wrapper .content a:focus-visible {
+.content a:hover,
+.content a:focus-visible {
   color: #ffd64f;
   border-bottom-color: #ffd64f;
 }
@@ -549,7 +549,7 @@ footer,
   .card-wrapper.card,
   .post-navigation .btn,
   .content details.ak-card,
-  #core-wrapper .content a,
+  .content a,
   #sidebar .sidebar-bottom a,
   #sidebar .nav-link,
   .btn,
@@ -579,11 +579,11 @@ footer,
   text-transform: uppercase;
 }
 
-#core-wrapper .content a.anchor {
+.content a.anchor {
   display: none !important;
 }
 
-#core-wrapper .content a.ak-resume-button {
+.content a.ak-resume-button {
   display: inline-flex;
   align-items: center;
   gap: .6rem;
