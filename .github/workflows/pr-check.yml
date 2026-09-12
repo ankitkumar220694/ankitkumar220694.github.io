@@ -96,9 +96,12 @@ jobs:
               --screenshot="visual-evidence/$output_name.png" "$url"
           }
 
+          sed 's#</head>#<style>.site-header,.hero,.impact-marquee{display:none!important}.section-heading{padding-top:48px!important}</style></head>#' \
+            _site/index.html > _site/__visual-work.html
+
           routes=(
             "home|/"
-            "work|/#agentx-card"
+            "work|/__visual-work.html"
             "projects|/projects/"
             "about|/about/"
             "tags|/tags/"
@@ -125,6 +128,8 @@ jobs:
               exit 1
             fi
           done
+
+          rm -f _site/__visual-work.html
 
       - name: Upload visual evidence
         uses: actions/upload-artifact@v4
