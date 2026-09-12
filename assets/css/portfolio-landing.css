@@ -389,3 +389,31 @@ button { font: inherit; }
     min-height: 330px;
   }
 }
+
+
+
+/* Render-audit correction: preserve legibility where the portrait and hero copy meet. */
+@media (min-width: 810px) {
+  .hero-copy {
+    z-index: 5;
+    max-width: 480px;
+    padding: 20px;
+    background: rgba(5, 5, 5, .84);
+    border-left: 3px solid var(--yellow);
+    backdrop-filter: blur(8px);
+  }
+}
+
+@media (max-width: 809px) {
+  .hero-system {
+    right: -16vw;
+    width: 76vw;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero-system {
+    right: -18vw;
+    width: 78vw;
+  }
+}

@@ -13,7 +13,10 @@ Engineer** roles.
 {% assign resume_exists = false %}
 {% for f in site.static_files %}{% if f.path == site.resume_url %}{% assign resume_exists = true %}{% endif %}{% endfor %}
 {% if resume_exists %}
-> **[⬇ Download my Résumé (PDF)]({{ site.resume_url | relative_url }})**{: .btn .btn-primary target="_blank" rel="noopener noreferrer" }
+<a class="btn btn-primary ak-resume-button" href="{{ site.resume_url | relative_url }}" target="_blank" rel="noopener noreferrer">
+  <i class="fas fa-download" aria-hidden="true"></i>
+  <span>Download my Résumé (PDF)</span>
+</a>
 {% endif %}
 
 ## What I do
