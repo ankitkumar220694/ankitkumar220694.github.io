@@ -1,8 +1,18 @@
 ---
 ---
 
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+  {%- if jekyll.environment == 'production' -%}
+    .bundle
+  {%- endif -%}
+';
+
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
-@import "main";
 
 /* Portfolio skin for every Chirpy-powered route.
    Layout and positioning remain owned by Chirpy; this file only changes visual language. */

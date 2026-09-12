@@ -58,6 +58,8 @@ assert.ok(fs.statSync(resume).size > 10_000, 'résumé PDF exists and is non-emp
 assert.match(landingCss, /Scale refinement:/, 'landing uses the approved compact scale');
 assert.match(landingCss, /:focus-visible/, 'landing controls have visible keyboard focus');
 assert.match(secondaryCss, /Portfolio skin for every Chirpy-powered route/, 'secondary routes share the portfolio skin');
+assert.match(secondaryCss, /jekyll\.environment == 'production'[\s\S]*\.bundle/, 'secondary builds load Chirpy’s production utility bundle');
+assert.doesNotMatch(secondaryCss, /@import\s+["']main["']/, 'secondary builds never fall back to Chirpy’s incomplete development import');
 assert.match(secondaryCss, /:focus-visible/, 'secondary controls have visible keyboard focus');
 assert.doesNotMatch(secondaryCss, /#core-wrapper/, 'secondary skin targets current Chirpy 7.6 markup');
 assert.doesNotMatch(secondaryCss, /#topbar-wrapper\s*\{[^}]*position\s*:/s, 'skin never overrides Chirpy topbar positioning');
