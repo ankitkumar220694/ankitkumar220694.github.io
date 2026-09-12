@@ -26,7 +26,7 @@ jobs:
           ruby-version: 3.4
           bundler-cache: true
 
-      - name: Test landing interactions
+      - name: Test interactions and source contracts
         run: node .github/scripts/test-portfolio-landing.js
 
       - name: Build site
@@ -34,42 +34,83 @@ jobs:
         env:
           JEKYLL_ENV: production
 
-      - name: Test generated routes and links
+      - name: Test generated routes, controls, and links
         run: |
-          test -f _site/index.html
-          test -f _site/projects/index.html
+          required_files=(
+            _site/index.html
+            _site/projects/index.html
+            _site/about/index.html
+            _site/tags/index.html
+            _site/archives/index.html
+            _site/posts/welcome/index.html
+            _site/posts/designing-a-unified-mlops-framework/index.html
+            _site/posts/serving-genai-at-100k-calls-a-day/index.html
+            _site/assets/css/portfolio-landing.css
+            _site/assets/css/jekyll-theme-chirpy.css
+            _site/assets/js/portfolio-landing.js
+            _site/assets/resume/Ankit-Kumar-Resume.pdf
+          )
+          for file in "${required_files[@]}"; do
+            test -s "$file" || { echo "Missing or empty: $file"; exit 1; }
+          done
+
           grep -q 'href="/projects/"' _site/index.html
+          grep -q 'aria-controls="site-menu"' _site/index.html
+          grep -q 'Kinetic comic portrait of Ankit Kumar' _site/index.html
           grep -q '<title>Projects | Ankit Kumar' _site/projects/index.html
+          grep -q '<title>About | Ankit Kumar' _site/about/index.html
+          grep -q '<details class="ak-card"' _site/projects/index.html
+          grep -q 'type: resume' _data/contact.yml
+          if grep -q 'register=true' _site/projects/index.html; then
+            echo 'PWA registration unexpectedly enabled'
+            exit 1
+          fi
+
           bundle exec htmlproofer _site \
             --disable-external \
             --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 
-      - name: Capture rendered homepage and Projects page
+      - name: Capture all primary routes at desktop and mobile
         run: |
           mkdir -p visual-evidence
-          python3 -m http.server 4173 --bind 127.0.0.1 --directory _site > /tmp/portfolio-preview.log 2>&1 &
+          python3 -m http.server 4173 --bind 127.0.0.1 --directory _site > "$RUNNER_TEMP/portfolio-preview.log" 2>&1 &
           server_pid=$!
           trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+
           for attempt in {1..20}; do
             curl --fail --silent http://127.0.0.1:4173/ > /dev/null && break
             sleep 1
           done
-          curl --fail --silent http://127.0.0.1:4173/ > /dev/null
-          curl --fail --silent http://127.0.0.1:4173/projects/ > /dev/null
+
           chrome="$(command -v google-chrome || command -v google-chrome-stable || true)"
           test -n "$chrome"
+
           capture() {
             name="$1"
             size="$2"
-            url="$3"
+            route="$3"
+            url="http://127.0.0.1:4173$route"
+            curl --fail --silent "$url" > /dev/null
             "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
-              --virtual-time-budget=3000 --window-size="$size" \
+              --virtual-time-budget=4000 --window-size="$size" \
               --screenshot="visual-evidence/$name.png" "$url"
           }
-          capture home-desktop 1440,900 http://127.0.0.1:4173/
-          capture home-mobile 390,844 http://127.0.0.1:4173/
-          capture projects-desktop 1440,900 http://127.0.0.1:4173/projects/
-          capture projects-mobile 390,844 http://127.0.0.1:4173/projects/
+
+          routes=(
+            "home|/"
+            "projects|/projects/"
+            "about|/about/"
+            "tags|/tags/"
+            "archives|/archives/"
+            "post|/posts/designing-a-unified-mlops-framework/"
+          )
+
+          for entry in "${routes[@]}"; do
+            name="${entry%%|*}"
+            route="${entry#*|}"
+            capture "$name-desktop" 1440,900 "$route"
+            capture "$name-mobile" 390,844 "$route"
+          done
 
       - name: Upload visual evidence
         uses: actions/upload-artifact@v4

@@ -1,89 +1,88 @@
 <div align="center">
 
-# Ankit Kumar — Portfolio &amp; Blog
+# Ankit Kumar — AI Engineering Portfolio
 
-**AI / ML / MLOps / GenAI Engineer**
+**Full-Stack AI & ML Engineer · 6+ years · Production GenAI, MLOps, FinOps, and Applied ML**
 
-A personal portfolio and technical blog covering MLOps platforms, production
-generative-AI systems, and applied machine learning — built with the
-[Chirpy][chirpy] Jekyll theme and deployed on GitHub Pages.
+[![Live portfolio](https://img.shields.io/badge/Live-Portfolio-fec303?style=flat-square&labelColor=050505)](https://ankitkumar220694.github.io/)
+[![Validate](https://github.com/ankitkumar220694/ankitkumar220694.github.io/actions/workflows/pr-check.yml/badge.svg)](https://github.com/ankitkumar220694/ankitkumar220694.github.io/actions/workflows/pr-check.yml)
+[![Deploy](https://github.com/ankitkumar220694/ankitkumar220694.github.io/actions/workflows/pages-deploy.yml/badge.svg)](https://github.com/ankitkumar220694/ankitkumar220694.github.io/actions/workflows/pages-deploy.yml)
 
-[![Live Site](https://img.shields.io/badge/Live-ankitkumar220694.github.io-0f766e?style=flat-square)](https://ankitkumar220694.github.io/)
-[![Built with Jekyll](https://img.shields.io/badge/Built%20with-Jekyll-cc0000?style=flat-square&logo=jekyll&logoColor=white)](https://jekyllrb.com/)
-[![Theme: Chirpy](https://img.shields.io/badge/Theme-Chirpy%20v7.6-0f766e?style=flat-square)][chirpy]
-[![Deploy](https://github.com/ankitkumar220694/ankitkumar220694.github.io/actions/workflows/pages-deploy.yml/badge.svg)](https://github.com/ankitkumar220694/ankitkumar220694.github.io/actions)
-
-🔗 **[ankitkumar220694.github.io](https://ankitkumar220694.github.io/)**
+**[Open the portfolio](https://ankitkumar220694.github.io/)**
 
 </div>
 
----
+## Overview
 
-## About
+A fast, responsive portfolio presenting production work across:
 
-I'm an AI/ML Engineer with 5 years building production ML systems, focused on
-**MLOps** and **generative AI at scale**. This site is where I keep my project
-case studies and write about the engineering behind them.
+- **Agentic GenAI:** multi-agent DevSecOps automation with LangGraph, FastAPI, FastMCP, and AWS.
+- **MLOps:** lifecycle monitoring for data quality, drift, model health, deployment, and cloud cost.
+- **Production AI:** voice analytics at 100,000+ calls/day, enterprise RAG, and Text-to-SQL.
+- **FinOps and applied ML:** multi-cloud cost optimization, acoustic diagnostics, propensity modelling, and data engineering.
 
-- 💼 **Projects** — professional work (MLOps framework, GenAI at 100k calls/day,
-  Text-to-SQL, applied ML) and personal projects.
-- ✍️ **Blog** — technical deep-dives on serving GenAI at scale and designing an
-  MLOps platform.
-- 📄 **About** — background, skills, and résumé.
+The homepage uses an original kinetic-comic visual system. Projects, About, Tags, Archives, and technical posts retain Chirpy's proven responsive structure while sharing the same black, paper, yellow, cyan, magenta, and red design language.
 
-## Tech Stack
+## Stack
 
-| Layer | Tooling |
-|-------|---------|
-| Static site generator | [Jekyll](https://jekyllrb.com/) |
-| Theme | [jekyll-theme-chirpy][chirpy] v7.6 |
-| Typography | Space Grotesk (headings) + Inter (body) |
+| Area | Technology |
+|---|---|
+| Site | Jekyll + `jekyll-theme-chirpy` 7.6 |
+| UI | Liquid, semantic HTML, custom SCSS/CSS, vanilla JavaScript |
+| Typography | Bebas Neue, Manrope, Space Mono |
 | Hosting | GitHub Pages |
-| CI/CD | GitHub Actions (`Build and Deploy`) |
+| Quality gates | Node assertions, Jekyll production build, HTMLProofer, desktop/mobile route renders |
+| Delivery | GitHub Actions pull-request validation and protected Pages deployment |
 
-## Repository Structure
+## Repository map
 
-```
+```text
 .
-├── _config.yml          # site config (title, theme, light mode, analytics)
-├── _tabs/               # top-nav pages
-│   ├── projects.md      #   Professional + Personal project case studies
-│   └── about.md         #   bio, skills, education, résumé button
-├── _posts/              # blog posts (YYYY-MM-DD-title.md)
-├── _data/contact.yml    # sidebar contact links
-├── assets/
-│   ├── css/jekyll-theme-chirpy.scss   # custom light palette + typography
-│   ├── img/avatar.jpg   # sidebar photo
-│   ├── img/favicons/    # favicon set
-│   └── resume/          # drop Ankit-Kumar-Resume.pdf here
-└── .github/workflows/   # Pages build + deploy
+├── index.html                         # portfolio landing page
+├── _layouts/landing.html              # standalone landing shell
+├── _includes/kinetic-avatar.html      # original animated SVG portrait
+├── _tabs/                             # Projects, About, Tags, Archives
+├── _posts/                            # technical writing
+├── assets/css/
+│   ├── portfolio-landing.css          # landing design and responsive motion
+│   └── jekyll-theme-chirpy.scss       # shared skin for Chirpy routes
+├── assets/js/portfolio-landing.js     # menu, reveals, gaze, pointer effects
+├── assets/resume/                     # downloadable résumé
+└── .github/                           # tests, visual evidence, Pages deployment
 ```
 
-## Local Development
+## Run locally
 
-Requires Ruby + Bundler ([setup guide](https://jekyllrb.com/docs/installation/)).
+Requires Ruby and Bundler.
 
 ```bash
-# install dependencies
 bundle install
-
-# serve locally with live reload at http://127.0.0.1:4000
-bundle exec jekyll serve --livereload
+bundle exec jekyll serve --livereload --host 127.0.0.1
 ```
 
-## Updating Content
+Open [the local site](http://127.0.0.1:4000/).
 
-- **Add a blog post** — create `_posts/YYYY-MM-DD-title.md` with Chirpy front
-  matter (`title`, `date`, `categories`, `tags`).
-- **Edit projects** — update `_tabs/projects.md` (two sections: Professional
-  Projects, Personal Projects).
-- **Add the résumé** — drop the PDF at `assets/resume/Ankit-Kumar-Resume.pdf`;
-  the download button on the About page appears automatically.
-- **Deploy** — push to `main`; GitHub Actions builds and deploys within ~2 min.
+## Update content
+
+- Add posts under `_posts/YYYY-MM-DD-title.md`.
+- Edit case studies in `_tabs/projects.md`.
+- Edit biography and skills in `_tabs/about.md`.
+- Replace `assets/resume/Ankit-Kumar-Resume.pdf` to update the résumé.
+- Keep visual changes in the two dedicated style entry points; do not override Chirpy's layout positioning.
+
+## Validation and deployment
+
+Every pull request to `main`:
+
+1. Tests landing-page logic and source contracts.
+2. Builds the production Jekyll site.
+3. Checks generated routes and internal links with HTMLProofer.
+4. Captures desktop and mobile evidence for the homepage and all primary secondary routes.
+
+Merging a green pull request into `main` triggers the GitHub Pages deployment workflow.
 
 ## License
 
-Site content © Ankit Kumar. The Chirpy theme is [MIT licensed][chirpy-license].
+Portfolio content © Ankit Kumar. Chirpy is available under the [MIT License][chirpy-license].
 
-[chirpy]: https://github.com/cotes2020/jekyll-theme-chirpy
 [chirpy-license]: https://github.com/cotes2020/jekyll-theme-chirpy/blob/master/LICENSE

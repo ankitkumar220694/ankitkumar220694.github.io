@@ -31,23 +31,49 @@
   const header = document.querySelector('[data-header]');
 
   if (menuButton && menu) {
-    const closeMenu = () => {
+    const menuLinks = Array.from(menu.querySelectorAll('a'));
+    const closeMenu = ({ restoreFocus = false } = {}) => {
       menuButton.setAttribute('aria-expanded', 'false');
       menu.classList.remove('is-open');
       document.body.classList.remove('menu-open');
+      if (restoreFocus) menuButton.focus();
+    };
+
+    const openMenu = () => {
+      menuButton.setAttribute('aria-expanded', 'true');
+      menu.classList.add('is-open');
+      document.body.classList.add('menu-open');
+      window.requestAnimationFrame(() => menuLinks[0]?.focus());
     };
 
     menuButton.addEventListener('click', () => {
       const open = menuButton.getAttribute('aria-expanded') !== 'true';
-      menuButton.setAttribute('aria-expanded', String(open));
-      menu.classList.toggle('is-open', open);
-      document.body.classList.toggle('menu-open', open);
+      if (open) openMenu();
+      else closeMenu();
     });
 
-    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+    menuLinks.forEach((link) => link.addEventListener('click', () => closeMenu()));
     window.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeMenu();
+      if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+        closeMenu({ restoreFocus: true });
+        return;
+      }
+      if (event.key !== 'Tab' || menuButton.getAttribute('aria-expanded') !== 'true' || menuLinks.length === 0) return;
+
+      const first = menuLinks[0];
+      const last = menuLinks[menuLinks.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 809 && menuButton.getAttribute('aria-expanded') === 'true') closeMenu();
+    }, { passive: true });
   }
 
   let ticking = false;
