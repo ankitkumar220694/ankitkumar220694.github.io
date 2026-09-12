@@ -217,3 +217,57 @@ button { font: inherit; }
   .marquee-track { animation: none; flex-wrap: wrap; width: auto; }
   .marquee-track [aria-hidden="true"] { display: none; }
 }
+
+
+
+/* Kinetic comic portrait — original SVG artwork based on the existing profile photo. */
+.hero-avatar {
+  --gaze-x: 0px;
+  --gaze-y: 0px;
+  position: absolute;
+  z-index: 4;
+  left: 17%;
+  top: 7%;
+  width: 66%;
+  height: 84%;
+  overflow: visible;
+  filter: drop-shadow(0 28px 30px rgba(0,0,0,.34));
+}
+.avatar-burst { fill: var(--yellow); opacity: .98; }
+.avatar-halftone { fill: url(#avatar-halftone); color: var(--black); opacity: .34; }
+.avatar-offset { opacity: .74; mix-blend-mode: screen; }
+.avatar-offset-cyan { fill: var(--blue); animation: avatar-offset-cyan 1.8s steps(2,end) infinite; }
+.avatar-offset-magenta { fill: var(--magenta); animation: avatar-offset-magenta 2.1s steps(2,end) infinite; }
+.avatar-figure { animation: avatar-frame 2.8s steps(7,end) infinite; transform-origin: 50% 72%; }
+.avatar-jacket { fill: #14294c; stroke: var(--black); stroke-width: 5; }
+.avatar-shirt { fill: var(--paper); stroke: var(--black); stroke-width: 4; }
+.avatar-tie { fill: var(--red); stroke: var(--black); stroke-width: 3; }
+.avatar-neck { fill: #955339; stroke: var(--black); stroke-width: 4; }
+.avatar-face { fill: #b8734e; stroke: var(--black); stroke-width: 5; }
+.avatar-hair { fill: #15161b; stroke: var(--black); stroke-width: 5; }
+.avatar-hair-highlight { fill: none; stroke: #2d3039; stroke-width: 11; stroke-linecap: round; opacity: .8; }
+.avatar-brow { fill: none; stroke: var(--black); stroke-width: 4; stroke-linecap: round; }
+.avatar-eye { fill: var(--paper); stroke: var(--black); stroke-width: 3; }
+.avatar-pupil { fill: var(--black); transform: translate(var(--gaze-x), var(--gaze-y)); transform-box: fill-box; transform-origin: center; transition: transform 70ms linear; }
+.avatar-nose { fill: none; stroke: #71392b; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+.avatar-smile { fill: none; stroke: var(--black); stroke-width: 4; stroke-linecap: round; }
+.avatar-caption { position: absolute; z-index: 6; left: 13%; bottom: 11%; padding: 8px 10px; background: var(--black); color: var(--paper); font: 700 10px/1 var(--mono); letter-spacing: .1em; transform: rotate(-3deg); box-shadow: 5px 5px 0 var(--red); }
+
+@keyframes avatar-frame { 0%,100% { transform: translate(0,0) rotate(-.7deg); } 48% { transform: translate(0,-4px) rotate(.8deg); } 52% { transform: translate(1px,-3px) rotate(.4deg); } }
+@keyframes avatar-offset-cyan { 0%,100% { transform: translate(-5px,2px); } 50% { transform: translate(-8px,-1px); } }
+@keyframes avatar-offset-magenta { 0%,100% { transform: translate(6px,-1px); } 50% { transform: translate(9px,2px); } }
+
+@media (max-width: 809px) {
+  .hero-system { top: 108px; right: -18vw; width: 82vw; opacity: .92; }
+  .hero-avatar { left: 13%; top: 5%; width: 72%; height: 87%; }
+  .avatar-caption { display: none; }
+}
+
+@media (max-width: 430px) {
+  .hero-system { right: -24vw; width: 92vw; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-offset-cyan, .avatar-offset-magenta, .avatar-figure { animation: none; }
+  .avatar-pupil { transition: none; transform: none; }
+}

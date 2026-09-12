@@ -26,18 +26,25 @@ jobs:
           ruby-version: 3.4
           bundler-cache: true
 
+      - name: Test landing interactions
+        run: node .github/scripts/test-portfolio-landing.js
+
       - name: Build site
         run: bundle exec jekyll build --destination _site
         env:
           JEKYLL_ENV: production
 
-      - name: Test generated links
+      - name: Test generated routes and links
         run: |
+          test -f _site/index.html
+          test -f _site/projects/index.html
+          grep -q 'href="/projects/"' _site/index.html
+          grep -q '<title>Projects | Ankit Kumar' _site/projects/index.html
           bundle exec htmlproofer _site \
             --disable-external \
             --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 
-      - name: Capture rendered homepage
+      - name: Capture rendered homepage and Projects page
         run: |
           mkdir -p visual-evidence
           python3 -m http.server 4173 --bind 127.0.0.1 --directory _site > /tmp/portfolio-preview.log 2>&1 &
@@ -48,14 +55,21 @@ jobs:
             sleep 1
           done
           curl --fail --silent http://127.0.0.1:4173/ > /dev/null
+          curl --fail --silent http://127.0.0.1:4173/projects/ > /dev/null
           chrome="$(command -v google-chrome || command -v google-chrome-stable || true)"
           test -n "$chrome"
-          "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
-            --virtual-time-budget=3000 --window-size=1440,900 \
-            --screenshot=visual-evidence/home-desktop.png http://127.0.0.1:4173/
-          "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
-            --virtual-time-budget=3000 --window-size=390,844 \
-            --screenshot=visual-evidence/home-mobile.png http://127.0.0.1:4173/
+          capture() {
+            name="$1"
+            size="$2"
+            url="$3"
+            "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
+              --virtual-time-budget=3000 --window-size="$size" \
+              --screenshot="visual-evidence/$name.png" "$url"
+          }
+          capture home-desktop 1440,900 http://127.0.0.1:4173/
+          capture home-mobile 390,844 http://127.0.0.1:4173/
+          capture projects-desktop 1440,900 http://127.0.0.1:4173/projects/
+          capture projects-mobile 390,844 http://127.0.0.1:4173/projects/
 
       - name: Upload visual evidence
         uses: actions/upload-artifact@v4
@@ -64,3 +78,11 @@ jobs:
           path: visual-evidence/*.png
           if-no-files-found: error
           retention-days: 7
+
+      - name: Upload built site for interaction verification
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-built-site
+          path: _site
+          if-no-files-found: error
+          retention-days: 1

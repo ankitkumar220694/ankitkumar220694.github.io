@@ -1,10 +1,31 @@
 (() => {
   'use strict';
 
+  const clamp = (value, minimum, maximum) => Math.min(Math.max(value, minimum), maximum);
+  const calculateGaze = (clientX, clientY, bounds, maxX = 5.5, maxY = 3.8) => {
+    const width = Math.max(bounds.width, 1);
+    const height = Math.max(bounds.height, 1);
+    const centerX = bounds.left + width / 2;
+    const centerY = bounds.top + height / 2;
+    const normalizedX = clamp((clientX - centerX) / (width * 0.55), -1, 1);
+    const normalizedY = clamp((clientY - centerY) / (height * 0.55), -1, 1);
+
+    return {
+      x: Number((normalizedX * maxX).toFixed(3)),
+      y: Number((normalizedY * maxY).toFixed(3))
+    };
+  };
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { calculateGaze };
+  }
+  if (typeof window === 'undefined' || typeof document === 'undefined') return;
+
   const root = document.documentElement;
   root.classList.add('js');
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(pointer: fine)').matches;
   const menuButton = document.querySelector('.menu-toggle');
   const menu = document.querySelector('.site-menu');
   const header = document.querySelector('[data-header]');
@@ -76,7 +97,7 @@
 
   const hero = document.querySelector('.hero');
   const parallax = document.querySelector('[data-parallax]');
-  if (hero && parallax && window.matchMedia('(pointer: fine)').matches) {
+  if (hero && parallax && finePointer) {
     hero.addEventListener('pointermove', (event) => {
       const bounds = hero.getBoundingClientRect();
       const x = ((event.clientX - bounds.left) / bounds.width - 0.5).toFixed(3);
@@ -88,6 +109,32 @@
       parallax.style.setProperty('--pointer-x', 0);
       parallax.style.setProperty('--pointer-y', 0);
     });
+  }
+
+  const avatar = document.querySelector('[data-avatar]');
+  if (avatar && finePointer) {
+    let gazeFrame = 0;
+    let latestPointer = null;
+    const resetGaze = () => {
+      avatar.style.setProperty('--gaze-x', '0px');
+      avatar.style.setProperty('--gaze-y', '0px');
+    };
+    const renderGaze = () => {
+      if (latestPointer) {
+        const gaze = calculateGaze(latestPointer.clientX, latestPointer.clientY, avatar.getBoundingClientRect());
+        avatar.style.setProperty('--gaze-x', `${gaze.x}px`);
+        avatar.style.setProperty('--gaze-y', `${gaze.y}px`);
+      }
+      gazeFrame = 0;
+    };
+
+    window.addEventListener('pointermove', (event) => {
+      if (event.pointerType === 'touch') return;
+      latestPointer = event;
+      if (!gazeFrame) gazeFrame = window.requestAnimationFrame(renderGaze);
+    }, { passive: true });
+    window.addEventListener('blur', resetGaze);
+    document.documentElement.addEventListener('mouseleave', resetGaze);
   }
 
   document.querySelectorAll('[data-pointer-card]').forEach((card) => {
