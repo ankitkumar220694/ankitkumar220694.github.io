@@ -612,6 +612,22 @@ footer,
   border-color: var(--ak-yellow) !important;
 }
 
+#toc-bar .label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#toc-bar .toc-trigger {
+  flex: 0 0 auto;
+}
+
+#toc-bar .toc-trigger i,
+#toc-solo-trigger i {
+  color: var(--ak-black);
+}
+
 .toc-border-cover {
   border-color: var(--ak-yellow) !important;
 }

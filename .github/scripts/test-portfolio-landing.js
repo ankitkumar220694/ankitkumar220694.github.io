@@ -62,6 +62,7 @@ assert.match(secondaryCss, /:focus-visible/, 'secondary controls have visible ke
 assert.doesNotMatch(secondaryCss, /#core-wrapper/, 'secondary skin targets current Chirpy 7.6 markup');
 assert.doesNotMatch(secondaryCss, /#topbar-wrapper\s*\{[^}]*position\s*:/s, 'skin never overrides Chirpy topbar positioning');
 assert.doesNotMatch(secondaryCss, /#sidebar\s*\{[^}]*\b(?:top|height|transform|position)\s*:/s, 'skin never overrides Chirpy sidebar layout');
+assert.match(secondaryCss, /#toc-bar \.label\s*\{[^}]*min-width:\s*0;[^}]*white-space:\s*nowrap;/s, 'mobile TOC title stays inside Chirpy’s fixed-height bar');
 
 assert.match(readme, /Full-Stack AI & ML Engineer · 6\+ years/, 'README reflects the current portfolio identity');
 assert.doesNotMatch(readme, /\b5 years\b|Space Grotesk|custom light palette/i, 'README contains no stale portfolio/theme claims');
