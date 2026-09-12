@@ -91,7 +91,7 @@ jobs:
             local route="$3"
             local url="http://127.0.0.1:4173$route"
             curl --fail --silent "$url" > /dev/null
-            "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars \
+            "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --disable-smooth-scrolling \
               --virtual-time-budget=4000 --window-size="$size" \
               --screenshot="visual-evidence/$output_name.png" "$url"
           }
@@ -109,8 +109,13 @@ jobs:
           for entry in "${routes[@]}"; do
             route_name="${entry%%|*}"
             route="${entry#*|}"
-            capture "$route_name-desktop" 1440,900 "$route"
-            capture "$route_name-mobile" 390,844 "$route"
+            if [[ "$route_name" == "work" ]]; then
+              capture "$route_name-desktop" 1440,1800 "$route"
+              capture "$route_name-mobile" 390,1800 "$route"
+            else
+              capture "$route_name-desktop" 1440,900 "$route"
+              capture "$route_name-mobile" 390,844 "$route"
+            fi
           done
 
       - name: Upload visual evidence

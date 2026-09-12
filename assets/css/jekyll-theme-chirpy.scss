@@ -580,15 +580,7 @@ footer,
 }
 
 #core-wrapper .content a.anchor {
-  color: var(--ak-yellow) !important;
-  border: 0;
-  opacity: 0;
-  transition: opacity .15s ease;
-}
-
-.content :is(h2, h3, h4):hover > a.anchor,
-#core-wrapper .content a.anchor:focus-visible {
-  opacity: .78;
+  display: none !important;
 }
 
 #core-wrapper .content a.ak-resume-button {
