@@ -12,27 +12,28 @@
   {%- endif -%}
 ';
 
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=Space+Mono:wght@400;700&display=swap');
 
 /* Portfolio skin for every Chirpy-powered route.
    Layout and positioning remain owned by Chirpy; this file only changes visual language. */
 :root,
 html[data-mode="dark"],
 html[data-mode="light"] {
-  --ak-black: #050505;
-  --ak-near-black: #111111;
-  --ak-surface: #1a1a1a;
-  --ak-surface-2: #242424;
-  --ak-paper: #f2f2f2;
+  /* Metro arcade palette — matches homepage retro-game.css tokens */
+  --ak-black: #171436;        /* deep indigo base (was bg0) */
+  --ak-near-black: #221a52;   /* indigo surface (bg1) */
+  --ak-surface: #2c2170;      /* raised indigo (bg2) */
+  --ak-surface-2: #3a2f88;    /* panel */
+  --ak-paper: #f4f1ff;        /* ink */
   --ak-white: #ffffff;
-  --ak-yellow: #fec303;
-  --ak-red: #fd393a;
-  --ak-blue: #0da6f0;
+  --ak-yellow: #ffcf4a;       /* gold */
+  --ak-red: #ff5fb0;          /* hot pink (accent shadow) */
+  --ak-blue: #7c6cff;         /* accent violet */
   --ak-violet: #5d12d2;
-  --ak-magenta: #c93dc0;
-  --ak-muted: #b8b8b8;
-  --ak-border: #3d3d3d;
-  --ak-shadow: 0 14px 36px rgba(0, 0, 0, .34);
+  --ak-magenta: #ff9ed8;      /* pink */
+  --ak-muted: #b6ace6;        /* muted indigo-lavender */
+  --ak-border: #8f7bff;       /* purple frame line */
+  --ak-shadow: 0 8px 0 rgba(12, 10, 36, .55), 0 14px 36px rgba(12, 10, 36, .4);
 
   --main-bg: var(--ak-black);
   --mask-bg: rgba(5, 5, 5, .82);
@@ -76,7 +77,9 @@ body {
 body,
 .content,
 #sidebar {
-  font-family: 'Manrope', Arial, sans-serif;
+  font-family: 'VT323', 'Space Mono', monospace;
+  font-size: 1.12rem;
+  letter-spacing: .01em;
 }
 
 ::selection {
@@ -93,9 +96,10 @@ body,
 h1,
 .post-title,
 #sidebar .site-title {
-  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-family: 'Press Start 2P', 'VT323', monospace;
   font-weight: 400;
-  letter-spacing: .025em;
+  letter-spacing: 0;
+  line-height: 1.4;
   text-transform: uppercase;
 }
 
@@ -103,8 +107,8 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: 'Manrope', Arial, sans-serif;
-  letter-spacing: -.025em;
+  font-family: 'Space Mono', ui-monospace, monospace;
+  letter-spacing: 0;
 }
 
 .content {
@@ -115,10 +119,10 @@ h5 {
 
 .content h1 {
   margin-top: 1.5rem;
-  padding-bottom: .42rem;
+  padding-bottom: .5rem;
   border-bottom: 3px solid var(--ak-yellow);
-  font-size: clamp(2.75rem, 5.4vw, 4.65rem);
-  line-height: .94;
+  font-size: clamp(1.15rem, 3vw, 1.9rem);
+  line-height: 1.35;
 }
 
 .content h2 {
@@ -153,8 +157,8 @@ h5 {
 
 #sidebar .site-title {
   color: var(--ak-paper);
-  font-size: 1.7rem;
-  line-height: .96;
+  font-size: .82rem;
+  line-height: 1.5;
 }
 
 #sidebar .site-subtitle {
@@ -380,11 +384,11 @@ small {
 
 .ak-card-title {
   color: var(--ak-paper);
-  font-family: 'Manrope', Arial, sans-serif;
+  font-family: 'Space Mono', ui-monospace, monospace;
   font-size: .96rem;
   font-weight: 700;
   line-height: 1.35;
-  letter-spacing: -.012em;
+  letter-spacing: 0;
 }
 
 .ak-card-title em {
@@ -507,8 +511,8 @@ small {
 
 #archives .year {
   color: var(--ak-paper);
-  font: 400 2.25rem/1 'Bebas Neue', Impact, sans-serif;
-  letter-spacing: .03em;
+  font: 400 1.15rem/1.5 'Press Start 2P', monospace;
+  letter-spacing: 0;
 }
 
 #archives .date,
@@ -532,11 +536,11 @@ footer,
 
 @media (max-width: 849px) {
   .content h1 {
-    font-size: clamp(2.5rem, 12vw, 3.65rem);
+    font-size: clamp(.95rem, 5vw, 1.3rem);
   }
 
   .content h2 {
-    font-size: clamp(1.35rem, 6vw, 1.8rem);
+    font-size: clamp(.82rem, 4vw, 1.05rem);
   }
 
   #sidebar .nav-link {
@@ -583,9 +587,11 @@ footer,
 
 /* Render-audit corrections for theme-owned controls outside the article-link flow. */
 .content h2 {
-  font-family: 'Bebas Neue', Impact, sans-serif;
+  font-family: 'Press Start 2P', 'VT323', monospace;
   font-weight: 400;
-  letter-spacing: .02em;
+  letter-spacing: 0;
+  line-height: 1.4;
+  font-size: clamp(.95rem, 2vw, 1.25rem);
   text-transform: uppercase;
 }
 
