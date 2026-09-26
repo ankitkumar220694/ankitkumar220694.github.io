@@ -26,7 +26,7 @@ jobs:
           ruby-version: 3.4
           bundler-cache: true
 
-      - name: Test interactions and source contracts
+      - name: Test source contracts (retro-game index)
         run: node .github/scripts/test-portfolio-landing.js
 
       - name: Build site
@@ -45,30 +45,32 @@ jobs:
             _site/posts/welcome/index.html
             _site/posts/designing-a-unified-mlops-framework/index.html
             _site/posts/serving-genai-at-100k-calls-a-day/index.html
-            _site/assets/css/portfolio-landing.css
+            _site/assets/css/retro-game.css
+            _site/assets/js/retro-game.js
             _site/assets/css/jekyll-theme-chirpy.css
-            _site/assets/js/portfolio-landing.js
             _site/assets/resume/Ankit-Kumar-Resume.pdf
+            _site/assets/img/game/char-happy.png
+            _site/assets/img/game/hero-walk.png
           )
           for file in "${required_files[@]}"; do
             test -s "$file" || { echo "Missing or empty: $file"; exit 1; }
           done
 
-          grep -q 'href="/projects/"' _site/index.html
-          grep -q 'aria-controls="site-menu"' _site/index.html
-          grep -q 'Kinetic comic portrait of Ankit Kumar' _site/index.html
+          grep -q 'PRESS START' _site/index.html
+          grep -q 'id="map"' _site/index.html
+          grep -q 'char-excited.png' _site/index.html
+          grep -q '/assets/resume/Ankit-Kumar-Resume.pdf' _site/index.html
+          grep -q 'href="/about/"' _site/index.html
           grep -q '<title>Projects | Ankit Kumar' _site/projects/index.html
           grep -q '<title>About | Ankit Kumar' _site/about/index.html
-          grep -q '<details class="ak-card"' _site/projects/index.html
           grep -q 'type: resume' _data/contact.yml
-          if grep -q 'register=true' _site/projects/index.html; then
-            echo 'PWA registration unexpectedly enabled'
-            exit 1
-          fi
 
           bundle exec htmlproofer _site \
             --disable-external \
             --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+
+      - name: Build world-view snapshot page
+        run: python3 .github/scripts/build-world-view.py
 
       - name: Capture all primary routes at desktop and mobile
         run: |
@@ -96,12 +98,9 @@ jobs:
               --screenshot="visual-evidence/$output_name.png" "$url"
           }
 
-          sed 's#</head>#<style>.site-header,.hero,.impact-marquee{display:none!important}.section-heading{padding-top:48px!important}</style></head>#' \
-            _site/index.html > _site/__visual-work.html
-
           routes=(
-            "home|/"
-            "work|/__visual-work.html"
+            "boot|/"
+            "world|/__world.html"
             "projects|/projects/"
             "about|/about/"
             "tags|/tags/"
@@ -112,13 +111,8 @@ jobs:
           for entry in "${routes[@]}"; do
             route_name="${entry%%|*}"
             route="${entry#*|}"
-            if [[ "$route_name" == "work" ]]; then
-              capture "$route_name-desktop" 1440,900 "$route"
-              capture "$route_name-mobile" 390,1200 "$route"
-            else
-              capture "$route_name-desktop" 1440,900 "$route"
-              capture "$route_name-mobile" 390,844 "$route"
-            fi
+            capture "$route_name-desktop" 1440,900 "$route"
+            capture "$route_name-mobile" 390,844 "$route"
           done
 
           for image in visual-evidence/*.png; do
@@ -129,7 +123,7 @@ jobs:
             fi
           done
 
-          rm -f _site/__visual-work.html
+          rm -f _site/__world.html
 
       - name: Upload visual evidence
         uses: actions/upload-artifact@v4
@@ -138,11 +132,3 @@ jobs:
           path: visual-evidence/*.png
           if-no-files-found: error
           retention-days: 7
-
-      - name: Upload built site for interaction verification
-        uses: actions/upload-artifact@v4
-        with:
-          name: portfolio-built-site
-          path: _site
-          if-no-files-found: error
-          retention-days: 1

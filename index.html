@@ -1,175 +1,190 @@
----
-layout: landing
-title: "Ankit Kumar — Full-Stack AI & ML Engineer"
-description: "Full-Stack AI & ML Engineer with 6+ years of experience building production GenAI, MLOps, FinOps, and applied ML systems."
-permalink: /
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ankit Kumar — AI/ML Engineer | The Dream Team</title>
+<meta name="description" content="Ankit Kumar, Full-Stack AI & ML Engineer (6+ yrs, MLOps & production GenAI). A retro-game-styled portfolio. Press Start.">
+<meta property="og:title" content="Ankit Kumar — AI/ML Engineer">
+<meta property="og:description" content="A retro 2D-game portfolio. MLOps · GenAI · 100k calls/day · patent-pending framework.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/assets/img/game/char-excited.png">
+<link rel="icon" href="/assets/img/favicons/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/retro-game.css">
+</head>
+<body class="crt">
+<!-- ================= BOOT / PRESS START ================= -->
+<section id="boot" class="screen boot" aria-label="Start screen">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="boot-inner">
+    <div class="boot-avatar"><img src="/assets/img/game/char-excited.png" alt="Ankit Kumar pixel character" width="240"></div>
+    <h1 class="logo">THE DREAM TEAM</h1>
+    <p class="logo-sub">Same Portfolio. Bigger Dreams.</p>
+    <p class="player-line">PLAYER: <b>ANKIT KUMAR</b> &nbsp;·&nbsp; CLASS: AI / ML ENGINEER</p>
+    <button id="startBtn" class="press-start">▶ PRESS START</button>
+    <a class="skip-link" href="/about/">Skip intro — recruiter / resume view →</a>
+    <p class="hint">↑ Playable portfolio · use the panels or just scroll ↓</p>
+  </div>
+</section>
 
-<header class="site-header" data-header>
-  <a class="brand" href="{{ '/' | relative_url }}" aria-label="Ankit Kumar — home">
-    <span class="brand-mark" aria-hidden="true">AK</span>
-    <span>Ankit Kumar</span>
-  </a>
-
-  <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
-    <span>Menu</span>
-    <i aria-hidden="true"></i>
-  </button>
-
-  <nav class="site-menu" id="site-menu" aria-label="Primary navigation">
-    <a href="#selected-work">Work</a>
-    <a href="{{ '/projects/' | relative_url }}">Projects</a>
-    <a href="#writing">Writing</a>
-    <a href="{{ '/about/' | relative_url }}">About</a>
-    <a href="{{ site.resume_url | relative_url }}" target="_blank" rel="noopener noreferrer">Résumé</a>
+<!-- ================= HUD ================= -->
+<header id="hud" class="hud" hidden>
+  <div class="hud-left">
+    <img class="hud-avatar" src="/assets/img/game/avatar.png" alt="" width="48" height="48">
+    <div class="hud-name">
+      <span class="hud-title">ANKIT KUMAR</span>
+      <span class="hud-role">AI / ML / MLOps / GenAI ENGINEER</span>
+    </div>
+  </div>
+  <div class="hud-stats">
+    <span class="stat coin">🪙 EXP <b>6+ yrs</b></span>
+    <span class="stat star">⭐ PROJECTS <b>10+</b></span>
+    <span class="stat lvl">📜 PATENT <b>x1</b></span>
+  </div>
+  <nav class="hud-nav">
+    <a href="/assets/resume/Ankit-Kumar-Resume.pdf" class="btn-resume" target="_blank" rel="noopener">📄 RESUME</a>
   </nav>
-
-  <a class="contact-pill" href="mailto:ankitkumar220694@gmail.com">
-    <span class="round-icon" aria-hidden="true">↗</span>
-    <span>Get in touch</span>
-  </a>
 </header>
 
-<main id="main-content">
-  <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-heading" data-intro>
-      <p class="eyebrow">Full-Stack AI &amp; ML Engineer <span>·</span> 6+ years</p>
-      <h1 id="hero-title">AI that ships<br>at scale.</h1>
-    </div>
+<!-- ================= WORLD / LEVELS ================= -->
+<main id="world" class="world" hidden>
 
-    <div class="hero-copy" data-intro>
-      <p>I design, build, and deploy secure, scalable AI and machine-learning applications across cloud environments—from agentic platforms to production GenAI.</p>
-      <a class="action-pill" href="#selected-work">
-        <span class="round-icon" aria-hidden="true">↓</span>
-        <span>Explore selected work</span>
+  <!-- Level select map -->
+  <section class="level-select" id="map">
+    <h2 class="section-title">◆ SELECT A LEVEL ◆</h2>
+    <div class="map-grid">
+      <a class="level-card" href="#about" data-mood="happy">
+        <img src="/assets/img/game/char-happy.png" alt="">
+        <span class="lvl-tag">LV.1</span><span class="lvl-name">ABOUT ME</span>
       </a>
-    </div>
-
-    <div class="hero-system" data-parallax>
-      <div class="orbit orbit-one" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="orbit orbit-two" aria-hidden="true"><i></i><i></i></div>
-      {% include kinetic-avatar.html %}
-      <svg class="signal-lines" viewBox="0 0 600 600" aria-hidden="true">
-        <path d="M72 360C174 164 400 124 531 277" />
-        <path d="M96 462C239 535 440 484 523 341" />
-        <path d="M179 83C308 175 398 276 433 516" />
-      </svg>
+      <a class="level-card" href="#experience" data-mood="determined">
+        <img src="/assets/img/game/char-determined.png" alt="">
+        <span class="lvl-tag">LV.2</span><span class="lvl-name">EXPERIENCE</span>
+      </a>
+      <a class="level-card" href="#projects" data-mood="excited">
+        <img src="/assets/img/game/char-excited.png" alt="">
+        <span class="lvl-tag">LV.3</span><span class="lvl-name">PROJECTS</span>
+      </a>
+      <a class="level-card" href="#skills" data-mood="serious">
+        <img src="/assets/img/game/char-serious.png" alt="">
+        <span class="lvl-tag">LV.4</span><span class="lvl-name">SKILL TREE</span>
+      </a>
+      <a class="level-card" href="#quests" data-mood="thinking">
+        <img src="/assets/img/game/char-thinking.png" alt="">
+        <span class="lvl-tag">LV.5</span><span class="lvl-name">QUEST LOG</span>
+      </a>
+      <a class="level-card" href="#contact" data-mood="grateful">
+        <img src="/assets/img/game/char-grateful.png" alt="">
+        <span class="lvl-tag">LV.6</span><span class="lvl-name">CONTACT</span>
+      </a>
     </div>
   </section>
 
-  <section class="impact-marquee" aria-label="Selected impact">
-    <div class="marquee-track">
-      <span><i></i>100,000+ calls/day</span>
-      <span><i></i>5+ production projects</span>
-      <span><i></i>~22% lower cloud opex</span>
-      <span><i></i>~20% faster deployment</span>
-      <span aria-hidden="true"><i></i>100,000+ calls/day</span>
-      <span aria-hidden="true"><i></i>5+ production projects</span>
-      <span aria-hidden="true"><i></i>~22% lower cloud opex</span>
-      <span aria-hidden="true"><i></i>~20% faster deployment</span>
-    </div>
-  </section>
-
-  <section class="work-section" id="selected-work" aria-labelledby="work-title">
-    <div class="section-heading" data-reveal>
-      <h2 id="work-title">Selected<br>work</h2>
-      <p>Four production systems foregrounded. The complete project archive preserves every existing case study.</p>
-    </div>
-
-    <div class="work-grid">
-      <a id="agentx-card" class="project-card card-red" href="{{ '/projects/' | relative_url }}" data-reveal data-pointer-card>
-        <div class="project-meta"><span>01 · Agentic GenAI</span><span>MSIL</span></div>
-        <div class="project-visual visual-network" aria-hidden="true">
-          <i class="node n1"></i><i class="node n2"></i><i class="node n3"></i><i class="node n4"></i>
-          <span class="edge e1"></span><span class="edge e2"></span><span class="edge e3"></span>
-        </div>
-        <div class="project-copy"><h3>AgentX</h3><p>Multi-agent DevSecOps automation via LangGraph, FastAPI, FastMCP, and AWS.</p></div>
-        <span class="card-arrow" aria-hidden="true">↗</span>
-      </a>
-
-      <a class="project-card card-blue" href="{{ '/projects/' | relative_url }}" data-reveal data-pointer-card>
-        <div class="project-meta"><span>02 · Platform</span><span>Patent filed</span></div>
-        <div class="project-visual visual-orb" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="project-copy"><h3>MLOps<br>Framework</h3><p>Lifecycle monitoring across data quality, drift, model health, and cloud cost.</p></div>
-        <span class="card-arrow" aria-hidden="true">↗</span>
-      </a>
-
-      <a class="project-card card-violet" href="{{ '/projects/' | relative_url }}" data-reveal data-pointer-card>
-        <div class="project-meta"><span>03 · Production GenAI</span><span>100k+ calls/day</span></div>
-        <div class="project-visual visual-wave" aria-hidden="true">
-          <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-        </div>
-        <div class="project-copy"><h3>Voice<br>Analytics</h3><p>AWS Transcribe and OpenAI Whisper pipelines producing real-time business KPIs.</p></div>
-        <span class="card-arrow" aria-hidden="true">↗</span>
-      </a>
-
-      <a class="project-card card-magenta" href="{{ '/projects/' | relative_url }}" data-reveal data-pointer-card>
-        <div class="project-meta"><span>04 · Multi-cloud</span><span>~22% opex reduction</span></div>
-        <div class="project-visual visual-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="project-copy"><h3>FinOps<br>Platform</h3><p>AWS and Azure cost visibility with automated monitoring and executive insights.</p></div>
-        <span class="card-arrow" aria-hidden="true">↗</span>
-      </a>
-    </div>
-
-    <div class="all-work" data-reveal>
-      <a class="outline-pill" href="{{ '/projects/' | relative_url }}"><span>View all projects</span><b aria-hidden="true">↗</b></a>
-    </div>
-  </section>
-
-  <section class="profile-band" aria-labelledby="profile-title">
-    <div data-reveal>
-      <p class="eyebrow">Profile</p>
-      <h2 id="profile-title">Build.<br>Scale.<br>Lead.</h2>
-    </div>
-    <div class="profile-copy" data-reveal>
-      <p>I’m Ankit Kumar, a Full-Stack AI &amp; ML Engineer at Maruti Suzuki India Limited. My work spans agentic GenAI, MLOps, production LLM systems, FinOps, applied ML, and data engineering.</p>
-      <div class="profile-facts">
-        <span>Current · Maruti Suzuki India Limited</span>
-        <span>Earlier · Entytle</span>
-        <span>Certified · SAFe® 6.0 PO/PM</span>
+  <!-- LV.1 ABOUT -->
+  <section id="about" class="panel">
+    <div class="panel-head"><img class="mood" src="/assets/img/game/char-happy.png" alt=""><h2>LV.1 · ABOUT ME</h2></div>
+    <div class="panel-body">
+      <p><b>Ankit Kumar</b> — Full-Stack <b>AI &amp; ML Engineer</b> with <b>6+ years</b> building
+      secure, scalable AI/ML systems end-to-end across cloud. Currently at
+      <b>Maruti Suzuki India Limited</b>, targeting <b>Senior ML / MLOps / GenAI</b> roles.</p>
+      <div class="stat-bars">
+        <div class="bar"><span>MLOps &amp; Platforms</span><i style="--v:95%"></i></div>
+        <div class="bar"><span>GenAI / LLMs / RAG</span><i style="--v:92%"></i></div>
+        <div class="bar"><span>Cloud &amp; FinOps</span><i style="--v:85%"></i></div>
+        <div class="bar"><span>Applied ML / DL</span><i style="--v:88%"></i></div>
+        <div class="bar"><span>Leadership (SAFe PO/PM)</span><i style="--v:80%"></i></div>
       </div>
-      <a class="dark-pill" href="{{ '/about/' | relative_url }}"><span class="round-icon" aria-hidden="true">↗</span><span>More about me</span></a>
+      <p class="badge-row">
+        <span class="badge">📜 Patent filed — App. 202411067665</span>
+        <span class="badge">🎧 100k+ calls/day GenAI</span>
+        <span class="badge">☁️ 22% cloud opex ↓</span>
+      </p>
     </div>
   </section>
 
-  <section class="writing-section" id="writing" aria-labelledby="writing-title">
-    <div class="writing-heading" data-reveal>
-      <p class="eyebrow">Learn · field notes from production</p>
-      <h2 id="writing-title">Writing</h2>
-    </div>
-    <div class="article-list">
-      <a href="{{ '/posts/designing-a-unified-mlops-framework/' | relative_url }}" data-reveal>
-        <span class="article-meta">Sep 04, 2026 · MLOps</span>
-        <h3>Designing a Unified MLOps Framework</h3>
-        <b aria-hidden="true">↗</b>
-      </a>
-      <a href="{{ '/posts/serving-genai-at-100k-calls-a-day/' | relative_url }}" data-reveal>
-        <span class="article-meta">Sep 03, 2026 · GenAI</span>
-        <h3>Serving GenAI at 100k Calls a Day</h3>
-        <b aria-hidden="true">↗</b>
-      </a>
-      <a href="{{ '/posts/welcome/' | relative_url }}" data-reveal>
-        <span class="article-meta">Sep 05, 2026 · Intro</span>
-        <h3>Welcome — ML at Scale, in Practice</h3>
-        <b aria-hidden="true">↗</b>
-      </a>
+  <!-- LV.2 EXPERIENCE -->
+  <section id="experience" class="panel">
+    <div class="panel-head"><img class="mood" src="/assets/img/game/char-determined.png" alt=""><h2>LV.2 · EXPERIENCE</h2></div>
+    <div class="panel-body">
+      <ul class="quest-list">
+        <li><span class="q-ico">🏭</span><div><b>Maruti Suzuki India Ltd</b> — AI/ML Engineer
+          <p>Built the AgentX DevSecOps platform (multi-agent LangGraph, ~9% faster releases) and a unified MLOps framework (5+ prod projects, ~20% lower deploy time &amp; opex) — the basis of a filed patent.</p></div></li>
+        <li><span class="q-ico">📞</span><div><b>Production GenAI at scale</b>
+          <p>Voice-analytics platform on <b>100,000+ calls/day</b> (AWS Transcribe + Whisper); Enterprise Knowledge Engine (LangChain + advanced RAG + FastMCP); GenAI Text-to-SQL dashboard.</p></div></li>
+        <li><span class="q-ico">🔊</span><div><b>Applied ML</b>
+          <p>RNN acoustic brake-diagnostics on 800+ daily recordings (~30 eng-hrs/wk saved); customer clustering &amp; propensity across 13 regions enabling 2,500+ dealers.</p></div></li>
+        <li><span class="q-ico">🧱</span><div><b>Entytle</b> — Data Engineering
+          <p>From-scratch dedup pipeline (PySpark + NLP matching, +80% address accuracy), Zipf/RDP segmentation, automated ETL + Power BI.</p></div></li>
+      </ul>
     </div>
   </section>
 
-  <section class="closing" aria-labelledby="closing-title">
-    <h2 id="closing-title" data-reveal>Let’s build.</h2>
-    <div class="closing-copy" data-reveal>
-      <p>I’m targeting Senior ML, MLOps, and GenAI Engineer roles. Let’s talk about production AI that creates measurable impact.</p>
-      <a class="action-pill" href="mailto:ankitkumar220694@gmail.com"><span class="round-icon" aria-hidden="true">↗</span><span>Get in touch</span></a>
+  <!-- LV.3 PROJECTS -->
+  <section id="projects" class="panel">
+    <div class="panel-head"><img class="mood" src="/assets/img/game/char-excited.png" alt=""><h2>LV.3 · PROJECTS</h2></div>
+    <div class="panel-body">
+      <div class="proj-grid">
+        <article class="proj"><h3>🤖 AgentX</h3><p>Multi-agent LangGraph DevSecOps automation — CI/CD compliance &amp; release pipelines via APIs + MCP. ~9% faster cycles.</p></article>
+        <article class="proj"><h3>⚙️ MLOps Framework</h3><p>Data-quality, drift &amp; model-health monitoring. 5+ prod projects, ~20% lower deploy time. <b>Patent filed.</b></p></article>
+        <article class="proj"><h3>🧠 Knowledge Engine</h3><p>LangChain + advanced RAG with a FastMCP ingestion/vectorization pipeline for enterprise Q&amp;A.</p></article>
+        <article class="proj"><h3>🗄️ Text-to-SQL</h3><p>Schema-aware prompting + retrieval-augmented context — natural-language analytics dashboard.</p></article>
+        <article class="proj"><h3>🎧 Voice Analytics</h3><p>100k+ calls/day, AWS Transcribe + Whisper — defect, agent-performance &amp; marketing KPIs.</p></article>
+        <article class="proj"><h3>💰 FinOps Platform</h3><p>Multi-cloud AWS + Azure cost pipeline. 22% opex ↓ via rightsizing, RIs &amp; Graviton.</p></article>
+      </div>
     </div>
   </section>
+
+  <!-- LV.4 SKILLS -->
+  <section id="skills" class="panel">
+    <div class="panel-head"><img class="mood" src="/assets/img/game/char-serious.png" alt=""><h2>LV.4 · SKILL TREE</h2></div>
+    <div class="panel-body">
+      <div class="skill-cols">
+        <div><h4>⌨️ Languages</h4><p>Python · C++ · SQL · Node.js · FastAPI · FastMCP</p></div>
+        <div><h4>🧬 GenAI / ML</h4><p>LangChain · LangGraph · RAG · Multi-Agent · MCP · PyTorch · TensorFlow · Scikit-learn · XGBoost · CNN/RNN · PySpark</p></div>
+        <div><h4>☁️ Cloud / MLOps</h4><p>AWS · Azure · MLflow · Docker · Terraform · GitHub Actions · Snyk · SonarQube</p></div>
+        <div><h4>🎯 Leadership</h4><p>SAFe® 6.0 PO/PM · Agile/Scrum/Kanban · Stakeholder mgmt</p></div>
+      </div>
+      <p class="edu">🎓 Great Lakes Institute of Management — PGP Data Science &amp; Engineering (2020) · Goa College of Engineering — B.E. EEE (2018)</p>
+    </div>
+  </section>
+
+  <!-- LV.5 QUEST LOG (blog) -->
+  <section id="quests" class="panel">
+    <div class="panel-head"><img class="mood" src="/assets/img/game/char-thinking.png" alt=""><h2>LV.5 · QUEST LOG</h2></div>
+    <div class="panel-body">
+      <p class="muted">Completed writing quests — click to read the full entry.</p>
+      <ul class="quest-list log">
+        <li><a href="/posts/serving-genai-at-100k-calls-a-day/"><span class="q-ico">✅</span><div><b>Serving GenAI at 100k Calls a Day</b><p>What scales, what breaks, and what it costs. <span class="xp">+120 XP</span></p></div></a></li>
+        <li><a href="/posts/designing-a-unified-mlops-framework/"><span class="q-ico">✅</span><div><b>Designing a Unified MLOps Framework</b><p>Cutting deployment time ~20% across an enterprise. <span class="xp">+150 XP</span></p></div></a></li>
+        <li><a href="/posts/welcome/"><span class="q-ico">✅</span><div><b>Welcome — ML at Scale, in Practice</b><p>Intro quest. <span class="xp">+10 XP</span></p></div></a></li>
+      </ul>
+      <a class="btn-inline" href="/archives/">▶ View full archive</a>
+    </div>
+  </section>
+
+  <!-- LV.6 CONTACT -->
+  <section id="contact" class="panel">
+    <div class="panel-head"><img class="mood" src="/assets/img/game/char-grateful.png" alt=""><h2>LV.6 · CONTACT</h2></div>
+    <div class="panel-body center">
+      <p>Thanks for playing. Let's build something.</p>
+      <div class="contact-btns">
+        <a class="btn-inline" href="mailto:ankitkumar220694@gmail.com">✉️ EMAIL</a>
+        <a class="btn-inline" href="https://www.linkedin.com/in/ankitkumar220694" target="_blank" rel="noopener">💼 LINKEDIN</a>
+        <a class="btn-inline" href="https://github.com/ankitkumar220694" target="_blank" rel="noopener">🐙 GITHUB</a>
+        <a class="btn-inline resume" href="/assets/resume/Ankit-Kumar-Resume.pdf" target="_blank" rel="noopener">📄 RESUME (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="game-foot">SAME PORTFOLIO &nbsp;♥&nbsp; DIFFERENT MOODS &nbsp;♥&nbsp; BIG DREAMS</footer>
 </main>
 
-<footer class="landing-footer">
-  <span>© {{ 'now' | date: '%Y' }} Ankit Kumar</span>
-  <nav aria-label="Social links">
-    <a href="https://github.com/ankitkumar220694" target="_blank" rel="noopener noreferrer">GitHub</a>
-    <a href="https://www.linkedin.com/in/ankitkumar220694" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    <a href="{{ site.resume_url | relative_url }}" target="_blank" rel="noopener noreferrer">Résumé</a>
-  </nav>
-</footer>
+<!-- floating idle companion -->
+<img id="companion" class="companion" src="/assets/img/game/hero-walk.png" alt="" hidden>
+
+<script src="/assets/js/retro-game.js" defer></script>
+</body>
+</html>

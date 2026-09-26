@@ -1,0 +1,182 @@
+/* ===== The Dream Team — retro 2D game portfolio ===== */
+:root{
+  --ink:#f4f1ff; --bg0:#171436; --bg1:#221a52; --bg2:#2c2170;
+  --panel:#3a2f88; --panel2:#241b5e; --line:#8f7bff;
+  --gold:#ffcf4a; --pink:#ff9ed8; --pinkhot:#ff5fb0;
+  --accent:#7c6cff; --good:#5be3a0; --shadow:#0c0a24;
+  --px:3px;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{
+  margin:0; color:var(--ink);
+  font-family:"VT323",monospace; font-size:22px; line-height:1.35;
+  background:
+    radial-gradient(1200px 500px at 50% -10%, #4a3aa8 0%, transparent 60%),
+    linear-gradient(180deg,var(--bg1) 0%,var(--bg0) 100%);
+  background-attachment:fixed; min-height:100vh;
+  image-rendering:pixelated;
+}
+h1,h2,h3,h4,.press-start,.hud-title,.lvl-tag,.lvl-name,.stat,.badge,.q-ico,.xp{
+  font-family:"Press Start 2P",monospace; line-height:1.5;
+}
+img{image-rendering:pixelated}
+a{color:var(--pink);text-decoration:none}
+b{color:#fff}
+
+/* CRT scanlines + flicker */
+.crt::after{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:9999;
+  background:repeating-linear-gradient(180deg,rgba(0,0,0,.16) 0 1px,transparent 1px 3px);
+  mix-blend-mode:multiply; opacity:.5;
+}
+.crt::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:9998;
+  background:radial-gradient(120% 120% at 50% 50%,transparent 60%,rgba(0,0,0,.45) 100%);
+}
+
+/* pixel border helper */
+.pxborder{
+  border:var(--px) solid var(--line);
+  box-shadow:0 0 0 var(--px) var(--shadow), 0 8px 0 rgba(0,0,0,.35);
+}
+
+/* ===== BOOT SCREEN ===== */
+.screen{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative}
+.boot{overflow:hidden}
+.stars{position:absolute;inset:0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%,#fff,transparent),
+    radial-gradient(2px 2px at 70% 20%,#ffe08a,transparent),
+    radial-gradient(2px 2px at 80% 60%,#fff,transparent),
+    radial-gradient(2px 2px at 35% 75%,#ff9ed8,transparent),
+    radial-gradient(2px 2px at 55% 45%,#fff,transparent),
+    radial-gradient(2px 2px at 12% 60%,#fff,transparent);
+  opacity:.8;animation:tw 3s steps(2) infinite}
+@keyframes tw{50%{opacity:.35}}
+.boot-inner{text-align:center;z-index:2;padding:24px}
+.boot-avatar img{width:min(46vw,240px);filter:drop-shadow(0 8px 0 rgba(0,0,0,.4));animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.logo{
+  font-size:clamp(20px,6vw,52px);margin:.4em 0 0;color:var(--gold);
+  text-shadow:var(--px) var(--px) 0 #b8340c, calc(var(--px)*2) calc(var(--px)*2) 0 var(--shadow);
+  letter-spacing:1px;
+}
+.logo-sub{color:var(--pink);font-family:"Press Start 2P";font-size:clamp(9px,1.6vw,13px);margin:.8em 0 0}
+.player-line{margin:1.4em 0 .2em;font-size:20px;color:#cfc7ff}
+.press-start{
+  margin-top:1.2em;cursor:pointer;background:var(--pinkhot);color:#fff;
+  font-size:clamp(11px,2vw,16px);padding:16px 26px;border:none;
+  border:var(--px) solid #fff;box-shadow:0 0 0 var(--px) var(--shadow),0 8px 0 #a01f6a;
+  animation:blink 1.1s steps(2) infinite}
+.press-start:hover{transform:translateY(2px);box-shadow:0 0 0 var(--px) var(--shadow),0 6px 0 #a01f6a}
+@keyframes blink{50%{filter:brightness(1.3)}}
+.skip-link{display:block;margin-top:1.6em;color:#b7aef0;font-size:16px}
+.hint{margin-top:2.4em;color:#7d74b8;font-size:16px}
+
+/* ===== HUD ===== */
+.hud{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:14px;
+  flex-wrap:wrap;justify-content:space-between;padding:10px 16px;
+  background:linear-gradient(180deg,var(--panel) 0%,var(--panel2) 100%);
+  border-bottom:var(--px) solid var(--line);box-shadow:0 6px 0 rgba(0,0,0,.35)}
+.hud-left{display:flex;align-items:center;gap:12px}
+.hud-avatar{border:var(--px) solid var(--gold);background:var(--bg0)}
+.hud-title{display:block;font-size:12px;color:#fff}
+.hud-role{display:block;font-size:14px;color:var(--pink);font-family:"VT323"}
+.hud-stats{display:flex;gap:14px;flex-wrap:wrap}
+.stat{font-size:10px;color:#d8d0ff}.stat b{color:var(--gold)}
+.btn-resume{font-family:"Press Start 2P";font-size:10px;background:var(--gold);color:#3a2400;
+  padding:10px 12px;border:var(--px) solid #fff;box-shadow:0 0 0 var(--px) var(--shadow),0 5px 0 #9c7500}
+.btn-resume:hover{transform:translateY(2px)}
+
+/* ===== WORLD ===== */
+.world{max-width:1040px;margin:0 auto;padding:26px 16px 60px}
+.section-title{text-align:center;color:var(--gold);font-size:clamp(12px,2.4vw,20px);margin:20px 0 26px;
+  text-shadow:2px 2px 0 var(--shadow)}
+.level-select{margin-bottom:40px}
+.map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.level-card{position:relative;display:flex;flex-direction:column;align-items:center;
+  padding:16px 10px 12px;background:linear-gradient(180deg,#4738a0,#2b2170);
+  border:var(--px) solid var(--line);box-shadow:0 0 0 var(--px) var(--shadow),0 8px 0 rgba(0,0,0,.4);
+  transition:transform .12s steps(2)}
+.level-card img{width:110px;height:auto;filter:drop-shadow(0 6px 0 rgba(0,0,0,.35))}
+.level-card:hover{transform:translateY(-6px)}
+.level-card:hover img{animation:bob .8s ease-in-out infinite}
+.lvl-tag{position:absolute;top:8px;left:8px;font-size:9px;color:var(--gold)}
+.lvl-name{margin-top:8px;font-size:11px;color:#fff;text-align:center}
+
+/* ===== PANELS ===== */
+.panel{margin:0 0 30px;background:linear-gradient(180deg,var(--panel) 0%,var(--panel2) 100%);
+  border:var(--px) solid var(--line);box-shadow:0 0 0 var(--px) var(--shadow),0 10px 0 rgba(0,0,0,.4);
+  scroll-margin-top:90px;overflow:hidden}
+.panel-head{display:flex;align-items:center;gap:16px;padding:14px 18px;
+  background:linear-gradient(90deg,rgba(124,108,255,.35),transparent);border-bottom:var(--px) solid var(--line)}
+.panel-head .mood{width:76px;height:auto;flex:0 0 auto;filter:drop-shadow(0 5px 0 rgba(0,0,0,.35));
+  animation:bob 2.4s ease-in-out infinite}
+.panel-head h2{font-size:clamp(11px,2vw,16px);color:var(--gold);margin:0}
+.panel-body{padding:20px 22px}
+.panel-body p{margin:.4em 0 1em}
+.center{text-align:center}
+.muted{color:#b3a9ee}
+
+/* stat bars */
+.stat-bars{margin:14px 0}
+.bar{margin:10px 0}
+.bar span{font-family:"Press Start 2P";font-size:9px;color:#d8d0ff;display:block;margin-bottom:6px}
+.bar i{display:block;height:16px;background:var(--bg0);border:var(--px) solid var(--line);position:relative}
+.bar i::after{content:"";position:absolute;inset:0;width:var(--v);
+  background:repeating-linear-gradient(90deg,var(--good) 0 10px,#3fd08a 10px 12px)}
+
+.badge-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.badge{font-size:9px;background:var(--bg0);border:var(--px) solid var(--pinkhot);color:var(--pink);padding:8px 10px}
+
+/* quest / experience lists */
+.quest-list{list-style:none;padding:0;margin:0}
+.quest-list li{display:flex;gap:14px;padding:14px 0;border-bottom:2px dashed rgba(143,123,255,.35)}
+.quest-list.log li{padding:0}.quest-list.log a{display:flex;gap:14px;padding:14px 0;color:var(--ink)}
+.quest-list.log a:hover b{color:var(--gold)}
+.q-ico{font-size:14px;flex:0 0 auto}
+.quest-list p{margin:.3em 0 0;color:#cfc7ff;font-size:20px}
+.xp{font-family:"Press Start 2P";font-size:8px;color:var(--good)}
+
+/* projects */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.proj{background:var(--panel2);border:var(--px) solid var(--line);box-shadow:0 5px 0 rgba(0,0,0,.35);padding:14px}
+.proj h3{font-size:11px;color:var(--gold);margin:0 0 8px}
+.proj p{font-size:19px;color:#d8d0ff;margin:0}
+
+/* skills */
+.skill-cols{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.skill-cols h4{font-size:11px;color:var(--pink);margin:0 0 8px}
+.skill-cols p{margin:0;color:#d8d0ff}
+.edu{margin-top:18px;color:#cfc7ff;border-top:2px dashed rgba(143,123,255,.35);padding-top:14px}
+
+.btn-inline{display:inline-block;margin-top:10px;font-family:"Press Start 2P";font-size:10px;
+  background:var(--accent);color:#fff;padding:12px 14px;border:var(--px) solid #fff;
+  box-shadow:0 0 0 var(--px) var(--shadow),0 5px 0 #4a3aa8}
+.btn-inline:hover{transform:translateY(2px)}
+.btn-inline.resume{background:var(--gold);color:#3a2400}
+.contact-btns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:14px}
+
+.game-foot{text-align:center;color:var(--pink);font-family:"Press Start 2P";font-size:9px;
+  padding:26px 10px;line-height:2}
+
+/* companion */
+.companion{position:fixed;bottom:14px;right:14px;width:84px;z-index:40;
+  filter:drop-shadow(0 6px 0 rgba(0,0,0,.4));animation:bob 1.8s ease-in-out infinite;pointer-events:none}
+
+/* ===== MOBILE ===== */
+@media(max-width:720px){
+  body{font-size:20px}
+  .map-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .level-card img{width:84px}
+  .proj-grid{grid-template-columns:1fr}
+  .skill-cols{grid-template-columns:1fr}
+  .hud-stats{width:100%;justify-content:space-between;order:3}
+  .companion{width:60px}
+  .panel-head .mood{width:56px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto}
+}
