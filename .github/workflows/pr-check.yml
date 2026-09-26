@@ -56,13 +56,11 @@ jobs:
             test -s "$file" || { echo "Missing or empty: $file"; exit 1; }
           done
 
-          # Retro-game index contracts
           grep -q 'PRESS START' _site/index.html
           grep -q 'id="map"' _site/index.html
           grep -q 'char-excited.png' _site/index.html
           grep -q '/assets/resume/Ankit-Kumar-Resume.pdf' _site/index.html
           grep -q 'href="/about/"' _site/index.html
-          # Secondary pages still build under Chirpy
           grep -q '<title>Projects | Ankit Kumar' _site/projects/index.html
           grep -q '<title>About | Ankit Kumar' _site/about/index.html
           grep -q 'type: resume' _data/contact.yml
@@ -70,6 +68,9 @@ jobs:
           bundle exec htmlproofer _site \
             --disable-external \
             --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
+
+      - name: Build world-view snapshot page
+        run: python3 .github/scripts/build-world-view.py
 
       - name: Capture all primary routes at desktop and mobile
         run: |
@@ -96,11 +97,6 @@ jobs:
               --force-prefers-reduced-motion --virtual-time-budget=4000 --window-size="$size" \
               --screenshot="visual-evidence/$output_name.png" "$url"
           }
-
-          # Game "world" view: reveal HUD+world by deep-linking a section hash so
-          # the boot screen is skipped in the static screenshot.
-          sed 's#<section id="boot"#<section id="boot" hidden#; s#<header id="hud" class="hud" hidden#<header id="hud" class="hud"#; s#<main id="world" class="world" hidden#<main id="world" class="world"#' \
-            _site/index.html > _site/__world.html
 
           routes=(
             "boot|/"
