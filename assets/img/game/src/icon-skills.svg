@@ -1,0 +1,15 @@
+<!-- BRIEF: tools icon = double-open-ended wrench, gold on indigo card with purple
+     frame. For portfolio LV-card SKILLS. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" shape-rendering="crispEdges">
+  <rect id="background" x="0" y="0" width="256" height="256" fill="#2b2a6b"/>
+  <rect x="4" y="4" width="248" height="248" fill="none" stroke="#8f7bff" stroke-width="8"/>
+  <rect x="12" y="12" width="232" height="232" fill="none" stroke="#1a1630" stroke-width="6"/>
+  <g id="wrench" transform="rotate(-38 128 128)">
+    <rect x="116" y="70" width="24" height="116" rx="6" fill="#ffcf40" stroke="#1a1630" stroke-width="6"/>
+    <path d="M96 78 h64 a8 8 0 0 1 8 8 v18 h-22 v-8 h-36 v8 h-22 v-18 a8 8 0 0 1 8-8 z"
+          fill="#ffcf40" stroke="#1a1630" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M96 178 h22 v8 h36 v-8 h22 v18 a8 8 0 0 1 -8 8 h-64 a8 8 0 0 1 -8-8 z"
+          fill="#ffcf40" stroke="#1a1630" stroke-width="6" stroke-linejoin="round"/>
+    <rect x="122" y="96" width="6" height="60" fill="#fff6cf" opacity="0.7"/>
+  </g>
+</svg>

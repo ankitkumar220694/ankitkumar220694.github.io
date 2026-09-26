@@ -21,11 +21,11 @@
   <div class="stars" aria-hidden="true"></div>
   <div class="boot-inner">
     <div class="boot-avatar"><img src="/assets/img/game/char-excited.png" alt="Ankit Kumar pixel character" width="240"></div>
-    <h1 class="logo">THE DREAM TEAM</h1>
-    <p class="logo-sub">Same Portfolio. Bigger Dreams.</p>
-    <p class="player-line">PLAYER: <b>ANKIT KUMAR</b> &nbsp;·&nbsp; CLASS: AI / ML ENGINEER</p>
-    <button id="startBtn" class="press-start">▶ PRESS START</button>
-    <a class="skip-link" href="/about/">Skip intro — recruiter / resume view →</a>
+    <h1 class="logo">Turning Ideas Into XP</h1>
+    <p class="logo-sub">From Data to Intelligence</p>
+    <p class="player-line">NAME: <b>ANKIT KUMAR</b> &nbsp;·&nbsp; ROLE: AI ENGINEER</p>
+    <button id="startBtn" class="press-start">▶ PRESS START to explore quest land</button>
+    <a class="skip-link" href="/assets/resume/Ankit-Kumar-Resume.pdf" target="_blank" rel="noopener">Skip intro → resume download</a>
     <p class="hint">↑ Playable portfolio · use the panels or just scroll ↓</p>
   </div>
 </section>
@@ -36,7 +36,7 @@
     <img class="hud-avatar" src="/assets/img/game/avatar.png" alt="" width="48" height="48">
     <div class="hud-name">
       <span class="hud-title">ANKIT KUMAR</span>
-      <span class="hud-role">AI / ML / MLOps / GenAI ENGINEER</span>
+      <span class="hud-role">AI ENGINEER · ML / MLOps / GenAI</span>
     </div>
   </div>
   <div class="hud-stats">
@@ -60,24 +60,24 @@
         <img src="/assets/img/game/char-happy.png" alt="">
         <span class="lvl-tag">LV.1</span><span class="lvl-name">ABOUT ME</span>
       </a>
+      <a class="level-card" href="#quests" data-mood="thinking">
+        <img src="/assets/img/game/icon-quests.png" alt="Scroll icon">
+        <span class="lvl-tag">LV.2</span><span class="lvl-name">QUEST LOG</span>
+      </a>
+      <a class="level-card" href="#skills" data-mood="serious">
+        <img src="/assets/img/game/icon-skills.png" alt="Wrench and tools icon">
+        <span class="lvl-tag">LV.3</span><span class="lvl-name">SKILLS</span>
+      </a>
       <a class="level-card" href="#experience" data-mood="determined">
         <img src="/assets/img/game/icon-experience.png" alt="Briefcase icon">
-        <span class="lvl-tag">LV.2</span><span class="lvl-name">EXPERIENCE</span>
+        <span class="lvl-tag">LV.4</span><span class="lvl-name">EXPERIENCE</span>
       </a>
       <a class="level-card" href="#projects" data-mood="excited">
         <img src="/assets/img/game/icon-projects.png" alt="Rocket icon">
-        <span class="lvl-tag">LV.3</span><span class="lvl-name">PROJECTS</span>
-      </a>
-      <a class="level-card" href="#skills" data-mood="serious">
-        <img src="/assets/img/game/icon-skills.png" alt="Skill tree icon">
-        <span class="lvl-tag">LV.4</span><span class="lvl-name">SKILL TREE</span>
-      </a>
-      <a class="level-card" href="#quests" data-mood="thinking">
-        <img src="/assets/img/game/icon-quests.png" alt="Scroll icon">
-        <span class="lvl-tag">LV.5</span><span class="lvl-name">QUEST LOG</span>
+        <span class="lvl-tag">LV.5</span><span class="lvl-name">PROJECTS</span>
       </a>
       <a class="level-card" href="#contact" data-mood="grateful">
-        <img src="/assets/img/game/char-grateful.png" alt="">
+        <img src="/assets/img/game/icon-contact.png" alt="Telephone icon">
         <span class="lvl-tag">LV.6</span><span class="lvl-name">CONTACT</span>
       </a>
     </div>
@@ -105,9 +105,37 @@
     </div>
   </section>
 
-  <!-- LV.2 EXPERIENCE -->
+  <!-- LV.2 QUEST LOG (blog) -->
+  <section id="quests" class="panel">
+    <div class="panel-head"><img class="mood" src="/assets/img/game/char-thinking.png" alt=""><h2>LV.2 · QUEST LOG</h2></div>
+    <div class="panel-body">
+      <p class="muted">Completed writing quests — click to read the full entry.</p>
+      <ul class="quest-list log">
+        <li><a href="/posts/serving-genai-at-100k-calls-a-day/"><span class="q-ico">✅</span><div><b>Serving GenAI at 100k Calls a Day</b><p>What scales, what breaks, and what it costs. <span class="xp">+120 XP</span></p></div></a></li>
+        <li><a href="/posts/designing-a-unified-mlops-framework/"><span class="q-ico">✅</span><div><b>Designing a Unified MLOps Framework</b><p>Cutting deployment time ~20% across an enterprise. <span class="xp">+150 XP</span></p></div></a></li>
+        <li><a href="/posts/welcome/"><span class="q-ico">✅</span><div><b>Welcome — ML at Scale, in Practice</b><p>Intro quest. <span class="xp">+10 XP</span></p></div></a></li>
+      </ul>
+      <a class="btn-inline" href="/archives/">▶ View full archive</a>
+    </div>
+  </section>
+
+  <!-- LV.3 SKILLS -->
+  <section id="skills" class="panel">
+    <div class="panel-head"><img class="mood" src="/assets/img/game/char-serious.png" alt=""><h2>LV.3 · SKILLS</h2></div>
+    <div class="panel-body">
+      <div class="skill-cols">
+        <div><h4>⌨️ Languages</h4><p>Python · C++ · SQL · Node.js · FastAPI · FastMCP</p></div>
+        <div><h4>🧬 GenAI / ML</h4><p>LangChain · LangGraph · RAG · Multi-Agent · MCP · PyTorch · TensorFlow · Scikit-learn · XGBoost · CNN/RNN · PySpark</p></div>
+        <div><h4>☁️ Cloud / MLOps</h4><p>AWS · Azure · MLflow · Docker · Terraform · GitHub Actions · Snyk · SonarQube</p></div>
+        <div><h4>🎯 Leadership</h4><p>SAFe® 6.0 PO/PM · Agile/Scrum/Kanban · Stakeholder mgmt</p></div>
+      </div>
+      <p class="edu">🎓 Great Lakes Institute of Management — PGP Data Science &amp; Engineering (2020) · Goa College of Engineering — B.E. EEE (2018)</p>
+    </div>
+  </section>
+
+  <!-- LV.4 EXPERIENCE -->
   <section id="experience" class="panel">
-    <div class="panel-head"><img class="mood" src="/assets/img/game/char-determined.png" alt=""><h2>LV.2 · EXPERIENCE</h2></div>
+    <div class="panel-head"><img class="mood" src="/assets/img/game/char-determined.png" alt=""><h2>LV.4 · EXPERIENCE</h2></div>
     <div class="panel-body">
       <ul class="quest-list">
         <li><span class="q-ico">🏭</span><div><b>Maruti Suzuki India Ltd</b> — AI/ML Engineer
@@ -122,9 +150,9 @@
     </div>
   </section>
 
-  <!-- LV.3 PROJECTS -->
+  <!-- LV.5 PROJECTS -->
   <section id="projects" class="panel">
-    <div class="panel-head"><img class="mood" src="/assets/img/game/char-excited.png" alt=""><h2>LV.3 · PROJECTS</h2></div>
+    <div class="panel-head"><img class="mood" src="/assets/img/game/char-excited.png" alt=""><h2>LV.5 · PROJECTS</h2></div>
     <div class="panel-body">
       <div class="proj-grid">
         <article class="proj"><h3>🤖 AgentX</h3><p>Multi-agent LangGraph DevSecOps automation — CI/CD compliance &amp; release pipelines via APIs + MCP. ~9% faster cycles.</p></article>
@@ -134,34 +162,6 @@
         <article class="proj"><h3>🎧 Voice Analytics</h3><p>100k+ calls/day, AWS Transcribe + Whisper — defect, agent-performance &amp; marketing KPIs.</p></article>
         <article class="proj"><h3>💰 FinOps Platform</h3><p>Multi-cloud AWS + Azure cost pipeline. 22% opex ↓ via rightsizing, RIs &amp; Graviton.</p></article>
       </div>
-    </div>
-  </section>
-
-  <!-- LV.4 SKILLS -->
-  <section id="skills" class="panel">
-    <div class="panel-head"><img class="mood" src="/assets/img/game/char-serious.png" alt=""><h2>LV.4 · SKILL TREE</h2></div>
-    <div class="panel-body">
-      <div class="skill-cols">
-        <div><h4>⌨️ Languages</h4><p>Python · C++ · SQL · Node.js · FastAPI · FastMCP</p></div>
-        <div><h4>🧬 GenAI / ML</h4><p>LangChain · LangGraph · RAG · Multi-Agent · MCP · PyTorch · TensorFlow · Scikit-learn · XGBoost · CNN/RNN · PySpark</p></div>
-        <div><h4>☁️ Cloud / MLOps</h4><p>AWS · Azure · MLflow · Docker · Terraform · GitHub Actions · Snyk · SonarQube</p></div>
-        <div><h4>🎯 Leadership</h4><p>SAFe® 6.0 PO/PM · Agile/Scrum/Kanban · Stakeholder mgmt</p></div>
-      </div>
-      <p class="edu">🎓 Great Lakes Institute of Management — PGP Data Science &amp; Engineering (2020) · Goa College of Engineering — B.E. EEE (2018)</p>
-    </div>
-  </section>
-
-  <!-- LV.5 QUEST LOG (blog) -->
-  <section id="quests" class="panel">
-    <div class="panel-head"><img class="mood" src="/assets/img/game/char-thinking.png" alt=""><h2>LV.5 · QUEST LOG</h2></div>
-    <div class="panel-body">
-      <p class="muted">Completed writing quests — click to read the full entry.</p>
-      <ul class="quest-list log">
-        <li><a href="/posts/serving-genai-at-100k-calls-a-day/"><span class="q-ico">✅</span><div><b>Serving GenAI at 100k Calls a Day</b><p>What scales, what breaks, and what it costs. <span class="xp">+120 XP</span></p></div></a></li>
-        <li><a href="/posts/designing-a-unified-mlops-framework/"><span class="q-ico">✅</span><div><b>Designing a Unified MLOps Framework</b><p>Cutting deployment time ~20% across an enterprise. <span class="xp">+150 XP</span></p></div></a></li>
-        <li><a href="/posts/welcome/"><span class="q-ico">✅</span><div><b>Welcome — ML at Scale, in Practice</b><p>Intro quest. <span class="xp">+10 XP</span></p></div></a></li>
-      </ul>
-      <a class="btn-inline" href="/archives/">▶ View full archive</a>
     </div>
   </section>
 
@@ -179,7 +179,7 @@
     </div>
   </section>
 
-  <footer class="game-foot">SAME PORTFOLIO &nbsp;♥&nbsp; DIFFERENT MOODS &nbsp;♥&nbsp; BIG DREAMS</footer>
+  <footer class="game-foot">TURNING IDEAS INTO XP &nbsp;♥&nbsp; FROM DATA TO INTELLIGENCE</footer>
 </main>
 
 <!-- floating idle companion -->
