@@ -89,29 +89,6 @@ def icon_projects(d):
     px(d, 15, 21, RED, 2, 2)
 
 
-def icon_skills(d):
-    # branching skill tree: nodes connected by lines (talent tree look)
-    # root node bottom-center
-    def node(cx, cy, color=GOLD):
-        px(d, cx - 1, cy - 1, INK, 3, 3)
-        px(d, cx, cy, color, 1, 1)
-
-    def link(x1, y1, x2, y2):
-        d.line([x1, y1, x2, y2], fill=FRAME)
-
-    root = (16, 24)
-    l = (10, 15)
-    r = (22, 15)
-    ll = (7, 8)
-    rr = (25, 8)
-    top = (16, 9)
-    link(*root, *l); link(*root, *r); link(*root, *top)
-    link(*l, *ll); link(*r, *rr)
-    node(*root, GOLD)
-    node(*l, GREEN); node(*r, GREEN)
-    node(*ll, WHITE); node(*rr, WHITE); node(*top, GOLD)
-
-
 def icon_quests(d):
     # scroll: rolled top & bottom, parchment body with text lines
     # rolls
@@ -131,11 +108,55 @@ def icon_quests(d):
     d.rectangle([18, 19, 20, 21], outline=INK)
 
 
+def icon_skills(d):
+    # tools: a clear double-open-ended wrench, diagonal, gold
+    # shaft (thick diagonal band)
+    for i in range(10):
+        px(d, 11 + i, 20 - i, GOLD, 3, 3)
+    d.line([11, 22, 22, 11], fill=INK, width=1)
+    # top-right open jaw (C shape opening up-right)
+    px(d, 19, 6, GOLD, 6, 3)
+    px(d, 22, 6, BG, 2, 1)            # notch cut into jaw
+    px(d, 19, 9, GOLD, 6, 2)
+    d.rectangle([19, 6, 24, 10], outline=INK)
+    # bottom-left open jaw (C shape opening down-left)
+    px(d, 7, 21, GOLD, 6, 3)
+    px(d, 7, 23, BG, 2, 1)            # notch
+    px(d, 7, 19, GOLD, 6, 2)
+    d.rectangle([7, 19, 12, 23], outline=INK)
+    # shine
+    px(d, 14, 15, WHITE, 1, 1)
+
+
+def icon_contact(d):
+    # classic telephone handset: two ear/mouth caps joined by a curved bar,
+    # tilted like a receiver. Solid gold with dark outline.
+    # earpiece cap (top-left)
+    px(d, 7, 8, GOLD, 6, 4)
+    px(d, 8, 6, GOLD, 4, 3)          # cap flare
+    d.rectangle([7, 6, 12, 11], outline=INK)
+    # mouthpiece cap (bottom-right)
+    px(d, 19, 20, GOLD, 6, 4)
+    px(d, 20, 23, GOLD, 4, 2)        # cap flare
+    d.rectangle([19, 20, 24, 24], outline=INK)
+    # curved handle bar joining them (the receiver's bow)
+    for i in range(9):
+        px(d, 11 + i, 11 + i, GOLD, 2, 2)
+    d.line([11, 11, 20, 20], fill=INK)
+    # dark speaker holes on caps
+    px(d, 9, 8, INK, 2, 2)
+    px(d, 21, 21, INK, 2, 2)
+    # ring waves near earpiece
+    px(d, 15, 6, FRAME, 1, 1)
+    px(d, 17, 4, FRAME, 1, 1)
+
+
 ICONS = {
     "experience": icon_experience,
     "projects": icon_projects,
     "skills": icon_skills,
     "quests": icon_quests,
+    "contact": icon_contact,
 }
 
 
