@@ -2,9 +2,9 @@
 
 # Ankit Kumar — AI Engineering Portfolio
 
-**Full-Stack AI & ML Engineer · 6+ years · Production GenAI, MLOps, FinOps, and Applied ML**
+**Full-Stack AI & ML Engineer · Production GenAI · MLOps · Applied ML · Cloud Economics**
 
-[![Live portfolio](https://img.shields.io/badge/Live-Portfolio-fec303?style=flat-square&labelColor=050505)](https://ankitkumar220694.github.io/)
+[![Live portfolio](https://img.shields.io/badge/Live-Portfolio-75f4e3?style=flat-square&labelColor=080c1a)](https://ankitkumar220694.github.io/)
 [![Validate](https://github.com/ankitkumar220694/ankitkumar220694.github.io/actions/workflows/pr-check.yml/badge.svg)](https://github.com/ankitkumar220694/ankitkumar220694.github.io/actions/workflows/pr-check.yml)
 [![Deploy](https://github.com/ankitkumar220694/ankitkumar220694.github.io/actions/workflows/pages-deploy.yml/badge.svg)](https://github.com/ankitkumar220694/ankitkumar220694.github.io/actions/workflows/pages-deploy.yml)
 
@@ -12,16 +12,16 @@
 
 </div>
 
-## Overview
+## Design system
 
-A fast, responsive portfolio presenting production work across:
+The site uses one **Neo-Arcade Editorial** language across the homepage, project dossiers, profile, writing archive, topic index, articles and 404 page:
 
-- **Agentic GenAI:** multi-agent DevSecOps automation with LangGraph, FastAPI, FastMCP, and AWS.
-- **MLOps:** lifecycle monitoring for data quality, drift, model health, deployment, and cloud cost.
-- **Production AI:** voice analytics at 100,000+ calls/day, enterprise RAG, and Text-to-SQL.
-- **FinOps and applied ML:** multi-cloud cost optimization, acoustic diagnostics, propensity modelling, and data engineering.
-
-The homepage uses an original kinetic-comic visual system. Projects, About, Tags, Archives, and technical posts retain Chirpy's proven responsive structure while sharing the same black, paper, yellow, cyan, magenta, and red design language.
+- Modern Manrope typography for readable content
+- Space Mono for restrained retro labels and route identifiers
+- A dark technical grid with cyan, gold and coral signal colors
+- Flat editorial rows and hairline dividers instead of card-heavy interfaces
+- Topic-specific pixel characters with lossless 2× assets for high-DPI displays
+- Chirpy-owned layout behavior on secondary routes, with a skin-only custom layer
 
 ## Stack
 
@@ -29,26 +29,28 @@ The homepage uses an original kinetic-comic visual system. Projects, About, Tags
 |---|---|
 | Site | Jekyll + `jekyll-theme-chirpy` 7.6 |
 | UI | Liquid, semantic HTML, custom SCSS/CSS, vanilla JavaScript |
-| Typography | Bebas Neue, Manrope, Space Mono |
+| Typography | Manrope + Space Mono |
 | Hosting | GitHub Pages |
-| Quality gates | Node assertions, Jekyll production build, HTMLProofer, desktop/mobile route renders |
-| Delivery | GitHub Actions pull-request validation and protected Pages deployment |
+| Quality | Source contracts, Jekyll production build, HTMLProofer, 20 route screenshots |
+| Delivery | Pull-request validation followed by protected Pages deployment |
 
 ## Repository map
 
 ```text
 .
-├── index.html                         # portfolio landing page
-├── _layouts/landing.html              # standalone landing shell
-├── _includes/kinetic-avatar.html      # original animated SVG portrait
-├── _tabs/                             # Projects, About, Tags, Archives
-├── _posts/                            # technical writing
+├── index.html                         # standalone editorial homepage
+├── assets/404.html                    # custom recovery route and theme override
+├── _includes/route-hero.html          # shared secondary-page identity
+├── _sass/_retro-editorial.scss        # Chirpy route skin
+├── _tabs/                             # Projects, About, Writing, Topics
+├── _posts/                            # technical writing with topic figures
 ├── assets/css/
-│   ├── portfolio-landing.css          # landing design and responsive motion
-│   └── jekyll-theme-chirpy.scss       # shared skin for Chirpy routes
-├── assets/js/portfolio-landing.js     # menu, reveals, gaze, pointer effects
+│   ├── retro-game.css                 # homepage presentation
+│   └── jekyll-theme-chirpy.scss       # theme entrypoint
+├── assets/img/game/hd/                # lossless 2× pixel characters
+├── assets/js/retro-game.js            # accessible mobile navigation
 ├── assets/resume/                     # downloadable résumé
-└── .github/                           # tests, visual evidence, Pages deployment
+└── .github/                           # contracts, screenshots and deployment
 ```
 
 ## Run locally
@@ -62,24 +64,26 @@ bundle exec jekyll serve --livereload --host 127.0.0.1
 
 Open [the local site](http://127.0.0.1:4000/).
 
-## Update content
+## Content updates
 
-- Add posts under `_posts/YYYY-MM-DD-title.md`.
-- Edit case studies in `_tabs/projects.md`.
-- Edit biography and skills in `_tabs/about.md`.
+- Add articles under `_posts/YYYY-MM-DD-title.md`.
+- Edit project outcomes in `_tabs/projects.md`.
+- Edit biography and capabilities in `_tabs/about.md`.
 - Replace `assets/resume/Ankit-Kumar-Resume.pdf` to update the résumé.
-- Keep visual changes in the two dedicated style entry points; do not override Chirpy's layout positioning.
+- Reuse `_includes/route-hero.html` for a new top-level route.
+- Preserve Chirpy layout positioning; visual changes belong in `_sass/_retro-editorial.scss`.
 
-## Validation and deployment
+## Review and deployment
 
 Every pull request to `main`:
 
-1. Tests landing-page logic and source contracts.
+1. Validates source and high-DPI asset contracts.
 2. Builds the production Jekyll site.
-3. Checks generated routes and internal links with HTMLProofer.
-4. Captures desktop and mobile evidence for the homepage and all primary secondary routes.
+3. checks generated routes and internal links with HTMLProofer.
+4. Captures all ten public page templates at desktop and mobile sizes.
+5. Uploads the 20 screenshots as a pre-deployment review artifact.
 
-Merging a green pull request into `main` triggers the GitHub Pages deployment workflow.
+Only merging a green pull request into `main` triggers GitHub Pages deployment.
 
 ## License
 

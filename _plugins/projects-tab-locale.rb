@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
-# Chirpy translates tab titles through its locale table. Register the custom
-# Projects tab after theme data is loaded so the document title is not blank.
+# Chirpy translates tab labels through its locale table. Keep the portfolio's
+# user-facing route names consistent after theme locale data is loaded.
 Jekyll::Hooks.register :site, :post_read do |site|
   locales = site.data['locales'] ||= {}
   english = locales['en'] ||= {}
   tabs = english['tabs'] ||= {}
-  tabs['projects'] ||= 'Projects'
+  tabs['projects'] = 'Projects'
+  tabs['tags'] = 'Topics'
+  tabs['archives'] = 'Writing'
 end
