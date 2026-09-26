@@ -1,28 +1,34 @@
-<!-- BRIEF: polished retro telephone handset, gold on indigo card w/ purple frame.
-     For portfolio LV-card CONTACT. Built from SYMMETRIC primitives: two identical
-     rounded caps + one thick bow bar between them, so it stays balanced. v4. -->
+<!-- BRIEF: classic desk telephone (☎️), retro, gold on indigo card with purple
+     frame. Handset resting on a rounded base body, cord dots, dial line. v5. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" shape-rendering="geometricPrecision">
   <rect id="background" x="0" y="0" width="256" height="256" fill="#2b2a6b"/>
   <rect x="4" y="4" width="248" height="248" fill="none" stroke="#8f7bff" stroke-width="8"/>
   <rect x="12" y="12" width="232" height="232" fill="none" stroke="#1a1630" stroke-width="6"/>
 
-  <g id="handset" transform="rotate(-32 128 128)">
-    <!-- bow bar: thick gold stroke, dark outline underneath for a clean edge -->
-    <path d="M74 96 Q128 178 182 96" fill="none" stroke="#1a1630" stroke-width="40" stroke-linecap="round"/>
-    <path d="M74 96 Q128 178 182 96" fill="none" stroke="#ffcf4a" stroke-width="28" stroke-linecap="round"/>
-    <!-- earpiece cap (identical to mouthpiece) -->
-    <rect x="52" y="66" width="52" height="46" rx="16" fill="#ffcf4a" stroke="#1a1630" stroke-width="7"/>
-    <circle cx="78" cy="89" r="9" fill="#1a1630"/>
-    <!-- mouthpiece cap (mirror) -->
-    <rect x="152" y="66" width="52" height="46" rx="16" fill="#ffcf4a" stroke="#1a1630" stroke-width="7"/>
-    <circle cx="178" cy="89" r="9" fill="#1a1630"/>
-    <!-- shine on earpiece -->
-    <rect x="60" y="72" width="9" height="12" rx="4" fill="#fff3c0" opacity=".85"/>
+  <!-- BASE body: trapezoid-ish rounded block sitting lower-centre -->
+  <path d="M64 150 h128 a10 10 0 0 1 10 10 v34 a10 10 0 0 1 -10 10 h-128 a10 10 0 0 1 -10 -10 v-34 a10 10 0 0 1 10 -10 z"
+        fill="#ffcf4a" stroke="#1a1630" stroke-width="7" stroke-linejoin="round"/>
+  <!-- dial face on base -->
+  <circle cx="128" cy="177" r="16" fill="#2b2a6b" stroke="#1a1630" stroke-width="5"/>
+  <circle cx="128" cy="177" r="4" fill="#ff9ed8"/>
+
+  <!-- CRADLE arms (where the handset rests) -->
+  <rect x="52" y="138" width="26" height="20" rx="6" fill="#ffcf4a" stroke="#1a1630" stroke-width="6"/>
+  <rect x="178" y="138" width="26" height="20" rx="6" fill="#ffcf4a" stroke="#1a1630" stroke-width="6"/>
+
+  <!-- HANDSET resting across the top: two caps + bow, symmetric -->
+  <g>
+    <path d="M72 118 Q128 62 184 118" fill="none" stroke="#1a1630" stroke-width="34" stroke-linecap="round"/>
+    <path d="M72 118 Q128 62 184 118" fill="none" stroke="#ffcf4a" stroke-width="22" stroke-linecap="round"/>
+    <rect x="52" y="104" width="44" height="34" rx="12" fill="#ffcf4a" stroke="#1a1630" stroke-width="6"/>
+    <rect x="160" y="104" width="44" height="34" rx="12" fill="#ffcf4a" stroke="#1a1630" stroke-width="6"/>
+    <circle cx="74" cy="121" r="6" fill="#1a1630"/>
+    <circle cx="182" cy="121" r="6" fill="#1a1630"/>
   </g>
 
-  <!-- ring waves, top-right -->
+  <!-- ring waves top-right -->
   <g fill="none" stroke="#ff9ed8" stroke-width="7" stroke-linecap="round">
-    <path d="M198 62 q13 -2 16 11"/>
-    <path d="M208 50 q23 -3 27 19"/>
+    <path d="M206 70 q12 -2 15 10"/>
+    <path d="M214 58 q22 -3 25 18"/>
   </g>
 </svg>
