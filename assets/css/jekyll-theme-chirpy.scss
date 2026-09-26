@@ -648,3 +648,170 @@ footer,
 .toc-border-cover {
   border-color: var(--ak-yellow) !important;
 }
+
+/* ============================================================
+   Sidebar removed -> retro top navigation
+   Skin-only: hide #sidebar, drop the main-wrapper offset, and
+   style the injected #retro-topnav. Chirpy's sidebar is fixed/
+   off-canvas, so hiding it is layout-safe; we only zero the
+   left offset the theme reserved for it.
+   ============================================================ */
+#sidebar {
+  display: none !important;
+}
+
+/* Chirpy offsets #main-wrapper by the sidebar width on >=lg.
+   With no sidebar, reclaim the full width. */
+#main-wrapper.no-sidebar {
+  margin-left: 0 !important;
+  width: 100% !important;
+  left: 0 !important;
+}
+
+/* the topbar's hamburger only makes sense with a sidebar */
+#sidebar-trigger {
+  display: none !important;
+}
+
+/* Retro top nav */
+#retro-topnav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem .75rem;
+  margin: .4rem 0 1.4rem;
+  padding: .6rem .8rem;
+  background: var(--ak-near-black);
+  border: 3px solid var(--ak-border);
+  border-radius: 6px;
+  box-shadow: 0 6px 0 var(--ak-shadow);
+}
+
+#retro-topnav .rt-brand {
+  display: inline-flex;
+  align-items: center;
+  margin-right: .4rem;
+  padding: .3rem .6rem;
+  color: var(--ak-yellow);
+  text-decoration: none;
+  border-right: 2px solid var(--ak-border);
+}
+
+#retro-topnav .rt-brand-name {
+  font: 400 .62rem/1.4 'Press Start 2P', monospace;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+#retro-topnav .rt-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .35rem .5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#retro-topnav .rt-item {
+  list-style: none;
+}
+
+#retro-topnav .rt-link,
+#retro-topnav .rt-resume {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .4rem .7rem;
+  color: var(--ak-paper);
+  text-decoration: none;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  font: 700 .72rem/1 'Space Mono', ui-monospace, monospace;
+  letter-spacing: .04em;
+  transition: color .15s ease, background .15s ease, border-color .15s ease, transform .15s ease;
+}
+
+#retro-topnav .rt-link i,
+#retro-topnav .rt-resume i {
+  color: var(--ak-yellow);
+}
+
+#retro-topnav .rt-link:hover,
+#retro-topnav .rt-link:focus-visible {
+  color: var(--ak-black);
+  background: var(--ak-paper);
+  border-color: var(--ak-paper);
+  transform: translateY(-2px);
+}
+
+#retro-topnav .rt-link:hover i,
+#retro-topnav .rt-link:focus-visible i {
+  color: var(--ak-black);
+}
+
+#retro-topnav .rt-item.active .rt-link {
+  color: var(--ak-black);
+  background: var(--ak-yellow);
+  border-color: var(--ak-yellow);
+  box-shadow: 3px 3px 0 var(--ak-red);
+}
+
+#retro-topnav .rt-item.active .rt-link i {
+  color: var(--ak-black);
+}
+
+#retro-topnav .rt-resume {
+  margin-left: auto;
+  color: var(--ak-black);
+  background: var(--ak-yellow);
+  border-color: var(--ak-yellow);
+  box-shadow: 3px 3px 0 var(--ak-red);
+}
+
+#retro-topnav .rt-resume i {
+  color: var(--ak-black);
+}
+
+#retro-topnav .rt-resume:hover,
+#retro-topnav .rt-resume:focus-visible {
+  background: var(--ak-paper);
+  border-color: var(--ak-paper);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 849px) {
+  #retro-topnav {
+    gap: .4rem .5rem;
+    padding: .5rem .6rem;
+  }
+
+  #retro-topnav .rt-brand {
+    width: 100%;
+    margin-right: 0;
+    border-right: 0;
+    border-bottom: 2px solid var(--ak-border);
+  }
+
+  #retro-topnav .rt-link,
+  #retro-topnav .rt-resume {
+    padding: .38rem .55rem;
+    font-size: .66rem;
+  }
+
+  #retro-topnav .rt-resume {
+    margin-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #retro-topnav .rt-link,
+  #retro-topnav .rt-resume {
+    transition: none;
+  }
+
+  #retro-topnav .rt-link:hover,
+  #retro-topnav .rt-resume:hover {
+    transform: none;
+  }
+}
