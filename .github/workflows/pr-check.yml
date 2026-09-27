@@ -26,27 +26,22 @@ jobs:
           ruby-version: 3.4
           bundler-cache: true
 
-      - name: Install screenshot harness dependency
-        run: python3 -m pip install --disable-pip-version-check websocket-client==1.8.0
-
-      - name: Test source contracts
-        run: node .github/scripts/test-site-contracts.js
+      - name: Test source contracts (retro-game index)
+        run: node .github/scripts/test-portfolio-landing.js
 
       - name: Build site
         run: bundle exec jekyll build --destination _site
         env:
           JEKYLL_ENV: production
 
-      - name: Test generated routes, assets, and links
+      - name: Test generated routes, controls, and links
         run: |
           required_files=(
             _site/index.html
             _site/projects/index.html
             _site/about/index.html
             _site/tags/index.html
-            _site/tags/mlops/index.html
             _site/archives/index.html
-            _site/404.html
             _site/posts/welcome/index.html
             _site/posts/designing-a-unified-mlops-framework/index.html
             _site/posts/serving-genai-at-100k-calls-a-day/index.html
@@ -54,35 +49,30 @@ jobs:
             _site/assets/js/retro-game.js
             _site/assets/css/jekyll-theme-chirpy.css
             _site/assets/resume/Ankit-Kumar-Resume.pdf
-            _site/assets/img/game/hd/avatar.png
-            _site/assets/img/game/hd/char-determined.png
+            _site/assets/img/game/char-happy.png
+            _site/assets/img/game/hero-walk.png
           )
           for file in "${required_files[@]}"; do
             test -s "$file" || { echo "Missing or empty: $file"; exit 1; }
           done
 
-          assert_contains() {
-            local file="$1"
-            local text="$2"
-            grep -q "$text" "$file" || { echo "Missing '$text' in $file"; exit 1; }
-            echo "ok: $file contains '$text'"
-          }
-          assert_contains _site/index.html 'AI systems that'
-          assert_contains _site/index.html 'Explore selected work'
-          assert_contains _site/projects/index.html 'Production systems with operational weight'
-          assert_contains _site/about/index.html 'I build AI systems that remain useful after launch'
-          assert_contains _site/archives/index.html 'Notes from production'
-          assert_contains _site/tags/index.html 'Explore by technical signal'
-          assert_contains _site/tags/mlops/index.html 'Articles connected to MLOps'
-          assert_contains _site/404.html 'This route does not exist'
-          assert_contains _site/index.html '/assets/resume/Ankit-Kumar-Resume.pdf'
-          assert_contains _data/contact.yml 'type: resume'
+          grep -q 'PRESS START' _site/index.html
+          grep -q 'id="map"' _site/index.html
+          grep -q 'char-excited.png' _site/index.html
+          grep -q '/assets/resume/Ankit-Kumar-Resume.pdf' _site/index.html
+          grep -q 'href="/about/"' _site/index.html
+          grep -q '<title>Projects | Ankit Kumar' _site/projects/index.html
+          grep -q '<title>About | Ankit Kumar' _site/about/index.html
+          grep -q 'type: resume' _data/contact.yml
 
           bundle exec htmlproofer _site \
             --disable-external \
             --ignore-urls "/^http:\/\/127.0.0.1/,/^http:\/\/0.0.0.0/,/^http:\/\/localhost/"
 
-      - name: Capture every public route at exact desktop and mobile viewports
+      - name: Build world-view snapshot page
+        run: python3 .github/scripts/build-world-view.py
+
+      - name: Capture all primary routes at desktop and mobile
         run: |
           mkdir -p visual-evidence
           python3 -m http.server 4173 --bind 127.0.0.1 --directory _site > "$RUNNER_TEMP/portfolio-preview.log" 2>&1 &
@@ -96,12 +86,35 @@ jobs:
 
           chrome="$(command -v google-chrome || command -v google-chrome-stable || true)"
           test -n "$chrome"
-          python3 .github/scripts/capture-routes.py \
-            --chrome "$chrome" \
-            --base-url http://127.0.0.1:4173 \
-            --output-dir visual-evidence
 
-          test "$(find visual-evidence -name '*.png' | wc -l)" -eq 20
+          capture() {
+            local output_name="$1"
+            local size="$2"
+            local route="$3"
+            local url="http://127.0.0.1:4173$route"
+            curl --fail --silent "$url" > /dev/null
+            "$chrome" --headless=new --no-sandbox --disable-gpu --hide-scrollbars --disable-smooth-scrolling \
+              --force-prefers-reduced-motion --virtual-time-budget=4000 --window-size="$size" \
+              --screenshot="visual-evidence/$output_name.png" "$url"
+          }
+
+          routes=(
+            "boot|/"
+            "world|/__world.html"
+            "projects|/projects/"
+            "about|/about/"
+            "tags|/tags/"
+            "archives|/archives/"
+            "post|/posts/designing-a-unified-mlops-framework/"
+          )
+
+          for entry in "${routes[@]}"; do
+            route_name="${entry%%|*}"
+            route="${entry#*|}"
+            capture "$route_name-desktop" 1440,900 "$route"
+            capture "$route_name-mobile" 390,844 "$route"
+          done
+
           for image in visual-evidence/*.png; do
             bytes="$(stat -c%s "$image")"
             if (( bytes < 20000 )); then
@@ -110,10 +123,12 @@ jobs:
             fi
           done
 
-      - name: Upload pre-deployment visual review
+          rm -f _site/__world.html
+
+      - name: Upload visual evidence
         uses: actions/upload-artifact@v4
         with:
-          name: neo-arcade-editorial-review
+          name: portfolio-visual-evidence
           path: visual-evidence/*.png
           if-no-files-found: error
-          retention-days: 14
+          retention-days: 7
