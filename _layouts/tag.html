@@ -1,0 +1,38 @@
+---
+layout: page
+---
+
+{% include lang.html %}
+{% assign topic_title = page.title | replace: '-', ' ' | capitalize %}
+{% case page.title %}
+  {% when 'aws' %}{% assign topic_title = 'AWS' %}
+  {% when 'genai' %}{% assign topic_title = 'GenAI' %}
+  {% when 'llm' %}{% assign topic_title = 'LLM' %}
+  {% when 'mlops' %}{% assign topic_title = 'MLOps' %}
+  {% when 'dataops' %}{% assign topic_title = 'DataOps' %}
+  {% when 'devsecops' %}{% assign topic_title = 'DevSecOps' %}
+{% endcase %}
+{% capture topic_description %}Articles connected to {{ topic_title }}—organized as a focused technical route through the writing archive.{% endcapture %}
+{% capture topic_meta %}{{ page.posts | size }} article{% if page.posts.size != 1 %}s{% endif %} · Topic archive{% endcapture %}
+{% include route-hero.html
+  label="Knowledge map / Topic"
+  title=topic_title
+  description=topic_description
+  meta=topic_meta
+  code="CHAR_TOPIC / SERIOUS"
+  image="/assets/img/game/char-serious.png"
+  image_hd="/assets/img/game/hd/char-serious.png"
+  alt="Pixel-art portrait of Ankit Kumar in a focused expression"
+%}
+
+<div id="page-tag">
+  <ul class="content ps-0">
+    {% for post in page.posts %}
+      <li class="d-flex justify-content-between px-md-3">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="dash flex-grow-1"></span>
+        {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

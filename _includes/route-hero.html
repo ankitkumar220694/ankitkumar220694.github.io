@@ -1,0 +1,15 @@
+<section class="route-hero" aria-labelledby="route-heading">
+  <div class="route-hero-copy">
+    <p class="route-label">{{ include.label }}</p>
+    <h1 id="route-heading">{{ include.title }}</h1>
+    <p class="route-lead">{{ include.description }}</p>
+    {% if include.meta %}<p class="route-meta">{{ include.meta }}</p>{% endif %}
+  </div>
+  <figure
+    class="route-figure"
+    style="--figure-image: url('{{ include.image_hd | relative_url }}')"
+    role="img"
+    aria-label="{{ include.alt }}">
+    <span aria-hidden="true">{{ include.code }}</span>
+  </figure>
+</section>

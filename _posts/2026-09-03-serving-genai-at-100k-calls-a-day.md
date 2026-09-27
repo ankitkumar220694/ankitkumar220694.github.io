@@ -1,107 +1,86 @@
 ---
-title: "Serving GenAI at 100k Calls a Day: What Scales, What Breaks, and What It Costs"
+title: "Serving GenAI at 100K Calls a Day"
+description: "The cost, caching, observability and failure-handling decisions behind a production voice-analytics pipeline operating at 100K+ calls per day."
 date: 2026-09-03 09:00:00 +0530
 tags: [genai, llm, bedrock, aws, cost-optimization, observability]
 toc: true
 ---
 
-I spent a good chunk of the last year building a voice-analytics system that runs up
-to **100,000 calls a day** through automatic speech recognition and a large language
-model. The demo version — transcribe a call, ask an LLM to summarize it — takes an
-afternoon. The version that survives 100k calls a day, stays inside a budget, and
-doesn't page you at 2 a.m. is a different engineering problem. This post is about
-that gap.
+{% include post-character.html
+  label="Operator log 002 / GenAI at scale"
+  image_hd="/assets/img/game/hd/char-surprised.png"
+  alt="Pixel-art portrait reacting to production scale"
+%}
 
-> The system: AWS Transcribe turns call audio into text, Amazon Bedrock LLMs extract
-> defect analysis, agent-performance signals, and customer-issue KPIs, and the
-> results roll up into dashboards. The numbers and lessons below are from operating
-> it in production.
+A demo can transcribe one call and ask an LLM for a summary in an afternoon. A production system that handles **100,000+ calls a day**, stays inside budget and recovers from constant partial failure is a different engineering problem.
+
+The system behind these lessons turns call audio into text with automatic speech recognition, extracts operational signals with language models, and rolls the result into dashboards for defect analysis, agent performance and customer issues.
+
+> At this scale, prompt length is infrastructure, p99 latency determines capacity, and “rare” failures happen every day.
 {: .prompt-info }
 
-## The demo-to-production gap
+## Start with unit economics
 
-A single call through the pipeline is trivial. The trouble starts when you multiply
-by 100,000 and add the constraints nobody mentions in a tutorial:
+At one model request per conversation, the pipeline can make roughly 100K model invocations every day. Small inefficiencies stop being small:
 
-- **Cost is now a first-class metric.** At one LLM call per conversation you are
-  making ~100k model invocations a day. Token count *is* your bill. A prompt that is
-  30% longer than it needs to be is a 30% larger invoice, every day, forever.
-- **Latency compounds.** ASR latency + LLM latency + ret\[ries\] + queue wait — at
-  volume, the p99 is what defines whether the daily batch finishes before the next
-  one starts.
-- **Failure is constant, not exceptional.** At 100k/day something is always failing:
-  a malformed transcript, a throttled API, a call with no speech. "Handle the happy
-  path" is not a strategy.
+- A static prompt that is 30% longer creates a recurring token-cost penalty.
+- Unbounded prose costs more to generate and is harder to validate downstream.
+- Sending every task to the largest model pays premium rates for routine extraction.
 
-## Lever 1 — Token discipline is cost engineering
+I treat each stage as a measurable unit: **cost per processed call, tokens per task, latency per stage and useful output per request**. That turns optimization into engineering instead of guesswork.
 
-The single highest-leverage thing I did was treat the prompt as a cost surface, not
-just a correctness surface.
+## Token discipline is cost engineering
 
-- **Trim the system prompt ruthlessly.** Every token in a static instruction block is
-  paid on every one of 100k calls. I moved verbose instructions to the shortest form
-  that still passed eval.
-- **Bound the output.** Ask for structured, capped output (JSON with named fields)
-  rather than free prose. You pay for output tokens too, and structured output is
-  cheaper to parse downstream.
-- **Right-size the model per task.** Not every extraction needs the largest model.
-  Routing simpler classifications to a smaller/cheaper model and reserving the big
-  model for genuinely hard reasoning is a large, boring, effective cost win.
+Three decisions consistently produce leverage:
 
-## Lever 2 — Semantic caching for repeated questions
+1. **Shorten static instructions.** Keep only wording that changes evaluated behavior.
+2. **Constrain the response.** A small documented schema is cheaper and safer than open-ended prose.
+3. **Route by difficulty.** Use smaller models for extraction and classification; reserve stronger models for ambiguous reasoning.
 
-In a contact center the same *kinds* of questions recur constantly — "what defect is
-this customer describing?" over near-identical calls. An exact-match cache misses
-because the wording differs every time.
+Prompts should be versioned and evaluated like code. A token increase is a change with a price tag, not harmless copy editing.
 
-A **semantic cache** keys on meaning instead of exact text: embed the query, do a
-vector-similarity lookup against past queries, and if you're within a distance
-threshold, return the cached answer and skip the LLM call entirely. The tradeoffs
-that actually matter in production:
+## Cache meaning, not wording
 
-- **The threshold is the whole game.** Too loose and you serve a wrong-but-similar
-  answer; too strict and your hit rate collapses and you've added latency for
-  nothing. This needs tuning against real traffic, not a guessed constant.
-- **Context-awareness.** In a multi-turn setting, cache on the relevant conversation
-  window, not just the last utterance, or you'll return an answer that's correct in
-  isolation and wrong in context.
+Contact-center questions often repeat semantically even when the transcript wording changes. Exact-match caching misses that reuse.
 
-Every cache hit is an LLM call you did not pay for and did not wait on — it improves
-both levers above at once.
+A semantic cache embeds the relevant input, checks nearby historical requests and reuses an answer only when similarity clears a validated threshold. Two details decide whether it helps:
 
-## Lever 3 — Observability or it didn't happen
+- **Threshold quality:** too loose returns plausible but incorrect answers; too strict adds lookup latency without enough hits.
+- **Context scope:** cache the context needed to preserve meaning, not just the final utterance.
 
-At 100k/day you cannot eyeball outputs. What I instrument:
+Every safe cache hit removes model latency and model cost at the same time.
 
-- **Cost per call and per day**, broken down by model and by stage — so a regression
-  in prompt size shows up as a line going up, not as a surprise invoice.
-- **Throughput and p50/p99 latency** per stage (ASR vs LLM) — so you know *which*
-  stage to fix when the batch runs long.
-- **Failure taxonomy** — throttles, empty transcripts, parse failures, each counted
-  separately, because they have different fixes.
-- **Output quality sampling** — a small, continuous sample scored against a rubric,
-  so silent quality drift is caught before a stakeholder catches it.
+## Observe the pipeline by stage
 
-## Lever 4 — Design for constant failure
+Aggregate success rates hide the part that needs attention. I monitor:
 
-- **Retries with backoff** on throttling, with a dead-letter path so one bad call
-  doesn't stall a batch.
-- **Idempotency** so re-processing after a failure doesn't double-count or
-  double-bill.
-- **Graceful degradation** — a call with no usable speech should be flagged and
-  skipped, not crash the run.
+- **Cost per call and per day**, segmented by model and processing stage
+- **Throughput plus p50 and p99 latency** for ASR, queues and LLM requests
+- **Failure taxonomy** covering throttles, empty transcripts, schema failures and timeouts
+- **Continuous quality samples** scored against a stable rubric
 
-## What I'd tell someone starting this
+When batch completion slips, stage-level telemetry answers whether the constraint is transcription, queue pressure, model latency or retries.
 
-1. **Instrument cost from day one.** You cannot optimize a bill you can't see.
-2. **The prompt is infrastructure.** Version it, eval it, and treat a token increase
-   as a change with a price tag.
-3. **Cache before you scale the model.** The cheapest LLM call is the one you didn't
-   make.
-4. **Small model + routing beats one big model** for most of the volume.
+## Assume partial failure
 
-Serving GenAI at scale is less about clever prompting and more about the same
-discipline as any production system: measure it, bound it, and assume it will fail.
+At 100K calls a day, malformed input and transient service errors are normal operating conditions.
 
-*I write about MLOps and production GenAI. More on the [Projects]({{ '/projects/' |
-relative_url }}) page.*
+- Retry throttled work with bounded exponential backoff.
+- Make processing idempotent so recovery cannot duplicate results or billing.
+- Move irrecoverable items to a dead-letter path instead of blocking the batch.
+- Treat “no usable speech” as a valid outcome with an explicit status.
+
+Graceful degradation is part of the product. A skipped, traceable call is better than a pipeline that stalls invisibly.
+
+## Production checklist
+
+1. Instrument cost before traffic grows.
+2. Version prompts and schemas.
+3. Tune caching against real distributions.
+4. Route simple work away from premium models.
+5. Measure every stage independently.
+6. Design retry, idempotency and dead-letter behavior together.
+
+The central lesson is not specific to one model provider: reliable GenAI looks like reliable distributed systems engineering. Measure it, bound it and design for failure.
+
+Explore the related [project dossiers]({{ '/projects/' | relative_url }}) or browse the full [writing archive]({{ '/archives/' | relative_url }}).

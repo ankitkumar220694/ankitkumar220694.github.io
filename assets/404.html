@@ -1,0 +1,22 @@
+---
+layout: page
+title: Signal lost
+permalink: /404.html
+---
+
+{% include route-hero.html
+  label="System message / 404"
+  title="This route does not exist."
+  description="The link may be old, mistyped or moved. The main portfolio routes are still available below."
+  meta="Error code · PATH_NOT_FOUND"
+  code="CHAR_404 / CONFUSED"
+  image="/assets/img/game/char-confused.png"
+  image_hd="/assets/img/game/hd/char-confused.png"
+  alt="Pixel-art portrait looking confused"
+%}
+
+<nav class="recovery-links" aria-label="Recovery routes">
+  <a href="{{ '/' | relative_url }}">Return home</a>
+  <a href="{{ '/projects/' | relative_url }}">Browse projects</a>
+  <a href="{{ '/archives/' | relative_url }}">Open writing</a>
+</nav>
