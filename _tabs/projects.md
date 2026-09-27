@@ -5,68 +5,293 @@ order: 1
 toc: true
 ---
 
-{% include route-hero.html
-  label="Route 01 / Project dossiers"
-  title="Production systems with operational weight."
-  description="Selected work across agentic GenAI, MLOps, enterprise knowledge, speech analytics, applied ML and cloud economics."
-  meta="Role · architecture through operations / Metrics marked ~ are approximate"
-  code="CHAR_03 / EXCITED"
-  image="/assets/img/game/char-excited.png"
-  image_hd="/assets/img/game/hd/char-excited.png"
-  alt="Pixel-art portrait of Ankit Kumar celebrating a successful build"
-%}
+Selected work across **agentic GenAI & MLOps platforms**, **production LLM systems**,
+**cloud cost / FinOps**, and **applied ML**, plus what I build for myself. Click a
+card to expand the full *problem → approach → my role → stack → impact* write-up.
 
-The through-line is simple: each project solved an operating problem, not just a modeling task. These summaries foreground **my role, the production decision and the outcome**.
+> Professional figures reflect production systems at Maruti Suzuki India Limited
+> (MSIL) and Entytle. Approximate figures are marked "~".
+{: .prompt-info }
 
-<div class="case-list">
-  <article id="agentx" class="case-study">
-    <span class="case-no">01</span>
-    <div class="case-main"><span class="case-meta">Agentic GenAI · DevSecOps · MSIL</span><h2>AgentX</h2><p>Designed the process and architecture for a multi-agent LangGraph platform that automates CI/CD compliance and release workflows through APIs and MCP integrations.</p><p class="case-stack">LangGraph · FastAPI · FastMCP · AWS · Snyk · Jira · GitHub</p></div>
-    <strong class="case-impact">~9% faster release cycles</strong>
-  </article>
-  <article id="mlops-framework" class="case-study">
-    <span class="case-no">02</span>
-    <div class="case-main"><span class="case-meta">MLOps · Platform engineering · MSIL</span><h2>Unified MLOps Framework</h2><p>Led a reusable path for deployment, data quality, drift, model health, governance and cloud-cost visibility across the model lifecycle.</p><p class="case-stack">AWS · MLflow · Python · Docker · Terraform · GitHub Actions</p></div>
-    <strong class="case-impact">5+ production projects · ~20% improvement</strong>
-  </article>
-  <article id="voice-analytics" class="case-study">
-    <span class="case-no">03</span>
-    <div class="case-main"><span class="case-meta">Speech AI · Production GenAI · MSIL</span><h2>Voice Analytics Platform</h2><p>Built high-volume ASR and LLM pipelines that transform customer calls into defect, agent-performance and marketing signals.</p><p class="case-stack">AWS Transcribe · OpenAI Whisper · Python · AWS</p></div>
-    <strong class="case-impact">100K+ calls processed daily</strong>
-  </article>
-  <article id="finops" class="case-study">
-    <span class="case-no">04</span>
-    <div class="case-main"><span class="case-meta">FinOps · Multi-cloud · MSIL</span><h2>Cloud Cost Intelligence</h2><p>Designed a cross-divisional AWS and Azure cost platform plus monitoring pipelines for attribution, executive visibility and targeted optimization.</p><p class="case-stack">AWS · Azure · Python · Cost monitoring and analytics</p></div>
-    <strong class="case-impact">~22% lower cloud opex</strong>
-  </article>
-  <article id="knowledge-engine" class="case-study">
-    <span class="case-no">05</span>
-    <div class="case-main"><span class="case-meta">Enterprise RAG · Knowledge systems · MSIL</span><h2>Intelligent Knowledge Engine</h2><p>Architected retrieval and ingestion pipelines that turn mixed enterprise documents into consistent, semantically searchable decision support.</p><p class="case-stack">LangChain · RAG · FastMCP · Embeddings · Python</p></div>
-    <strong class="case-impact">Faster complex document retrieval</strong>
-  </article>
-  <article id="text-to-sql" class="case-study">
-    <span class="case-no">06</span>
-    <div class="case-main"><span class="case-meta">Analytics UX · GenAI · MSIL</span><h2>Natural Language to SQL</h2><p>Combined schema-aware generation and retrieval context so non-technical stakeholders can answer routine data questions without an analyst bottleneck.</p><p class="case-stack">LLM query generation · RAG · SQL · Prompt engineering</p></div>
-    <strong class="case-impact">Self-service business analytics</strong>
-  </article>
-</div>
+# Professional Projects
 
-## Additional applied systems
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">AgentX — DevSecOps Automation Platform <em>· multi-agent GenAI</em></span>
+    <span class="ak-card-sub">MSIL · LangGraph · FastAPI · FastMCP · AWS</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
 
-<div class="compact-systems">
-  <article class="compact-system"><span class="case-no">07 / Acoustic ML</span><h3>Brake diagnostics</h3><p>RNN-based defect detection across 800+ recordings/day with automated MFCC and spectrogram pipelines.</p><p class="case-impact">~30 engineering hours saved/week</p></article>
-  <article class="compact-system"><span class="case-no">08 / Propensity</span><h3>Customer clustering</h3><p>Regional unsupervised models powering personalized service offers across 13 regions and 2,500+ dealers.</p><p class="case-impact">National-scale retention support</p></article>
-  <article class="compact-system"><span class="case-no">09 / Data engineering</span><h3>Dedupe and segmentation</h3><p>PySpark, SQL and NLP-assisted data pipelines with Zipf/RDP segmentation and Power BI delivery.</p><p class="case-impact">~80% address-accuracy improvement</p></article>
-</div>
+**Problem.** CI/CD compliance and release pipelines across the MSIL Digital
+Enterprise were manual and slow, with security/compliance gates bolted on late.
 
-## Independent build
+**Approach.** Designed the DevSecOps process and technical architecture, then built
+an **AI-driven multi-agent LangGraph system** to automate CI/CD compliance and
+release pipelines via APIs and **MCP**. Shipped it as a full-stack app on AWS — a
+Node.js frontend, FastAPI backend, and a custom **FastMCP** server integrating
+threat-modelling, Jira, Confluence (CMMI docs), GitHub, and Snyk.
 
-<div class="case-list">
-  <article id="health-tracker" class="case-study">
-    <span class="case-no">10</span>
-    <div class="case-main"><span class="case-meta">Personal data product · Python</span><h2>Health Tracker</h2><p>A privacy-conscious application combining medication adherence with Samsung Health exports behind a pluggable connector interface. Imports are BOM-tolerant and idempotent; personal health data stays out of version control.</p><p class="case-stack">Python · Typer · SQLAlchemy · Pydantic · pytest · GitHub Actions</p></div>
-    <strong class="case-impact">Solo architecture, implementation and CI</strong>
-  </article>
-</div>
+**My role.** Architect + full-stack engineer — process design, multi-agent
+orchestration, and the end-to-end application.
 
-For the architecture trade-offs behind the flagship systems, continue to the [Writing archive]({{ '/archives/' | relative_url }}).
+**Stack.** LangGraph, MCP/FastMCP, Node.js, FastAPI, AWS, Snyk, Jira, GitHub.
+
+**Impact.** Accelerated application release cycles by **~9%** with automated,
+auditable compliance.
+
+</details>
+
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">MLOps Framework <em>· patented</em></span>
+    <span class="ak-card-sub">MSIL · AI/ML Engineer · Aug 2022 – Present</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
+
+**Problem.** ML teams had slow, inconsistent paths to production — no shared standard
+for deployment, data-quality/drift monitoring, or model-health and cost visibility.
+
+**Approach.** Spearheaded the design and deployment of an **end-to-end MLOps
+framework** monitoring data quality, drift, and overall model health, with a single
+dashboard across the model lifecycle.
+
+**My role.** Design and delivery lead (SAFe® 6.0 PO/PM) — architecture, rollout, and
+stakeholder alignment.
+
+**Stack.** AWS, MLflow, Docker, Terraform, GitHub Actions, Python.
+
+**Impact.** Onboarded **5+ production projects**, reducing deployment time and cloud
+operational expense by **~20%**. Basis of a filed **patent** — *Method and System for
+Managing Machine Learning Models Using Dynamic and Parallel Model Operation Platform*
+(App. No. **202411067665**).
+
+</details>
+
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">FinOps Platform — Cloud Cost Optimization</span>
+    <span class="ak-card-sub">MSIL · AWS + Azure · multi-cloud</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
+
+**Problem.** Cloud spend across the MSIL Digital Enterprise lacked cross-divisional
+visibility, making cost accountability and optimization hard.
+
+**Approach.** Designed a standardized **FinOps** process and built a custom
+**multi-cloud (AWS & Azure)** web application for cross-divisional cost tracking, plus
+an automated monitoring pipeline delivering data-driven cost insights to executive
+leadership.
+
+**My role.** Architect + engineer — FinOps process, multi-cloud app, and the
+monitoring pipeline.
+
+**Stack.** AWS, Azure, Python, automated cost-monitoring pipeline.
+
+**Impact.** Drove a **~22%** reduction in operational expense via proactive EC2
+rightsizing, Reserved Instance adoption, and RDS Graviton migrations.
+
+</details>
+
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Intelligent Enterprise Knowledge Engine <em>· RAG</em></span>
+    <span class="ak-card-sub">MSIL · LangChain · RAG · FastMCP</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
+
+**Problem.** Senior management spent too long retrieving answers from a large, mixed
+corpus of enterprise documents, slowing data-driven decisions.
+
+**Approach.** Architected an **Intelligent Enterprise Knowledge Engine** using
+**LangChain** and advanced **RAG** architectures, with an automated data-ingestion
+and vectorization pipeline built on **FastMCP** to standardize context delivery
+across diverse document formats — ensuring deterministic LLM behavior and higher
+semantic-search fidelity.
+
+**My role.** Lead engineer — RAG architecture and the ingestion/vectorization
+pipeline.
+
+**Stack.** LangChain, RAG, FastMCP, embeddings / semantic search, Python.
+
+**Impact.** Cut complex document-retrieval time for senior management, enabling
+faster decision-making.
+
+</details>
+
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">GenAI Text-to-SQL Dashboard</span>
+    <span class="ak-card-sub">MSIL · LLM query generation · RAG</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
+
+**Problem.** Non-technical business stakeholders couldn't extract data insights
+without writing SQL, bottlenecking every ad-hoc question.
+
+**Approach.** Enhanced a **natural-language-to-SQL** dashboard by integrating
+LLM-based query generation with **schema-aware prompt engineering** and
+retrieval-augmented context, letting stakeholders query data directly.
+
+**My role.** Engineer — schema-aware generation and retrieval-augmented context.
+
+**Stack.** LLM query generation, schema-aware prompting, RAG, SQL.
+
+**Impact.** Self-service data access for non-technical users; removed the analyst
+bottleneck for routine questions.
+
+</details>
+
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Voice Analytics Platform <em>· 100k+ calls/day</em></span>
+    <span class="ak-card-sub">MSIL · AWS Transcribe + OpenAI Whisper</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
+
+**Problem.** Rich signal in inbound/outbound calls — defects, agent performance,
+marketing intel — was locked in unstructured audio at a scale no one could analyze.
+
+**Approach.** Developed an enterprise audio-processing engine leveraging **AWS
+Transcribe and OpenAI Whisper** to analyze **100,000+ (1 Lakh+) daily** voice calls,
+delivering real-time KPIs for defect analysis, agent performance, and cross-vertical
+marketing strategy.
+
+**My role.** Lead ML engineer — pipeline architecture and scale/cost engineering.
+
+**Stack.** AWS Transcribe, OpenAI Whisper, Python, AWS.
+
+**Impact.** Turned an opaque audio stream into real-time, queryable KPIs at **100k+
+calls/day**.
+
+</details>
+
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Acoustic Brake Diagnostics <em>· RNN</em></span>
+    <span class="ak-card-sub">MSIL · RNN · MFCC / spectrograms</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
+
+**Problem.** Brake-defect detection was manual and didn't scale to daily recording
+volumes.
+
+**Approach.** Built an **RNN-based** system automating defect detection for **800+
+daily recordings**, with automated audio feature engineering (**MFCCs, spectrograms**)
+and per-brake-system model retraining.
+
+**My role.** ML engineer — model, feature pipeline, and retraining automation.
+
+**Stack.** RNNs, MFCC / spectrogram feature engineering, Python.
+
+**Impact.** Saved **~30 engineering hours/week** by automating a manual QA step.
+
+</details>
+
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Customer Propensity & Clustering</span>
+    <span class="ak-card-sub">MSIL · unsupervised · 13 regions · 2,500+ dealers</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
+
+**Problem.** Service centers needed to prioritize the right customers for retention
+across a large, varied national footprint.
+
+**Approach.** Trained and deployed **unsupervised clustering** models across **13
+pan-India regions**, enabling **2,500+ MSIL dealers** to run highly personalized
+vehicle-service offers based on historical consumer behavior.
+
+**My role.** ML engineer — modeling and regional rollout.
+
+**Stack.** Python, scikit-learn, unsupervised clustering.
+
+**Impact.** Increased service-center retention through personalized, data-driven
+outreach.
+
+</details>
+
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Data Engineering — Dedupe & Segmentation</span>
+    <span class="ak-card-sub">Entytle · Data Engineer · Jun 2020 – Aug 2022</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
+
+**Problem.** Unstructured, duplicated customer/address data undermined analytics and
+cost manual man-hours.
+
+**Approach.** Built a **deduplication** pipeline from scratch (PySpark preprocessing +
+NLP-based name/address matching) and automated **customer segmentation** (Zipf Law →
+Ramer–Douglas–Peucker for complexity reduction), plus automated ETL ingestion
+(PySpark, SQL) feeding interactive **Power BI** dashboards.
+
+**My role.** Data Engineer — pipelines, matching, and dashboards.
+
+**Stack.** PySpark, SQL, NLP matching, rdp, Pandas, NumPy, Power BI.
+
+**Impact.** Improved unstructured-address accuracy by **~80%**, cut manual man-hours,
+and reduced weekly reporting time.
+
+</details>
+
+# Personal Projects
+
+<details class="ak-card" markdown="1">
+<summary>
+  <span class="ak-card-head">
+    <span class="ak-card-title">Health Tracker — Medication + Wearable Analytics</span>
+    <span class="ak-card-sub">Solo project · Python · Galaxy Watch 7</span>
+  </span>
+  <i class="fas fa-chevron-down ak-chevron" aria-hidden="true"></i>
+</summary>
+
+**Problem.** My health data is scattered — medication routines in my head, and
+biometrics (heart rate, steps, sleep) trapped inside the Samsung Health app on my
+**Galaxy Watch 7**, with no clean way to correlate the two over time.
+
+**Approach.** A GitHub-ready **Python application** that unifies both:
+
+- **Medication logging + adherence** — daily / weekly / as-needed schedules with an
+  adherence-% report and threshold flags.
+- **Wearable sync** — the Galaxy Watch 7 exposes **no cloud REST API** (data lives in
+  Samsung Health), so v0.1 ingests **Samsung Health CSV exports** behind a pluggable
+  `WatchConnector` interface, with a **BOM-tolerant, idempotent** parser (re-imports
+  don't double-count). v0.2 is scoped as an **Android Health Connect companion**
+  POSTing to a FastAPI ingest endpoint — the connector abstraction means the app
+  doesn't change, only the source.
+- **Analytics + reporting** — heart-rate / steps / sleep trends and a markdown health
+  report with threshold flags.
+
+**My role.** Sole engineer — architecture, implementation, tests, CI.
+
+**Stack.** Python, Typer (CLI), SQLAlchemy + SQLite, Pydantic, pytest, ruff, GitHub
+Actions.
+
+**Engineering notes.** Pluggable connector pattern (ABC + registry) so new data
+sources drop in without touching core logic; fully tested with a green CI pipeline;
+`.gitignore` keeps config/health data out of version control by design.
+
+</details>
+
+---
+
+*Want the technical deep-dive on any of these? See the [blog]({{ '/' | relative_url }})
+or reach out via the links in the sidebar.*

@@ -1,0 +1,28 @@
+<!-- BRIEF: tools icon = crossed hammer + wrench (🛠️), retro, gold/steel on indigo
+     card with purple frame. For portfolio LV-card SKILLS. v2. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" shape-rendering="geometricPrecision">
+  <rect id="background" x="0" y="0" width="256" height="256" fill="#2b2a6b"/>
+  <rect x="4" y="4" width="248" height="248" fill="none" stroke="#8f7bff" stroke-width="8"/>
+  <rect x="12" y="12" width="232" height="232" fill="none" stroke="#1a1630" stroke-width="6"/>
+
+  <!-- WRENCH: bottom-left to top-right, gold. Open C-jaw at top-right. -->
+  <g transform="rotate(45 128 128)">
+    <!-- handle -->
+    <rect x="118" y="120" width="20" height="96" rx="8" fill="#ffcf4a" stroke="#1a1630" stroke-width="7"/>
+    <!-- open jaw head (C shape) -->
+    <path d="M108 118 a20 20 0 0 1 40 0 v6 h-13 v-5 a7 7 0 0 0 -14 0 v5 h-13 z"
+          fill="#ffcf4a" stroke="#1a1630" stroke-width="7" stroke-linejoin="round"/>
+  </g>
+
+  <!-- HAMMER: top-left to bottom-right, steel head + wood handle. -->
+  <g transform="rotate(-45 128 128)">
+    <!-- handle -->
+    <rect x="120" y="118" width="16" height="98" rx="6" fill="#c98a3a" stroke="#1a1630" stroke-width="7"/>
+    <!-- head -->
+    <rect x="98" y="92" width="60" height="30" rx="6" fill="#c9cde0" stroke="#1a1630" stroke-width="7"/>
+    <!-- claw hint -->
+    <path d="M98 108 q-10 4 -8 16" fill="none" stroke="#1a1630" stroke-width="7" stroke-linecap="round"/>
+    <!-- head shine -->
+    <rect x="104" y="98" width="10" height="8" rx="3" fill="#f2f4ff" opacity=".8"/>
+  </g>
+</svg>
